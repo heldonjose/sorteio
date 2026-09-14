@@ -40,7 +40,7 @@ class InstagramAccount(models.Model):
     ig_user_id = models.CharField(max_length=100, unique=True)
     username = models.CharField(max_length=100)
     name = models.CharField(max_length=200, blank=True)
-    profile_picture_url = models.URLField(max_length=500, blank=True)
+    profile_picture_url = models.TextField(blank=True)
     account_type = models.CharField(max_length=50, blank=True)
     followers_count = models.IntegerField(default=0)
     media_count = models.IntegerField(default=0)
