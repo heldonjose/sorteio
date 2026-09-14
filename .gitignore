@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+mediafiles/
+media/
+
+# Environment
+.env
+.env.*
+!.env.exemplo
+
+# Tailwind (binário standalone baixado pelo django-tailwind-cli)
+theme/static_src/node_modules/
+staticfiles/
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Coverage
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Migrations (manter no git)
+# !*/migrations/*.py
+
+# Secrets / chaves geradas
+*.pem
+*.key

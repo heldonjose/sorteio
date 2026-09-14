@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sorteio Insta</title>
+<style>
+  :root {
+    --bg: #f6f5f8; --card: #fff; --text: #1d1b22; --muted: #6b6775; --line: #e6e3ec;
+    --brand: #d62976; --brand2: #962fbf; --ok: #1f9d55; --err: #c62828;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+  header h1 { margin: 0; font-size: 28px; background: linear-gradient(90deg, var(--brand2), var(--brand), #fa7e1e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  header p { margin: 4px 0 20px; color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+  .card h2 { margin: 0 0 12px; font-size: 17px; }
+  .step { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 13px; margin-right: 6px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  input[type=text], input[type=password], input[type=number], textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font: inherit; background: #fff; color: inherit;
+  }
+  textarea { min-height: 60px; resize: vertical; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .row > .grow { flex: 1 1 260px; }
+  button { font: inherit; border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; background: var(--text); color: #fff; }
+  button.brand { background: linear-gradient(90deg, var(--brand2), var(--brand)); }
+  button.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  .hint { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .hint a { color: var(--brand2); }
+  .status { font-size: 14px; margin-top: 10px; min-height: 20px; }
+  .status.err { color: var(--err); } .status.ok { color: var(--ok); }
+  .profile { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+  .profile img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: var(--line); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 12px; }
+  .post { position: relative; border: 2px solid transparent; border-radius: 10px; overflow: hidden; cursor: pointer; background: var(--line); aspect-ratio: 1; padding: 0; color: inherit; }
+  .post img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .post .meta { position: absolute; inset: auto 0 0 0; padding: 6px 8px; font-size: 12px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.75)); text-align: left; }
+  .post.sel { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(214,41,118,.25); }
+  .opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .check { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--text); margin: 0; }
+  .stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 8px 0 12px; font-size: 14px; }
+  .stats b { font-size: 20px; display: block; }
+  .list { max-height: 320px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; }
+  .list div { padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 14px; overflow-wrap: anywhere; }
+  .list div:last-child { border-bottom: 0; }
+  .list .u { font-weight: 600; margin-right: 6px; }
+  .stage { text-align: center; padding: 28px 12px; }
+  .roller { font-size: clamp(26px, 6vw, 44px); font-weight: 800; min-height: 1.4em; overflow-wrap: anywhere; }
+  .winner { margin-top: 16px; display: grid; gap: 10px; }
+  .win { border: 2px solid var(--brand); border-radius: 12px; padding: 14px; text-align: left; }
+  .win .n { font-size: 12px; color: var(--muted); }
+  .win a { color: var(--brand); font-weight: 700; font-size: 20px; text-decoration: none; }
+  .win p { margin: 6px 0 0; }
+  .muted { color: var(--muted); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Sorteio Insta</h1>
+    <p>Carregue os comentários de um post e sorteie um ganhador. Nada é salvo: o token fica só na memória desta aba.</p>
+  </header>
+
+  <!-- 1. Conexão -->
+  <section class="card">
+    <h2><span class="step">1</span>Conectar</h2>
+    <div class="row">
+      <div class="grow">
+        <label for="token">Token de acesso do Instagram (conta Business/Creator)</label>
+        <input id="token" type="password" placeholder="IGAA..." autocomplete="off">
+      </div>
+      <button id="btnConnect" class="brand">Conectar</button>
+      <button id="btnDemo" class="ghost">Usar modo demo</button>
+    </div>
+    <div class="hint">
+      Gere o token no <a href="https://developers.facebook.com/apps/" target="_blank" rel="noopener">Meta for Developers</a>:
+      app → Instagram → "API setup with Instagram login" → gerar token, com as permissões
+      <code>instagram_business_basic</code> e <code>instagram_business_manage_comments</code>.
+    </div>
+    <div class="profile" id="profile" hidden></div>
+    <div class="status" id="connStatus"></div>
+  </section>
+
+  <!-- 2. Post -->
+  <section class="card" id="secPost" hidden>
+    <h2><span class="step">2</span>Escolher o post</h2>
+    <div class="row">
+      <div class="grow">
+        <label for="query">Link do post ou @ do perfil</label>
+        <input id="query" type="text" placeholder="https://www.instagram.com/p/XXXX/  ou  @seuperfil">
+      </div>
+      <button id="btnFind">Buscar</button>
+    </div>
+    <div class="status" id="postStatus"></div>
+    <details id="debug" hidden style="margin-top:8px">
+      <summary>Diagnóstico (resposta da API)</summary>
+      <pre id="debugOut" style="white-space:pre-wrap;font-size:12px;background:#f3f1f6;padding:10px;border-radius:8px;max-height:300px;overflow:auto"></pre>
+    </details>
+    <div class="grid" id="posts"></div>
+    <div class="row" style="margin-top:10px">
+      <button id="btnMore" class="ghost" hidden>Carregar mais posts</button>
+    </div>
+  </section>
+
+  <!-- 3. Comentários + regras -->
+  <section class="card" id="secComments" hidden>
+    <h2><span class="step">3</span>Comentários e regras</h2>
+    <div class="opts">
+      <label class="check"><input type="checkbox" id="optUnique" checked> Uma chance por pessoa</label>
+      <label class="check"><input type="checkbox" id="optReplies"> Contar respostas a comentários</label>
+      <label class="check"><input type="checkbox" id="optOwner" checked> Excluir o dono do perfil</label>
+      <div>
+        <label for="optMentions">Mínimo de @marcações no comentário</label>
+        <input id="optMentions" type="number" min="0" value="0">
+      </div>
+      <div>
+        <label for="optKeyword">Palavra ou #hashtag obrigatória (opcional)</label>
+        <input id="optKeyword" type="text" placeholder="#eusorteio">
+      </div>
+      <div>
+        <label for="optWinners">Quantidade de ganhadores</label>
+        <input id="optWinners" type="number" min="1" value="1">
+      </div>
+      <div style="grid-column: 1 / -1">
+        <label for="optExclude">Excluir usuários (separe por vírgula ou linha)</label>
+        <textarea id="optExclude" placeholder="@fulano, @ciclano"></textarea>
+      </div>
+    </div>
+    <div class="stats">
+      <div><b id="stTotal">0</b><span class="muted">comentários carregados</span></div>
+      <div><b id="stValid">0</b><span class="muted">participações válidas</span></div>
+      <div><b id="stPeople">0</b><span class="muted">pessoas únicas</span></div>
+    </div>
+    <input id="search" type="text" placeholder="Filtrar lista por usuário ou texto..." style="margin-bottom:8px">
+    <div class="list" id="list"></div>
+  </section>
+
+  <!-- 4. Sorteio -->
+  <section class="card" id="secDraw" hidden>
+    <h2><span class="step">4</span>Sortear</h2>
+    <div class="stage">
+      <div class="roller" id="roller">Pronto?</div>
+      <div style="margin-top:16px">
+        <button id="btnDraw" class="brand" style="font-size:18px;padding:14px 28px">Sortear</button>
+      </div>
+      <div class="winner" id="winners"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const API = 'https://graph.instagram.com/v21.0';
+  const $ = id => document.getElementById(id);
+
+  const state = {
+    token: '', demo: false, me: null,
+    posts: [], nextPosts: null,
+    post: null, comments: [],   // [{id, username, text, timestamp, isReply}]
+    drawing: false,
+  };
+
+  // ---------- helpers ----------
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const setStatus = (el, msg, kind = '') => { el.textContent = msg; el.className = 'status ' + kind; };
+  const fmtDate = iso => iso ? new Date(iso).toLocaleString('pt-BR') : '';
+
+  async function api(pathOrUrl, params = {}) {
+    const url = new URL(pathOrUrl.startsWith('http') ? pathOrUrl : API + pathOrUrl);
+    for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+    if (!url.searchParams.has('access_token')) url.searchParams.set('access_token', state.token);
+    const res = await fetch(url);
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.error) throw new Error(data.error?.message || `Erro HTTP ${res.status}`);
+    return data;
+  }
+
+  // Sorteio justo: índice aleatório uniforme com crypto
+  function randInt(max) {
+    const limit = Math.floor(0x100000000 / max) * max;
+    const buf = new Uint32Array(1);
+    do crypto.getRandomValues(buf); while (buf[0] >= limit);
+    return buf[0] % max;
+  }
+
+  // ---------- modo demo ----------
+  const DEMO_NAMES = ['ana.souza', 'joao_pedro', 'mari.lima', 'lucas.dev', 'bia_costa', 'rafa.oliveira', 'carol.m', 'pedrinho99', 'julia.santos', 'thiago_r', 'fer.almeida', 'gui.barbosa', 'lari.rocha', 'dudu_silva', 'nat.fernandes'];
+  function demoPosts() {
+    return Array.from({ length: 9 }, (_, i) => ({
+      id: 'demo' + i, caption: `Post de sorteio #${i + 1}`, permalink: `https://www.instagram.com/p/DEMO${i}/`,
+      media_type: 'IMAGE', timestamp: new Date(Date.now() - i * 864e5).toISOString(),
+      comments_count: 20 + i * 7, thumb: `https://picsum.photos/seed/sorteio${i}/300`,
+    }));
+  }
+  function demoComments(n) {
+    return Array.from({ length: n }, (_, i) => {
+      const u = DEMO_NAMES[randInt(DEMO_NAMES.length)];
+      const tags = Array.from({ length: randInt(4) }, () => '@' + DEMO_NAMES[randInt(DEMO_NAMES.length)]).join(' ');
+      return { id: 'c' + i, username: u, text: `Quero ganhar! ${tags} ${randInt(3) ? '#eusorteio' : ''}`.trim(), timestamp: new Date(Date.now() - i * 6e4).toISOString(), isReply: i % 9 === 0 };
+    });
+  }
+
+  // ---------- 1. conectar ----------
+  $('btnConnect').onclick = async () => {
+    const token = $('token').value.trim();
+    if (!token) return setStatus($('connStatus'), 'Cole o token de acesso.', 'err');
+    state.token = token; state.demo = false;
+    setStatus($('connStatus'), 'Conectando...');
+    try {
+      state.me = await api('/me', { fields: 'user_id,username,name,profile_picture_url,account_type,media_count' });
+      onConnected();
+    } catch (e) {
+      setStatus($('connStatus'), 'Falha ao conectar: ' + e.message, 'err');
+    }
+  };
+
+  $('btnDemo').onclick = () => {
+    state.demo = true; state.token = '';
+    state.me = { username: 'perfil_demo', name: 'Perfil Demo', profile_picture_url: 'https://picsum.photos/seed/perfil/80', media_count: 9 };
+    onConnected();
+  };
+
+  function onConnected() {
+    const m = state.me;
+    $('profile').hidden = false;
+    $('profile').innerHTML = `<img src="${esc(m.profile_picture_url || '')}" alt=""><div><b>@${esc(m.username)}</b><div class="muted">${esc(m.name || '')}${m.media_count != null ? ' · ' + m.media_count + ' posts' : ''}${state.demo ? ' · modo demo' : ''}</div></div>`;
+    setStatus($('connStatus'), 'Conectado.', 'ok');
+    $('secPost').hidden = false;
+    $('query').value = '@' + m.username;
+    resetAfterPost();
+    $('posts').innerHTML = ''; state.posts = []; state.nextPosts = null; $('btnMore').hidden = true;
+  }
+
+  // ---------- 2. buscar post ----------
+  function parseQuery(q) {
+    q = q.trim();
+    const m = q.match(/instagram\.com\/(?:[^/]+\/)?(?:p|reel|reels|tv)\/([A-Za-z0-9_-]+)/i);
+    if (m) return { type: 'link', shortcode: m[1] };
+    const u = q.replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/^@/, '').replace(/\/.*$/, '');
+    return u ? { type: 'user', username: u } : null;
+  }
+
+  async function fetchPosts(next) {
+    if (state.demo) return { data: next ? [] : demoPosts(), next: null };
+    const data = next
+      ? await api(next)
+      : await api('/me/media', { fields: 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp,comments_count', limit: 24 });
+    return {
+      data: (data.data || []).map(p => ({ ...p, thumb: p.media_type === 'VIDEO' ? p.thumbnail_url : p.media_url })),
+      next: data.paging?.next || null,
+    };
+  }
+
+  $('btnFind').onclick = async () => {
+    const q = parseQuery($('query').value);
+    const st = $('postStatus');
+    if (!q) return setStatus(st, 'Informe um link de post ou um @.', 'err');
+
+    if (q.type === 'user' && q.username.toLowerCase() !== state.me.username.toLowerCase()) {
+      return setStatus(st, `A API do Instagram só permite ler comentários da conta conectada (@${state.me.username}). Para @${q.username}, conecte com o token dessa conta.`, 'err');
+    }
+
+    setStatus(st, 'Buscando posts...');
+    state.posts = []; $('posts').innerHTML = '';
+    try {
+      if (q.type === 'user') {
+        const r = await fetchPosts();
+        state.posts = r.data; state.nextPosts = r.next;
+        renderPosts();
+        setStatus(st, 'Selecione um post.', 'ok');
+        return;
+      }
+      // link: procura o shortcode nos posts da conta (paginando)
+      let next = null, pages = 0;
+      do {
+        const r = await fetchPosts(next);
+        state.posts.push(...r.data); next = r.next; pages++;
+        const found = state.demo ? state.posts[0] : state.posts.find(p => p.permalink && p.permalink.includes('/' + q.shortcode));
+        if (found) {
+          state.nextPosts = next; renderPosts();
+          setStatus(st, 'Post encontrado.', 'ok');
+          return selectPost(found);
+        }
+        setStatus(st, `Procurando o post... (${state.posts.length} verificados)`);
+      } while (next && pages < 40);
+      state.nextPosts = next; renderPosts();
+      setStatus(st, `Esse post não foi encontrado na conta @${state.me.username}. A API só lê posts da conta conectada.`, 'err');
+    } catch (e) {
+      setStatus(st, 'Erro: ' + e.message, 'err');
+    }
+  };
+  $('query').addEventListener('keydown', e => { if (e.key === 'Enter') $('btnFind').click(); });
+
+  $('btnMore').onclick = async () => {
+    try {
+      const r = await fetchPosts(state.nextPosts);
+      state.posts.push(...r.data); state.nextPosts = r.next; renderPosts();
+    } catch (e) { setStatus($('postStatus'), 'Erro: ' + e.message, 'err'); }
+  };
+
+  function renderPosts() {
+    $('posts').innerHTML = state.posts.map(p => `
+      <button class="post ${state.post?.id === p.id ? 'sel' : ''}" data-id="${esc(p.id)}" title="${esc(p.caption || '')}">
+        ${p.thumb ? `<img src="${esc(p.thumb)}" alt="" loading="lazy">` : ''}
+        <div class="meta">💬 ${p.comments_count ?? '?'} · ${new Date(p.timestamp).toLocaleDateString('pt-BR')}</div>
+      </button>`).join('');
+    $('btnMore').hidden = !state.nextPosts;
+  }
+  $('posts').onclick = e => {
+    const b = e.target.closest('.post');
+    if (b) selectPost(state.posts.find(p => p.id === b.dataset.id));
+  };
+
+  // ---------- 3. comentários ----------
+  function debugLog(title, obj) {
+    $('debug').hidden = false;
+    const json = JSON.stringify(obj, null, 2).replace(/access_token=[^&"]+/g, 'access_token=***');
+    $('debugOut').textContent += `### ${title}\n${json}\n\n`;
+  }
+
+  function resetAfterPost() {
+    $('debug').hidden = true; $('debugOut').textContent = '';
+    state.post = null; state.comments = [];
+    $('secComments').hidden = true; $('secDraw').hidden = true;
+    $('winners').innerHTML = ''; $('roller').textContent = 'Pronto?';
+  }
+
+  async function selectPost(post) {
+    resetAfterPost();
+    state.post = post; renderPosts();
+    const st = $('postStatus');
+    setStatus(st, 'Carregando comentários...');
+    try {
+      if (state.demo) {
+        state.comments = demoComments(post.comments_count);
+      } else {
+        // segue todas as páginas, mesmo as que vierem vazias (a Meta pode filtrar itens)
+        let data = await api(`/${post.id}/comments`, { fields: 'id,text,username,timestamp,replies{id,text,username,timestamp}', limit: 50 });
+        let pages = 0, emptyPages = 0;
+        for (;;) {
+          pages++;
+          if (!(data.data || []).length) emptyPages++;
+          for (const c of data.data || []) {
+            state.comments.push({ id: c.id, username: c.username, text: c.text, timestamp: c.timestamp, isReply: false });
+            for (const r of c.replies?.data || []) state.comments.push({ id: r.id, username: r.username, text: r.text, timestamp: r.timestamp, isReply: true });
+          }
+          setStatus(st, `Carregando comentários... ${state.comments.length} (página ${pages})`);
+          if (!data.paging?.next || pages >= 200) break;
+          data = await api(data.paging.next);
+        }
+        debugLog('Resumo', { comments_count_do_post: post.comments_count, comentarios_recebidos: state.comments.length, paginas: pages, paginas_vazias: emptyPages });
+        if (!state.comments.length && post.comments_count > 0) {
+          setStatus(st, `O post tem ${post.comments_count} comentários, mas a Meta devolveu ${pages} página(s) vazias. Isso indica filtragem pela Meta (app em modo desenvolvimento / acesso padrão). Veja o "Diagnóstico".`, 'err');
+          $('debug').open = true;
+          return;
+        }
+      }
+      setStatus(st, `${state.comments.length} comentários carregados.`, 'ok');
+      $('secComments').hidden = false; $('secDraw').hidden = false;
+      refresh();
+      $('secComments').scrollIntoView({ behavior: 'smooth' });
+    } catch (e) {
+      setStatus(st, 'Erro ao carregar comentários: ' + e.message, 'err');
+    }
+  }
+
+  function entries() {
+    const unique = $('optUnique').checked;
+    const replies = $('optReplies').checked;
+    const owner = $('optOwner').checked;
+    const minMentions = Math.max(0, parseInt($('optMentions').value, 10) || 0);
+    const keyword = $('optKeyword').value.trim().toLowerCase();
+    const exclude = new Set($('optExclude').value.split(/[\s,;]+/).map(s => s.replace(/^@/, '').toLowerCase()).filter(Boolean));
+    const me = state.me?.username?.toLowerCase();
+
+    const seen = new Set();
+    return state.comments.filter(c => {
+      const u = (c.username || '').toLowerCase();
+      if (!u) return false;
+      if (c.isReply && !replies) return false;
+      if (owner && u === me) return false;
+      if (exclude.has(u)) return false;
+      if (keyword && !(c.text || '').toLowerCase().includes(keyword)) return false;
+      if (minMentions) {
+        const tags = new Set(((c.text || '').match(/@[\w.]+/g) || []).map(t => t.toLowerCase()).filter(t => t !== '@' + u));
+        if (tags.size < minMentions) return false;
+      }
+      if (unique) { if (seen.has(u)) return false; seen.add(u); }
+      return true;
+    });
+  }
+
+  function refresh() {
+    const list = entries();
+    $('stTotal').textContent = state.comments.length;
+    $('stValid').textContent = list.length;
+    $('stPeople').textContent = new Set(list.map(c => c.username.toLowerCase())).size;
+    const term = $('search').value.trim().toLowerCase();
+    const shown = term ? list.filter(c => (c.username + ' ' + c.text).toLowerCase().includes(term)) : list;
+    $('list').innerHTML = shown.slice(0, 500).map(c =>
+      `<div><span class="u">@${esc(c.username)}</span>${c.isReply ? '<span class="muted">(resposta) </span>' : ''}${esc(c.text)}</div>`
+    ).join('') + (shown.length > 500 ? `<div class="muted">+ ${shown.length - 500} não exibidos</div>` : '')
+      || '<div class="muted">Nenhuma participação válida com essas regras.</div>';
+    $('btnDraw').disabled = !list.length;
+  }
+  ['optUnique', 'optReplies', 'optOwner', 'optMentions', 'optKeyword', 'optExclude', 'search']
+    .forEach(id => $(id).addEventListener('input', refresh));
+
+  // ---------- 4. sorteio ----------
+  $('btnDraw').onclick = () => {
+    if (state.drawing) return;
+    const pool = entries();
+    if (!pool.length) return;
+    const n = Math.min(Math.max(1, parseInt($('optWinners').value, 10) || 1), pool.length);
+
+    // escolhe os ganhadores (sem repetir pessoa)
+    const winners = [], used = new Set(), bag = pool.slice();
+    while (winners.length < n && bag.length) {
+      const c = bag.splice(randInt(bag.length), 1)[0];
+      const u = c.username.toLowerCase();
+      if (used.has(u)) continue;
+      used.add(u); winners.push(c);
+    }
+
+    state.drawing = true;
+    $('btnDraw').disabled = true;
+    $('winners').innerHTML = '';
+    const roller = $('roller');
+    const start = performance.now(), duration = 3500;
+    (function tick(now) {
+      const t = (now - start) / duration;
+      if (t < 1) {
+        roller.textContent = '@' + pool[randInt(pool.length)].username;
+        setTimeout(() => requestAnimationFrame(tick), 40 + t * t * 260); // desacelera
+        return;
+      }
+      roller.textContent = '🎉 @' + winners[0].username;
+      $('winners').innerHTML = winners.map((c, i) => `
+        <div class="win">
+          <div class="n">${n > 1 ? `${i + 1}º ganhador` : 'Ganhador'} · sorteado entre ${pool.length} participações · ${new Date().toLocaleString('pt-BR')}</div>
+          <a href="https://www.instagram.com/${encodeURIComponent(c.username)}/" target="_blank" rel="noopener">@${esc(c.username)}</a>
+          <p>“${esc(c.text)}”</p>
+          <div class="n">comentado em ${fmtDate(c.timestamp)}</div>
+        </div>`).join('');
+      state.drawing = false;
+      $('btnDraw').disabled = false;
+      $('btnDraw').textContent = 'Sortear novamente';
+    })(start);
+  };
+})();
+</script>
+</body>
+</html>

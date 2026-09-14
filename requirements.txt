@@ -1,0 +1,32 @@
+# Framework
+Django==5.2
+
+# Configuração
+python-dotenv
+dj-database-url
+
+# Banco
+psycopg[binary]
+
+# Celery
+celery[redis]
+django-celery-beat
+django-celery-results
+
+# Front (binário standalone, sem Node)
+django-tailwind-cli
+
+# Segurança / criptografia de tokens
+cryptography
+
+# Servidor (produção)
+gunicorn[gevent]
+
+# Deploy remoto
+fabric
+
+# Linter
+ruff
+
+# Monitoramento (opcional)
+# sentry-sdk[django]
