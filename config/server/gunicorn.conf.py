@@ -2,9 +2,7 @@
 import multiprocessing
 
 bind = "127.0.0.1:9093"
-workers = multiprocessing.cpu_count() * 2 + 1
-worker_class = "gevent"
-worker_connections = 1000
+workers = 1
 timeout = 120
 keepalive = 5
 
