@@ -113,11 +113,13 @@ Acesse: http://localhost:8000 | Admin: http://localhost:8000/admin/
 - [ ] Resultado + certificado público (`/r/<uuid>/`)
 - [ ] Histórico de sorteios
 
-### 🔲 Fase 3 — Créditos e admin
+### ✅ Fase 3 — Créditos e admin (concluída em 2026-09-14)
 
-- [ ] Página de planos → `PurchaseRequest` → link WhatsApp
-- [ ] Ações do admin: liberar pedido, cortesia
-- [ ] Extrato na "Minha conta"
+- [x] `apps/billing/views.py` — `planos`, `comprar` (cria PurchaseRequest + abre WhatsApp), `conta`, `excluir_conta`
+- [x] `apps/billing/urls.py` — `/planos/`, `/planos/comprar/`, `/conta/`, `/conta/excluir/`
+- [x] `templates/pages/planos.html` — botões fazem POST para criar pedido antes do WhatsApp
+- [x] `templates/accounts/conta.html` — extrato, pedidos, sair, excluir conta (confirmação Alpine)
+- [x] 22 testes de billing (130 total passando)
 
 ### 🔲 Fase 4 — Interface completa
 

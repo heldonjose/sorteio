@@ -4,10 +4,19 @@
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
   <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
-      <span class="text-gray-300 dark:text-gray-700">|</span>
-      <span class="font-semibold">Planos</span>
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+        <span class="text-gray-300 dark:text-gray-700">|</span>
+        {% endif %}
+        <span class="font-semibold">Planos</span>
+      </div>
+      {% if request.user.is_authenticated %}
+      <span class="text-sm text-gray-500">
+        Saldo: <span class="font-semibold text-violet-600">{{ balance }} sorteio{{ balance|pluralize }}</span>
+      </span>
+      {% endif %}
     </div>
   </nav>
 
@@ -45,11 +54,21 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Re-sorteio gratuito</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Sem validade</li>
         </ul>
-        <a href="https://wa.me/{{ whatsapp }}?text=Olá!+Quero+1+sorteio+(R$+{{ price_single }}).+Conta:+@{{ request.user.username|default:'usuario' }}"
-           target="_blank" rel="noopener"
+        {% if request.user.is_authenticated %}
+        <form method="post" action="{% url 'billing:comprar' %}">
+          {% csrf_token %}
+          <input type="hidden" name="plan" value="SINGLE">
+          <button type="submit"
+                  class="w-full py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl text-sm transition-colors">
+            Comprar via WhatsApp
+          </button>
+        </form>
+        {% else %}
+        <a href="{% url 'accounts:login' %}"
            class="block w-full text-center py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl text-sm transition-colors">
-          Comprar via WhatsApp
+          Entrar para comprar
         </a>
+        {% endif %}
       </div>
 
       <!-- Pacote -->
@@ -64,11 +83,21 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Melhor custo-benefício</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Sem validade</li>
         </ul>
-        <a href="https://wa.me/{{ whatsapp }}?text=Olá!+Quero+o+Pacote+{{ pack_credits }}+sorteios+(R$+{{ pack_price }}).+Conta:+@{{ request.user.username|default:'usuario' }}"
-           target="_blank" rel="noopener"
+        {% if request.user.is_authenticated %}
+        <form method="post" action="{% url 'billing:comprar' %}">
+          {% csrf_token %}
+          <input type="hidden" name="plan" value="PACK_30">
+          <button type="submit"
+                  class="w-full py-2.5 bg-gray-900 dark:bg-gray-100 hover:opacity-90 text-white dark:text-gray-900 font-semibold rounded-xl text-sm transition-opacity">
+            Comprar via WhatsApp
+          </button>
+        </form>
+        {% else %}
+        <a href="{% url 'accounts:login' %}"
            class="block w-full text-center py-2.5 bg-gray-900 dark:bg-gray-100 hover:opacity-90 text-white dark:text-gray-900 font-semibold rounded-xl text-sm transition-opacity">
-          Comprar via WhatsApp
+          Entrar para comprar
         </a>
+        {% endif %}
       </div>
 
     </div>
@@ -76,6 +105,17 @@
     <p class="text-center text-xs text-gray-400">
       Após o pagamento via Pix/WhatsApp, o crédito é liberado manualmente em até 1h útil.
     </p>
+
+    {% if request.user.is_authenticated %}
+    <!-- Pedidos pendentes -->
+    {% with pedidos=request.user.purchase_requests.filter %}
+    <div class="text-center">
+      <a href="{% url 'billing:conta' %}" class="text-sm text-violet-600 hover:underline">
+        Ver minha conta e extrato →
+      </a>
+    </div>
+    {% endwith %}
+    {% endif %}
   </div>
 </div>
 {% endblock %}

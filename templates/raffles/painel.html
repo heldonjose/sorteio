@@ -9,7 +9,9 @@
     <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
       <span class="font-bold text-violet-600 text-lg">Sorteio</span>
       <div class="flex items-center gap-4">
-        <span class="text-sm text-gray-500">@{{ request.user.username }}</span>
+        <a href="{% url 'billing:conta' %}" class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">
+          @{{ request.user.username }}
+        </a>
         <form method="post" action="{% url 'accounts:logout' %}">
           {% csrf_token %}
           <button class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">Sair</button>
