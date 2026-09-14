@@ -29,6 +29,11 @@ def _manage(c: Connection, cmd: str) -> None:
     c.run(f"cd {CODE} && {PYTHON} manage.py {cmd}", pty=True)
 
 
+def _confirm(question: str) -> bool:
+    resp = input(f"{question} [Y/n] ").strip().lower()
+    return resp in ("", "y", "s")
+
+
 @task
 def deploy(c):
     """Pull do git, instala deps, migra, coleta static e reinicia."""
@@ -40,14 +45,14 @@ def deploy(c):
         print("→ Instalando dependências")
         conn.run(f"{PIP} install -r {CODE}/requirements.txt -q")
 
-        print("→ Migrações")
-        _manage(conn, "migrate --noinput")
+        if _confirm("→ Rodar migrate?"):
+            _manage(conn, "migrate --noinput")
 
-        print("→ Tailwind build")
-        _manage(conn, "tailwind build")
+        if _confirm("→ Rodar tailwind build?"):
+            _manage(conn, "tailwind build")
 
-        print("→ Collectstatic")
-        _manage(conn, "collectstatic --noinput")
+        if _confirm("→ Rodar collectstatic?"):
+            _manage(conn, "collectstatic --noinput")
 
         print("→ Restart")
         conn.run(f"supervisorctl restart {SVCS}")
