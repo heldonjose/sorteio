@@ -29,7 +29,13 @@
          }
        }">
 
-    <h1 class="text-2xl font-bold mb-6">Escolha o post para sortear</h1>
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold">Escolha o post para sortear</h1>
+      <button type="submit" x-show="selectedId" x-cloak
+              class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors whitespace-nowrap">
+        Usar este post →
+      </button>
+    </div>
 
     {% if error %}
     <div class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl text-sm">

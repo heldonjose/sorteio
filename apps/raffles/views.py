@@ -76,9 +76,10 @@ def novo(request):
         media_type   = request.POST.get("media_type", "").strip()
 
         if not ig_media_id:
+            posts_list, _, _ = _load_posts(request.user)
             return render(request, "raffles/novo.html", {
                 "error": "Selecione um post.",
-                "posts": _load_posts(request.user),
+                "posts": posts_list,
             })
 
         raffle = Raffle.objects.create(
@@ -97,31 +98,30 @@ def novo(request):
         return redirect("raffles:carregar", uuid=raffle.uuid)
 
     # GET
-    posts, error = _load_posts(request.user)
     after = request.GET.get("after", "")
-    if after:
-        posts, error = _load_posts(request.user, after=after)
+    posts, next_cursor, error = _load_posts(request.user, after=after or None)
     return render(request, "raffles/novo.html", {
         "posts": posts,
         "error": error,
-        "after": after,
+        "after": next_cursor,
     })
 
 
 def _load_posts(user, after=None):
-    """Retorna (posts_list, error_msg). posts_list pode ser []."""
+    """Retorna (posts_list, next_cursor, error_msg)."""
     client = _instagram_client(user)
     if not client:
-        return [], "Conta do Instagram não conectada."
+        return [], "", "Conta do Instagram não conectada."
     try:
         data = client.get_media(after=after)
         posts = data.get("data", [])
         for post in posts:
             post["thumbnail"] = post.get("thumbnail_url") or post.get("media_url", "")
-        return posts, ""
+        next_cursor = data.get("paging", {}).get("cursors", {}).get("after", "")
+        return posts, next_cursor, ""
     except InstagramAPIError as e:
         logger.warning("Erro ao carregar posts para @%s: %s", user.username, e)
-        return [], f"Erro ao carregar posts: {e}"
+        return [], "", f"Erro ao carregar posts: {e}"
 
 
 # HTMX: carregar mais posts
@@ -129,15 +129,7 @@ def _load_posts(user, after=None):
 def posts_fragment(request):
     """Fragmento HTMX para 'carregar mais posts'."""
     after = request.GET.get("after", "")
-    posts, error = _load_posts(request.user, after=after)
-    client = _instagram_client(request.user)
-    next_cursor = ""
-    if client and not error:
-        try:
-            data = client.get_media(after=after)
-            next_cursor = data.get("paging", {}).get("cursors", {}).get("after", "")
-        except Exception:
-            pass
+    posts, next_cursor, error = _load_posts(request.user, after=after or None)
     return render(request, "raffles/_posts.html", {
         "posts": posts,
         "error": error,

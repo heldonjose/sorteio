@@ -34,9 +34,9 @@ class Raffle(models.Model):
 
     # Snapshot do post
     ig_media_id = models.CharField(max_length=100, blank=True)
-    permalink = models.URLField(max_length=500, blank=True)
+    permalink = models.TextField(blank=True)
     caption = models.TextField(blank=True)
-    thumbnail_url = models.URLField(max_length=500, blank=True)
+    thumbnail_url = models.TextField(blank=True)
     media_type = models.CharField(max_length=20, blank=True)
     posted_at = models.DateTimeField(null=True, blank=True)
     comments_count = models.IntegerField(default=0)
