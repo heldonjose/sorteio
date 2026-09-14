@@ -28,5 +28,11 @@ fabric
 # Linter
 ruff
 
+# Testes
+pytest
+pytest-django
+pytest-playwright
+factory-boy
+
 # Monitoramento (opcional)
 # sentry-sdk[django]

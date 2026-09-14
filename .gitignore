@@ -8,14 +8,6 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-eggs/
-parts/
-var/
-sdist/
-develop-eggs/
-.installed.cfg
-lib/
-lib64/
 
 # Virtual environment
 venv/
@@ -23,50 +15,46 @@ venv/
 env/
 
 # Django
-*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 staticfiles/
-mediafiles/
 media/
 
-# Environment
+# CSS compilado pelo Tailwind (gerado, não vai para o git)
+static/css/tailwind.css
+
+# Tailwind CLI binary (baixado automaticamente pelo django-tailwind-cli)
+.tailwindcss
+
+# Environment (o exemplo vai para o git; o .env real, não)
 .env
 .env.*
 !.env.exemplo
-
-# Tailwind (binário standalone baixado pelo django-tailwind-cli)
-theme/static_src/node_modules/
-staticfiles/
-
-# PyCharm / JetBrains
-.idea/
-*.iml
-*.iws
-*.ipr
-
-# VS Code
-.vscode/
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
 
 # Celery
 celerybeat-schedule
 celerybeat.pid
 
-# Coverage
+# Pytest / cobertura
 .coverage
 htmlcov/
 .tox/
 .pytest_cache/
 
-# Migrations (manter no git)
-# !*/migrations/*.py
+# Playwright
+playwright-report/
+test-results/
+.playwright/
 
-# Secrets / chaves geradas
-*.pem
-*.key
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# Logs
+*.log
