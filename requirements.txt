@@ -8,6 +8,9 @@ dj-database-url
 # Banco
 psycopg[binary]
 
+# HTTP (cliente da API do Instagram)
+requests
+
 # Celery
 celery[redis]
 django-celery-beat

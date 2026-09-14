@@ -1,13 +1,9 @@
 import os
-from cryptography.fernet import Fernet
-
-# Variáveis de ambiente necessárias para os testes — devem ser definidas
-# ANTES do Django inicializar (pytest-django importa settings no início).
-os.environ.setdefault("SECRET_KEY", "test-secret-key-for-pytest-only-not-for-production")
-os.environ.setdefault("FIELD_ENCRYPTION_KEY", Fernet.generate_key().decode())
-os.environ.setdefault("DEBUG", "True")
 
 import pytest
+
+os.environ.setdefault("SECRET_KEY", "test-secret-key-for-pytest-only-not-for-production")
+os.environ.setdefault("DEBUG", "True")
 
 
 @pytest.fixture

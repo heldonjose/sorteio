@@ -106,7 +106,7 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 min
 
 # ── Tailwind CLI ─────────────────────────────────────────────────────────────
-TAILWIND_CLI_SRC_CSS = BASE_DIR / "static" / "css" / "source.css"
+TAILWIND_CLI_SRC_CSS = BASE_DIR / "src" / "css" / "source.css"
 TAILWIND_CLI_DIST_CSS = BASE_DIR / "static" / "css" / "tailwind.css"
 
 # ── Instagram / Meta ─────────────────────────────────────────────────────────

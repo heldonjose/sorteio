@@ -4,7 +4,7 @@
 
 PYTHON  = python
 MANAGE  = $(PYTHON) manage.py
-PYTEST  = pytest
+PYTEST  = $(PYTHON) -m pytest
 PIP     = pip
 
 .PHONY: help install migrate run tailwind tailwind-watch \

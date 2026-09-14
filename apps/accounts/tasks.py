@@ -4,6 +4,8 @@ from datetime import timedelta
 from celery import shared_task
 from django.utils import timezone
 
+from apps.instagram.client import InstagramAPIError, refresh_long_token
+
 logger = logging.getLogger(__name__)
 
 
@@ -17,7 +19,6 @@ def refresh_expiring_tokens():
     Se falhar, o token é apagado e o usuário precisará fazer login novamente.
     """
     from apps.accounts.models import InstagramAccount
-    from apps.instagram.client import InstagramAPIError, refresh_long_token
 
     soon = timezone.now() + timedelta(days=15)
     min_age_threshold = timezone.now() - timedelta(hours=24)

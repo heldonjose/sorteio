@@ -9,6 +9,7 @@ from .models import User, InstagramAccount
 class CreditTransactionInline(admin.TabularInline):
     from apps.billing.models import CreditTransaction
     model = CreditTransaction
+    fk_name = "user"
     extra = 0
     readonly_fields = ("amount", "kind", "price_cents", "raffle", "purchase_request", "note", "created_by", "created_at")
     can_delete = False
