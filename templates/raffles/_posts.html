@@ -9,13 +9,13 @@
            data-id="{{ post.id }}"
            data-permalink="{{ post.permalink|default:'' }}"
            data-caption="{{ post.caption|default:''|truncatechars:200 }}"
-           data-thumbnail="{{ post.thumbnail_url|default:post.media_url|default:'' }}"
+           data-thumbnail="{{ post.thumbnail }}"
            data-type="{{ post.media_type|default:'' }}">
     <div class="aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800
                 ring-2 ring-transparent peer-checked:ring-violet-500 transition-all duration-150
                 group-hover:brightness-90">
-      {% if post.thumbnail_url or post.media_url %}
-        <img src="{{ post.thumbnail_url|default:post.media_url }}"
+      {% if post.thumbnail %}
+        <img src="{{ post.thumbnail }}"
              alt="{{ post.caption|default:'Post'|truncatechars:60 }}"
              class="w-full h-full object-cover">
       {% else %}

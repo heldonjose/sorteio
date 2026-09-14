@@ -115,7 +115,10 @@ def _load_posts(user, after=None):
         return [], "Conta do Instagram não conectada."
     try:
         data = client.get_media(after=after)
-        return data.get("data", []), ""
+        posts = data.get("data", [])
+        for post in posts:
+            post["thumbnail"] = post.get("thumbnail_url") or post.get("media_url", "")
+        return posts, ""
     except InstagramAPIError as e:
         logger.warning("Erro ao carregar posts para @%s: %s", user.username, e)
         return [], f"Erro ao carregar posts: {e}"
