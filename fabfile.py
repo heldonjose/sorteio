@@ -42,8 +42,8 @@ def deploy(c):
         print("→ Pull")
         conn.run(f"git -C {CODE} pull")
 
-        print("→ Instalando dependências")
-        conn.run(f"{PIP} install -r {CODE}/requirements.txt -q")
+        if _confirm("→ Instalar dependências?"):
+            conn.run(f"{PIP} install -r {CODE}/requirements.txt -q")
 
         if _confirm("→ Rodar migrate?"):
             _manage(conn, "migrate --noinput")
