@@ -49,7 +49,7 @@ def deploy(c):
             _manage(conn, "migrate --noinput")
 
         if _confirm("→ Rodar tailwind build?"):
-            _manage(conn, "tailwind build")
+            _manage(conn, "tailwind build --force")
 
         if _confirm("→ Rodar collectstatic?"):
             _manage(conn, "collectstatic --noinput")

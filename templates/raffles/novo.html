@@ -13,6 +13,13 @@
     </div>
   </nav>
 
+  <!-- Overlay de loading ao submeter o formulário -->
+  <div x-data x-show="$store.appLoading.on" x-cloak
+       class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm">
+    <div class="w-12 h-12 rounded-full border-4 border-violet-600 border-t-transparent animate-spin mb-4"></div>
+    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">Aguarde…</p>
+  </div>
+
   <div class="max-w-5xl mx-auto px-4 py-8"
        x-data="{
          selectedId: '',
@@ -31,7 +38,7 @@
 
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-2xl font-bold">Escolha o post para sortear</h1>
-      <button type="submit" x-show="selectedId" x-cloak
+      <button type="submit" form="form-novo" x-show="selectedId" x-cloak
               class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors whitespace-nowrap">
         Usar este post →
       </button>
@@ -43,7 +50,7 @@
     </div>
     {% endif %}
 
-    <form method="post" id="form-novo">
+    <form method="post" id="form-novo" @submit="$store.appLoading.on = true">
       {% csrf_token %}
       <input type="hidden" name="ig_media_id"    x-model="selectedId">
       <input type="hidden" name="permalink"       x-model="selectedPermalink">
@@ -76,6 +83,15 @@
         {% if posts or error %}
         {% include "raffles/_posts.html" with posts=posts error=error after=after %}
         {% endif %}
+
+        <!-- Skeleton HTMX: aparece enquanto "carregar mais" busca novos posts -->
+        <div id="load-more-skeleton" class="htmx-indicator col-span-full">
+          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mt-0 animate-pulse">
+            {% for _ in "12345" %}
+            <div class="aspect-square rounded-xl bg-gray-200 dark:bg-gray-800"></div>
+            {% endfor %}
+          </div>
+        </div>
       </div>
 
       <!-- Post selecionado + botão -->

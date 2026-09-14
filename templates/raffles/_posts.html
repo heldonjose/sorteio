@@ -47,7 +47,9 @@
             hx-get="{% url 'raffles:posts_fragment' %}?after={{ after }}"
             hx-target="#posts-grid"
             hx-swap="beforeend"
-            class="px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors">
+            hx-indicator="#load-more-skeleton"
+            hx-disabled-elt="this"
+            class="px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
       Carregar mais posts
     </button>
   </div>
