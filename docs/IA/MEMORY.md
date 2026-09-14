@@ -52,10 +52,13 @@ Atualizar conforme o projeto avança.
 - .gitignore, .env.exemplo, pytest.ini, conftest.py
 - docs/DESENVOLVIMENTO.md (guia de retomada entre PCs)
 
-### 🔲 Fase 1 — Login com Instagram (próxima)
-- OAuth completo (redirect + callback + token longo)
-- Callbacks Meta (deauthorize, data-deletion)
-- Tarefa periódica de renovação de tokens
+### ✅ Fase 1 — Login com Instagram (concluída em 2026-09-14)
+- OAuth: `/entrar/` → authorize → callback → token longo → login Django
+- Callbacks Meta: `POST /meta/deauthorize/` e `POST /meta/data-deletion/`
+- Task Celery `refresh_expiring_tokens` (renovação diária, skip <24h, limpa token inválido)
+- Management command `setup_periodic_tasks` (cria PeriodicTask no banco)
+- Templates: `accounts/login.html`, `accounts/error.html`
+- Testes: `tests/accounts/test_views.py`, `tests/accounts/test_tasks.py`
 
 ### 🔲 Fases 2–6
 Ver docs/DESENVOLVIMENTO.md para o roadmap completo.

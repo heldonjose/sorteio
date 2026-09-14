@@ -73,15 +73,16 @@ Acesse: http://localhost:8000 | Admin: http://localhost:8000/admin/
 - [x] `Makefile` — comandos de desenvolvimento
 - [x] `.gitignore`, `.env.exemplo`, `pytest.ini`
 
-### 🔲 Fase 1 — Login com Instagram (próxima)
+### ✅ Fase 1 — Login com Instagram (concluída em 2026-09-14)
 
-- [ ] OAuth completo: `/entrar/` → redirect Meta → callback → token longo
-- [ ] Criptografia do token ao salvar `InstagramAccount`
-- [ ] Callback de desautorização: `POST /meta/deauthorize/`
-- [ ] Callback de exclusão de dados: `POST /meta/data-deletion/`
-- [ ] Tarefa Celery periódica de renovação de tokens (`PeriodicTask`)
-- [ ] Dev local com HTTPS: `cloudflared tunnel --url http://localhost:8000`
-- [ ] Testes do OAuth (mock da API da Meta)
+- [x] OAuth completo: `/entrar/` → `/auth/instagram/authorize/` → callback → token longo
+- [x] Criptografia do token ao salvar `InstagramAccount` (property Fernet)
+- [x] Callback de desautorização: `POST /meta/deauthorize/`
+- [x] Callback de exclusão de dados: `POST /meta/data-deletion/`
+- [x] Tarefa Celery `refresh_expiring_tokens` — renovação diária de tokens
+- [x] Management command `setup_periodic_tasks` — cria a PeriodicTask no banco
+- [x] Testes: views (mocks da API), task (refresh + erros + skip)
+- [ ] Dev local com HTTPS: `cloudflared tunnel --url http://localhost:8000` (manual)
 
 ### 🔲 Fase 2 — Núcleo de sorteios
 
