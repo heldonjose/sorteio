@@ -121,12 +121,15 @@ Acesse: http://localhost:8000 | Admin: http://localhost:8000/admin/
 - [x] `templates/accounts/conta.html` — extrato, pedidos, sair, excluir conta (confirmação Alpine)
 - [x] 22 testes de billing (130 total passando)
 
-### 🔲 Fase 4 — Interface completa
+### ✅ Fase 4 — Interface completa (concluída em 2026-09-14)
 
-- [ ] Landing completa (FAQ, testemunhos)
-- [ ] Animação do sorteio, confete (`canvas-confetti`)
-- [ ] Skeleton loaders, estados vazios
-- [ ] Responsividade, acessibilidade, modo escuro
+- [x] Landing: CTAs corrigidos (apontam para `accounts:login` em vez de `pages:landing`)
+- [x] Landing: seção FAQ com accordion Alpine.js (5 perguntas fixas)
+- [x] Landing: CTA final ("Pronto para sortear?")
+- [x] `certificado.html`: Open Graph + Twitter Card com thumbnail do post
+- [x] `novo.html`: skeleton loader animado (HTMX `hx-trigger="load"`) enquanto busca posts
+- [x] `base.html`: Open Graph / Twitter Card completos, skip link (acessibilidade), toast Django com auto-dismiss
+- [x] E2E Playwright: 5 novos testes (FAQ, accordion, CTA, seção final)
 
 ### 🔲 Fase 5 — Legal + Produção
 

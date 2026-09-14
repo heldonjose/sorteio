@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Sorteios transparentes para o Instagram{% endblock %}
+{% block description %}Sorteios auditáveis para o Instagram com certificado público. Gratuito para os primeiros 5 sorteios.{% endblock %}
 
 {% block content %}
 
@@ -21,7 +22,7 @@
         <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
       </button>
       <a
-        href="{% url 'pages:landing' %}"
+        href="{% url 'accounts:login' %}"
         class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
       >
         Entrar com Instagram
@@ -54,7 +55,7 @@
       resultado auditável e certificado público — em menos de 2 minutos.
     </p>
     <a
-      href="{% url 'pages:landing' %}"
+      href="{% url 'accounts:login' %}"
       class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 text-white font-bold text-lg hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-violet-500/25"
     >
       <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -75,15 +76,6 @@
     <p class="text-center text-gray-500 dark:text-gray-400 mb-16">Três passos, menos de 2 minutos.</p>
 
     <div class="grid sm:grid-cols-3 gap-8">
-      {% for step in steps %}
-      <div class="flex flex-col items-center text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-sm">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-pink-600 flex items-center justify-center text-white font-extrabold text-lg mb-4">
-          {{ forloop.counter }}
-        </div>
-        <h3 class="font-bold text-lg mb-2">{{ step.title }}</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm">{{ step.description }}</p>
-      </div>
-      {% empty %}
       <div class="flex flex-col items-center text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-sm">
         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-pink-600 flex items-center justify-center text-white font-extrabold text-lg mb-4">1</div>
         <h3 class="font-bold text-lg mb-2">Conecte o Instagram</h3>
@@ -99,7 +91,6 @@
         <h3 class="font-bold text-lg mb-2">Sorteie e compartilhe</h3>
         <p class="text-gray-500 dark:text-gray-400 text-sm">O ganhador é sorteado com certificado público e auditável. Compartilhe o link com sua audiência.</p>
       </div>
-      {% endfor %}
     </div>
   </div>
 </section>
@@ -121,7 +112,7 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Certificado auditável</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Re-sorteio gratuito</li>
         </ul>
-        <a href="{% url 'pages:landing' %}" class="block text-center py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+        <a href="{% url 'accounts:login' %}" class="block text-center py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
           Começar grátis
         </a>
       </div>
@@ -136,7 +127,7 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Pague via Pix/WhatsApp</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Crédito não expira</li>
         </ul>
-        <a href="{% url 'pages:landing' %}" class="block text-center py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-colors">
+        <a href="{% url 'accounts:login' %}" class="block text-center py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-colors">
           Comprar via WhatsApp
         </a>
       </div>
@@ -152,11 +143,166 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Pague via Pix/WhatsApp</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Créditos não expiram</li>
         </ul>
-        <a href="{% url 'pages:landing' %}" class="block text-center py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-orange-500 hover:opacity-90 text-white font-semibold text-sm transition-opacity">
+        <a href="{% url 'accounts:login' %}" class="block text-center py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-orange-500 hover:opacity-90 text-white font-semibold text-sm transition-opacity">
           Comprar via WhatsApp
         </a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── FAQ ─────────────────────────────────────────────────────────────────── -->
+<section class="py-24 px-4 bg-gray-50 dark:bg-gray-900/50">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-center mb-4">Perguntas frequentes</h2>
+    <p class="text-center text-gray-500 dark:text-gray-400 mb-16">Tudo que você precisa saber antes de começar.</p>
+
+    <div class="space-y-3" x-data="{ open: null }">
+
+      {% for faq in faqs %}
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
+        <button
+          @click="open = open === {{ forloop.counter }} ? null : {{ forloop.counter }}"
+          class="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-sm sm:text-base"
+          :aria-expanded="open === {{ forloop.counter }}"
+        >
+          <span>{{ faq.question }}</span>
+          <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200"
+               :class="open === {{ forloop.counter }} ? 'rotate-180' : ''"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div
+          x-show="open === {{ forloop.counter }}"
+          x-collapse
+          class="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed"
+        >
+          {{ faq.answer }}
+        </div>
+      </div>
+      {% empty %}
+
+      {% for faq in default_faqs %}
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
+        <button
+          @click="open = open === {{ forloop.counter }} ? null : {{ forloop.counter }}"
+          class="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-sm sm:text-base"
+          :aria-expanded="open === {{ forloop.counter }}"
+        >
+          <span>{{ faq.question }}</span>
+          <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200"
+               :class="open === {{ forloop.counter }} ? 'rotate-180' : ''"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div
+          x-show="open === {{ forloop.counter }}"
+          x-collapse
+          class="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed"
+        >
+          {{ faq.answer }}
+        </div>
+      </div>
+      {% endfor %}
+
+      {% endfor %}
+
+      <!-- FAQs fixos (fallback quando não há context) -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
+        <button @click="open = open === 'f1' ? null : 'f1'"
+                class="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-sm sm:text-base"
+                :aria-expanded="open === 'f1'">
+          <span>Preciso ter conta Business ou Creator?</span>
+          <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" :class="open === 'f1' ? 'rotate-180' : ''"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div x-show="open === 'f1'" x-collapse class="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Sim. A API do Instagram só permite ler comentários de contas profissionais (Business ou Creator). Contas pessoais não têm acesso à API de comentários da Meta.
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
+        <button @click="open = open === 'f2' ? null : 'f2'"
+                class="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-sm sm:text-base"
+                :aria-expanded="open === 'f2'">
+          <span>O sorteio é realmente aleatório e auditável?</span>
+          <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" :class="open === 'f2' ? 'rotate-180' : ''"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div x-show="open === 'f2'" x-collapse class="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Sim. Usamos <code class="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded">secrets.SystemRandom</code> (gerador criptograficamente seguro do Python) e geramos um hash SHA-256 dos participantes válidos antes do sorteio. O certificado público registra o hash, o número de participantes e o método — qualquer pessoa pode verificar a integridade do resultado.
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
+        <button @click="open = open === 'f3' ? null : 'f3'"
+                class="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-sm sm:text-base"
+                :aria-expanded="open === 'f3'">
+          <span>O que acontece se o ganhador não cumpriu as regras?</span>
+          <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" :class="open === 'f3' ? 'rotate-180' : ''"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div x-show="open === 'f3'" x-collapse class="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Você pode fazer um re-sorteio gratuitamente, informando o motivo (ex.: "ganhador não seguia o perfil"). O certificado registra todas as rodadas, mantendo a transparência do processo.
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
+        <button @click="open = open === 'f4' ? null : 'f4'"
+                class="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-sm sm:text-base"
+                :aria-expanded="open === 'f4'">
+          <span>Meus dados ficam seguros?</span>
+          <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" :class="open === 'f4' ? 'rotate-180' : ''"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div x-show="open === 'f4'" x-collapse class="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Seu token de acesso ao Instagram é armazenado criptografado com Fernet (AES-128-CBC). Nunca armazenamos sua senha. Você pode revogar o acesso a qualquer momento nas configurações do Instagram ou excluir sua conta diretamente no app.
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
+        <button @click="open = open === 'f5' ? null : 'f5'"
+                class="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-sm sm:text-base"
+                :aria-expanded="open === 'f5'">
+          <span>Os créditos expiram?</span>
+          <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200" :class="open === 'f5' ? 'rotate-180' : ''"
+               fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div x-show="open === 'f5'" x-collapse class="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Não. Créditos adquiridos ficam disponíveis indefinidamente. Você paga uma vez e usa quando precisar.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ────────────────────────────────────────────────────────────── -->
+<section class="py-24 px-4">
+  <div class="max-w-2xl mx-auto text-center">
+    <h2 class="text-3xl font-extrabold mb-4">Pronto para sortear?</h2>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">Crie sua conta gratuitamente e faça seus 5 primeiros sorteios sem pagar nada.</p>
+    <a
+      href="{% url 'accounts:login' %}"
+      class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 text-white font-bold text-lg hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-violet-500/25"
+    >
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      Começar grátis agora
+    </a>
   </div>
 </section>
 

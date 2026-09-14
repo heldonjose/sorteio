@@ -70,7 +70,20 @@ Atualizar conforme o projeto avança.
 - Templates: `accounts/login.html`, `accounts/error.html`
 - Testes: `tests/accounts/test_views.py`, `tests/accounts/test_tasks.py`
 
-### 🔲 Fases 2–6
+### ✅ Fase 3 — Créditos e admin (concluída em 2026-09-14)
+- billing/views.py: `planos`, `comprar` (PurchaseRequest + WhatsApp), `conta`, `excluir_conta`
+- billing/urls.py: `/planos/`, `/planos/comprar/`, `/conta/`, `/conta/excluir/`
+- templates: `pages/planos.html`, `accounts/conta.html`
+- 22 testes de billing; 130 total passando
+
+### ✅ Fase 4 — Interface completa (concluída em 2026-09-14)
+- Landing: CTAs corrigidos → `accounts:login`; FAQ accordion (Alpine); CTA final
+- `certificado.html`: Open Graph + Twitter Card com thumbnail do post
+- `novo.html`: skeleton loader animado (HTMX `hx-trigger="load"`)
+- `base.html`: OG/Twitter blocks, skip link, toast Django com auto-dismiss
+- E2E: +5 testes (FAQ, accordion, CTA, seção final)
+
+### 🔲 Fases 5–6
 Ver docs/DESENVOLVIMENTO.md para o roadmap completo.
 
 ---

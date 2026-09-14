@@ -44,3 +44,31 @@ def test_dark_mode_toggle(page, live_server):
     # Após o clique, a classe 'dark' deve aparecer no <html>
     html_class = page.locator("html").get_attribute("class")
     assert html_class is not None
+
+
+def test_landing_has_faq_section(page, live_server):
+    page.goto(f"{live_server.url}/")
+    assert page.get_by_text("Perguntas frequentes").count() > 0
+
+
+def test_landing_faq_accordion_opens(page, live_server):
+    page.goto(f"{live_server.url}/")
+    # Clica no primeiro item do FAQ
+    btn = page.get_by_role("button", name="Preciso ter conta Business ou Creator?")
+    assert btn.count() > 0
+    btn.click()
+    # A resposta deve aparecer após o clique
+    page.wait_for_selector("text=API do Instagram", timeout=3000)
+    assert page.get_by_text("API do Instagram").count() > 0
+
+
+def test_landing_cta_points_to_login(page, live_server):
+    page.goto(f"{live_server.url}/")
+    # O CTA principal deve apontar para /entrar/
+    cta = page.locator("a[href*='entrar']").first
+    assert cta.count() > 0
+
+
+def test_landing_has_final_cta_section(page, live_server):
+    page.goto(f"{live_server.url}/")
+    assert page.get_by_text("Pronto para sortear?").count() > 0

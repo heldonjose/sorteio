@@ -1,6 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Certificado de sorteio{% endblock %}
-{% block description %}Certificado auditável do sorteio. Verifique os ganhadores e a integridade do resultado.{% endblock %}
+{% block title %}Certificado — @{{ raffle.user.username }}{% endblock %}
+{% block description %}Certificado auditável do sorteio de @{{ raffle.user.username }}. Verifique os ganhadores e a integridade do resultado.{% endblock %}
+
+{% block og_title %}Certificado de sorteio — @{{ raffle.user.username }} — Sorteio Insta{% endblock %}
+{% block og_description %}Sorteio realizado em {{ raffle.drawn_at|date:"d/m/Y" }}. Confira os ganhadores e o hash SHA-256 de auditoria.{% endblock %}
+{% if raffle.thumbnail_url %}
+{% block og_image %}<meta property="og:image" content="{{ raffle.thumbnail_url }}">{% endblock %}
+{% endif %}
+{% block twitter_title %}Certificado de sorteio — @{{ raffle.user.username }}{% endblock %}
+{% block twitter_description %}Sorteio realizado em {{ raffle.drawn_at|date:"d/m/Y" }}. Verifique a integridade do resultado pelo hash SHA-256.{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">

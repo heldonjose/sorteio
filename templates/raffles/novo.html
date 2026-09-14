@@ -45,6 +45,19 @@
       <input type="hidden" name="thumbnail_url"   x-model="selectedThumbnail">
       <input type="hidden" name="media_type"      x-model="selectedType">
 
+      <!-- Skeleton enquanto o grid carrega (oculto assim que os posts chegam) -->
+      {% if not posts and not error %}
+      <div id="posts-skeleton" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6 animate-pulse"
+           hx-get="{% url 'raffles:posts-fragment' %}"
+           hx-trigger="load"
+           hx-target="#posts-grid"
+           hx-swap="outerHTML">
+        {% for _ in "12345678910" %}
+        <div class="aspect-square rounded-xl bg-gray-200 dark:bg-gray-800"></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
       <!-- Grade de posts -->
       <div id="posts-grid"
            class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6"
@@ -54,7 +67,9 @@
                selectPost(inp.dataset.id, inp.dataset.permalink, inp.dataset.caption, inp.dataset.thumbnail, inp.dataset.type);
              }
            ">
+        {% if posts or error %}
         {% include "raffles/_posts.html" with posts=posts error=error after=after %}
+        {% endif %}
       </div>
 
       <!-- Post selecionado + botão -->
