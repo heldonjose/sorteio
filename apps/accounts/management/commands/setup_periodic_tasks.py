@@ -10,7 +10,7 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = "Cria/atualiza as PeriodicTask do django-celery-beat para o Sorteio Insta"
+    help = "Cria/atualiza as PeriodicTask do django-celery-beat para o Sorteio Pro"
 
     def handle(self, *args, **options):
         from django_celery_beat.models import IntervalSchedule, PeriodicTask

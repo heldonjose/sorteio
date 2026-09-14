@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Termos de Uso{% endblock %}
-{% block description %}Termos de uso da plataforma Sorteio Insta — regras, créditos, responsabilidades e limitações.{% endblock %}
+{% block description %}Termos de uso da plataforma {{ APP_NAME }} — regras, créditos, responsabilidades e limitações.{% endblock %}
 
 {% block content %}
 <!-- Navbar mínima -->
@@ -8,7 +8,7 @@
   <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
     <a href="{% url 'pages:landing' %}"
        class="font-extrabold text-lg bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
-      Sorteio Insta
+      {{ APP_NAME }}
     </a>
     <a href="{% url 'pages:landing' %}"
        class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← Início</a>
@@ -21,7 +21,7 @@
   <p class="text-sm text-gray-500 mb-10">Última atualização: 14/09/2026</p>
 
   <p class="text-gray-700 dark:text-gray-300 mb-6">
-    Estes Termos regem o uso da plataforma <strong>Sorteio Insta</strong> ("Plataforma"), oferecida por
+    Estes Termos regem o uso da plataforma <strong>{{ APP_NAME }}</strong> ("Plataforma"), oferecida por
     <strong>Soluções e Sistemas</strong>, CNPJ <strong>40.144.482/0001-78</strong> ("nós"). Ao entrar com
     sua conta do Instagram, você ("Usuário") concorda com estes Termos e com a
     <a href="{% url 'pages:privacidade' %}" class="text-violet-600 hover:underline">Política de Privacidade</a>.
@@ -108,7 +108,7 @@
     <h2 class="text-xl font-bold mb-3">8. Propriedade intelectual</h2>
     <p class="text-sm text-gray-700 dark:text-gray-300">
       A marca, o layout e o código da Plataforma nos pertencem. Instagram é marca registrada da Meta Platforms, Inc.
-      <strong>Sorteio Insta não é afiliado, patrocinado ou endossado pelo Instagram ou pela Meta.</strong>
+      <strong>{{ APP_NAME }} não é afiliado, patrocinado ou endossado pelo Instagram ou pela Meta.</strong>
     </p>
   </section>
 
@@ -149,7 +149,7 @@
 <!-- Footer mínimo -->
 <footer class="border-t border-gray-100 dark:border-gray-800 py-6 px-4">
   <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
-    <span>© 2026 Soluções e Sistemas — Sorteio Insta</span>
+    <span>© 2026 Soluções e Sistemas — {{ APP_NAME }}</span>
     <nav class="flex gap-6">
       <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">Privacidade</a>
       <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">Termos</a>

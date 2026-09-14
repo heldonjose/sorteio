@@ -9,7 +9,7 @@
 <header class="sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
     <span class="font-extrabold text-xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
-      Sorteio Insta
+      {{ APP_NAME }}
     </span>
     <div class="flex items-center gap-3">
       <!-- Toggle dark mode -->
@@ -22,7 +22,7 @@
         <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
       </button>
       <a
-        href="{% url 'accounts:login' %}"
+        href="{% url 'accounts:instagram-authorize' %}"
         class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
       >
         Entrar com Instagram
@@ -55,7 +55,7 @@
       resultado auditável e certificado público — em menos de 2 minutos.
     </p>
     <a
-      href="{% url 'accounts:login' %}"
+      href="{% url 'accounts:instagram-authorize' %}"
       class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 text-white font-bold text-lg hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-violet-500/25"
     >
       <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -112,7 +112,7 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Certificado auditável</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Re-sorteio gratuito</li>
         </ul>
-        <a href="{% url 'accounts:login' %}" class="block text-center py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+        <a href="{% url 'accounts:instagram-authorize' %}" class="block text-center py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
           Começar grátis
         </a>
       </div>
@@ -127,7 +127,7 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Pague via Pix/WhatsApp</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Crédito não expira</li>
         </ul>
-        <a href="{% url 'accounts:login' %}" class="block text-center py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-colors">
+        <a href="{% url 'accounts:instagram-authorize' %}" class="block text-center py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-colors">
           Comprar via WhatsApp
         </a>
       </div>
@@ -143,7 +143,7 @@
           <li class="flex gap-2"><span class="text-green-500">✓</span> Pague via Pix/WhatsApp</li>
           <li class="flex gap-2"><span class="text-green-500">✓</span> Créditos não expiram</li>
         </ul>
-        <a href="{% url 'accounts:login' %}" class="block text-center py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-orange-500 hover:opacity-90 text-white font-semibold text-sm transition-opacity">
+        <a href="{% url 'accounts:instagram-authorize' %}" class="block text-center py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-orange-500 hover:opacity-90 text-white font-semibold text-sm transition-opacity">
           Comprar via WhatsApp
         </a>
       </div>
@@ -295,7 +295,7 @@
     <h2 class="text-3xl font-extrabold mb-4">Pronto para sortear?</h2>
     <p class="text-gray-500 dark:text-gray-400 mb-8">Crie sua conta gratuitamente e faça seus 5 primeiros sorteios sem pagar nada.</p>
     <a
-      href="{% url 'accounts:login' %}"
+      href="{% url 'accounts:instagram-authorize' %}"
       class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 text-white font-bold text-lg hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-violet-500/25"
     >
       <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -309,7 +309,7 @@
 <!-- ── FOOTER ───────────────────────────────────────────────────────────────── -->
 <footer class="border-t border-gray-100 dark:border-gray-800 py-8 px-4">
   <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-    <span>© 2026 Soluções e Sistemas — Sorteio Insta</span>
+    <span>© 2026 Soluções e Sistemas — {{ APP_NAME }}</span>
     <nav class="flex gap-6">
       <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white transition-colors">Privacidade</a>
       <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white transition-colors">Termos</a>

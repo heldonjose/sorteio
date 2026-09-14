@@ -57,6 +57,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "apps.pages.context_processors.app_settings",
             ],
         },
     },
@@ -122,6 +123,9 @@ INSTAGRAM_API_VERSION = os.getenv("INSTAGRAM_API_VERSION", "v24.0")
 # ── Criptografia de tokens dos usuários (Fernet) ─────────────────────────────
 # Gere com: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 FIELD_ENCRYPTION_KEY = os.getenv("FIELD_ENCRYPTION_KEY", "")
+
+# ── Nome do produto ──────────────────────────────────────────────────────────
+APP_NAME = os.getenv("APP_NAME", "Sorteio Pro")
 
 # ── Regras de negócio ────────────────────────────────────────────────────────
 FREE_RAFFLES_PER_ACCOUNT = int(os.getenv("FREE_RAFFLES_PER_ACCOUNT", "5"))

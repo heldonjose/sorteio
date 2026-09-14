@@ -2,7 +2,7 @@
 {% block title %}Certificado — @{{ raffle.user.username }}{% endblock %}
 {% block description %}Certificado auditável do sorteio de @{{ raffle.user.username }}. Verifique os ganhadores e a integridade do resultado.{% endblock %}
 
-{% block og_title %}Certificado de sorteio — @{{ raffle.user.username }} — Sorteio Insta{% endblock %}
+{% block og_title %}Certificado de sorteio — @{{ raffle.user.username }} — {{ APP_NAME }}{% endblock %}
 {% block og_description %}Sorteio realizado em {{ raffle.drawn_at|date:"d/m/Y" }}. Confira os ganhadores e o hash SHA-256 de auditoria.{% endblock %}
 {% if raffle.thumbnail_url %}
 {% block og_image %}<meta property="og:image" content="{{ raffle.thumbnail_url }}">{% endblock %}
@@ -119,7 +119,7 @@
 
     <!-- Rodapé -->
     <p class="text-center text-xs text-gray-400">
-      Sorteio realizado por Sorteio Insta. Este certificado não pode ser alterado.
+      Sorteio realizado por {{ APP_NAME }}. Este certificado não pode ser alterado.
     </p>
 
   </div>

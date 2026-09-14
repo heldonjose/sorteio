@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Exclusão de Dados{% endblock %}
-{% block description %}Como solicitar a exclusão dos seus dados pessoais da plataforma Sorteio Insta.{% endblock %}
+{% block description %}Como solicitar a exclusão dos seus dados pessoais da plataforma {{ APP_NAME }}.{% endblock %}
 
 {% block content %}
 <!-- Navbar mínima -->
@@ -8,7 +8,7 @@
   <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
     <a href="{% url 'pages:landing' %}"
        class="font-extrabold text-lg bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
-      Sorteio Insta
+      {{ APP_NAME }}
     </a>
     <a href="{% url 'pages:landing' %}"
        class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← Início</a>
@@ -21,7 +21,7 @@
   <p class="text-sm text-gray-500 mb-10">Última atualização: 14/09/2026</p>
 
   <p class="text-gray-700 dark:text-gray-300 mb-8">
-    Você pode pedir a exclusão dos seus dados da plataforma <strong>Sorteio Insta</strong> a qualquer
+    Você pode pedir a exclusão dos seus dados da plataforma <strong>{{ APP_NAME }}</strong> a qualquer
     momento, de três formas:
   </p>
 
@@ -47,7 +47,7 @@
     </div>
     <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
       <li>No Instagram, vá em <strong>Configurações e privacidade → Permissões do site → Apps e sites</strong>.</li>
-      <li>Em <strong>Ativos</strong>, encontre <strong>Sorteio Insta</strong> e clique em <strong>Remover</strong>.</li>
+      <li>Em <strong>Ativos</strong>, encontre <strong>{{ APP_NAME }}</strong> e clique em <strong>Remover</strong>.</li>
       <li>A Meta nos avisa automaticamente. Excluímos seus dados e geramos um <strong>código de confirmação</strong>.</li>
     </ol>
   </div>
@@ -95,7 +95,7 @@
 <!-- Footer mínimo -->
 <footer class="border-t border-gray-100 dark:border-gray-800 py-6 px-4">
   <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
-    <span>© 2026 Soluções e Sistemas — Sorteio Insta</span>
+    <span>© 2026 Soluções e Sistemas — {{ APP_NAME }}</span>
     <nav class="flex gap-6">
       <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">Privacidade</a>
       <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">Termos</a>

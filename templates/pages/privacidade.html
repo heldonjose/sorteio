@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Política de Privacidade{% endblock %}
-{% block description %}Como a Sorteio Insta coleta, usa e protege seus dados pessoais, em conformidade com a LGPD.{% endblock %}
+{% block description %}Como a {{ APP_NAME }} coleta, usa e protege seus dados pessoais, em conformidade com a LGPD.{% endblock %}
 
 {% block content %}
 <!-- Navbar mínima -->
@@ -8,7 +8,7 @@
   <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
     <a href="{% url 'pages:landing' %}"
        class="font-extrabold text-lg bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
-      Sorteio Insta
+      {{ APP_NAME }}
     </a>
     <a href="{% url 'pages:landing' %}"
        class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← Início</a>
@@ -23,7 +23,7 @@
   <p>
     Esta Política explica como <strong>Soluções e Sistemas</strong> (nome fantasia), inscrita no CNPJ
     <strong>40.144.482/0001-78</strong>, com sede em R. Cabo José Benício, 102, Maternidade, Patos/PB,
-    CEP 58701-384 ("nós"), trata dados pessoais na plataforma <strong>Sorteio Insta</strong> ("Plataforma"),
+    CEP 58701-384 ("nós"), trata dados pessoais na plataforma <strong>{{ APP_NAME }}</strong> ("Plataforma"),
     disponível em <strong>sorteio.repsys.com.br</strong>, em conformidade com a Lei Geral de Proteção de
     Dados (Lei nº 13.709/2018 – LGPD).
   </p>
@@ -123,7 +123,7 @@
   <p class="mt-3">Como exercer:</p>
   <ul class="list-disc pl-5 space-y-1 text-sm">
     <li>Pela Plataforma: <strong>Minha conta → Excluir conta</strong>;</li>
-    <li>Pelo Instagram: <strong>Configurações → Permissões do site → Apps e sites → Remover Sorteio Insta</strong>;</li>
+    <li>Pelo Instagram: <strong>Configurações → Permissões do site → Apps e sites → Remover {{ APP_NAME }}</strong>;</li>
     <li>Por e-mail: <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a>. Respondemos em até 15 dias.</li>
   </ul>
   <p class="mt-3">
@@ -164,7 +164,7 @@
   </p>
 
   <p class="mt-10 text-xs text-gray-400">
-    Sorteio Insta não é afiliado, patrocinado ou endossado pelo Instagram ou pela Meta Platforms, Inc.
+    {{ APP_NAME }} não é afiliado, patrocinado ou endossado pelo Instagram ou pela Meta Platforms, Inc.
   </p>
 
 </div>
@@ -172,7 +172,7 @@
 <!-- Footer mínimo -->
 <footer class="border-t border-gray-100 dark:border-gray-800 py-6 px-4">
   <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
-    <span>© 2026 Soluções e Sistemas — Sorteio Insta</span>
+    <span>© 2026 Soluções e Sistemas — {{ APP_NAME }}</span>
     <nav class="flex gap-6">
       <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">Privacidade</a>
       <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">Termos</a>
