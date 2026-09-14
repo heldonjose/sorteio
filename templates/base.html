@@ -29,6 +29,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+  <style>
+    /* HTMX: usar display em vez de opacity para não ocupar espaço */
+    .htmx-indicator { display: none !important; }
+    .htmx-request .htmx-indicator,
+    .htmx-request.htmx-indicator { display: block !important; }
+  </style>
 
   {% block extra_head %}{% endblock %}
 </head>
