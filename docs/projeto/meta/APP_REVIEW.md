@@ -13,14 +13,15 @@ Sem isso, a API devolve os comentários **filtrados/vazios** para contas que nã
 
 - [ ] Site em produção com **HTTPS** e domínio próprio (`docs/DEPLOY.md`)
 - [ ] Login com Instagram funcionando de ponta a ponta no domínio
-- [ ] Páginas públicas no ar:
-  - [ ] `/privacidade/` (ver `POLITICA_DE_PRIVACIDADE.md`)
-  - [ ] `/termos/` (ver `TERMOS_DE_USO.md`)
-  - [ ] `/exclusao-de-dados/` (ver `EXCLUSAO_DE_DADOS.md`)
-- [ ] Callbacks implementados e respondendo:
-  - [ ] `POST /meta/deauthorize/`
-  - [ ] `POST /meta/data-deletion/` (retorna `url` + `confirmation_code`)
-- [ ] Nome do app **sem** "Insta", "Instagram", "Gram", "Facebook", "Meta"
+- [x] Páginas públicas implementadas (falta publicar em produção):
+  - [x] `/privacidade/` — LGPD completa
+  - [x] `/termos/` — 12 cláusulas
+  - [x] `/exclusao-de-dados/` — 3 formas de exclusão
+  - [x] `/exclusao-de-dados/status/<code>/` — página de confirmação para o revisor
+- [x] Callbacks implementados:
+  - [x] `POST /meta/deauthorize/` — apaga token, registra `deauthorized_at`
+  - [x] `POST /meta/data-deletion/` — apaga token + comentários, retorna `url` + `confirmation_code`
+- [ ] **ATENÇÃO**: Nome do app **sem** "Insta", "Instagram", "Gram", "Facebook", "Meta" — o nome de produto "Sorteio Insta" precisa ser trocado antes de submeter. Sugestões: "Sorteio Pro", "SorteioBR", "Sorteamos"
 - [ ] Chave secreta do app **redefinida** (a antiga apareceu em print)
 
 ## 2. Verificação da empresa

@@ -91,8 +91,12 @@ Atualizar conforme o projeto avança.
 - `config/settings.py`: LOGGING + Sentry (só ativo se SENTRY_DSN definido)
 - `sentry-sdk[django]` no requirements.txt
 
-### 🔲 Fase 6 — Meta: verificação e Análise do App
-Ver docs/DESENVOLVIMENTO.md para o roadmap completo.
+### ✅ Fase 6 — Meta: técnico concluído (2026-09-14)
+- Fix: `login_page` → `raffles:painel` para usuário logado
+- `/exclusao-de-dados/status/<code>/` — view + URL + template (exigido pelo callback da Meta)
+- 7 novos testes em `tests/pages/test_views.py`
+- APP_REVIEW.md atualizado; ALERTA: trocar "Sorteio Insta" (contém "Insta") antes de submeter à Meta
+- Restante: manual no dashboard da Meta (verificação empresa, vídeo, submissão)
 
 ---
 

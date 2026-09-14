@@ -33,7 +33,7 @@ INSTAGRAM_SCOPES = "instagram_business_basic,instagram_business_manage_comments"
 
 def login_page(request):
     if request.user.is_authenticated:
-        return redirect("pages:landing")
+        return redirect("raffles:painel")
     return render(request, "accounts/login.html")
 
 

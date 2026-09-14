@@ -145,11 +145,22 @@ Acesse: http://localhost:8000 | Admin: http://localhost:8000/admin/
 - [x] `requirements.txt` — `sentry-sdk[django]` ativado
 - [x] `.env.exemplo` — `LOG_LEVEL`, `SENTRY_TRACES_SAMPLE_RATE` adicionados
 
-### 🔲 Fase 6 — Meta: verificação e Análise do App
+### ✅ Fase 6 — Meta: verificação e Análise do App (técnico concluído em 2026-09-14)
 
-- [ ] Verificação da empresa (CNPJ 40.144.482/0001-78)
-- [ ] Pedido de Acesso Avançado (`instagram_business_basic` e `instagram_business_manage_comments`)
-- [ ] App em modo **Ao vivo**
+**Técnico (código):**
+- [x] Fix: `login_page` redireciona usuário logado para `raffles:painel`
+- [x] View + URL + template: `/exclusao-de-dados/status/<code>/` (exigido pelo callback da Meta)
+- [x] 7 novos testes em `tests/pages/test_views.py`
+- [x] `docs/projeto/meta/APP_REVIEW.md` atualizado com checklist de itens prontos
+- [x] **ALERTA**: nome "Sorteio Insta" contém "Insta" — trocar antes de submeter à Meta
+
+**Manual (no Meta developer dashboard):**
+- [ ] Verificação da empresa (CNPJ 40.144.482/0001-78) — Central de segurança do Business Suite
+- [ ] Configurações básicas do app (URLs legais, ícone 1024px, categoria)
+- [ ] Pedido de Acesso Avançado (`instagram_business_basic` + `instagram_business_manage_comments`)
+- [ ] Conta de teste criada e com conteúdo (ver APP_REVIEW.md §4.4)
+- [ ] Vídeo screencast gravado (ver roteiro em APP_REVIEW.md §4.3)
+- [ ] App em modo **Ao vivo** após aprovação
 
 ---
 
