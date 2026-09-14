@@ -83,7 +83,15 @@ Atualizar conforme o projeto avança.
 - `base.html`: OG/Twitter blocks, skip link, toast Django com auto-dismiss
 - E2E: +5 testes (FAQ, accordion, CTA, seção final)
 
-### 🔲 Fases 5–6
+### ✅ Fase 5 — Legal + Produção (concluída em 2026-09-14)
+- Páginas legais completas: privacidade, termos, exclusão de dados
+- `config/server/`: gunicorn.conf.py (gevent, porta 9093), nginx.conf (HTTPS, HSTS), supervisor.conf
+- `deploy.sh`: primeiro deploy (root, apt-get, venv, certbot)
+- `fabfile.py`: Fabric 3 — deploy, restart, logs, backup, shell
+- `config/settings.py`: LOGGING + Sentry (só ativo se SENTRY_DSN definido)
+- `sentry-sdk[django]` no requirements.txt
+
+### 🔲 Fase 6 — Meta: verificação e Análise do App
 Ver docs/DESENVOLVIMENTO.md para o roadmap completo.
 
 ---

@@ -131,11 +131,19 @@ Acesse: http://localhost:8000 | Admin: http://localhost:8000/admin/
 - [x] `base.html`: Open Graph / Twitter Card completos, skip link (acessibilidade), toast Django com auto-dismiss
 - [x] E2E Playwright: 5 novos testes (FAQ, accordion, CTA, seção final)
 
-### 🔲 Fase 5 — Legal + Produção
+### ✅ Fase 5 — Legal + Produção (concluída em 2026-09-14)
 
-- [ ] Páginas de privacidade, termos e exclusão de dados (a partir de `docs/projeto/meta/`)
-- [ ] `config/server/` (nginx, supervisor, gunicorn), `deploy.sh`, `fabfile.py`
-- [ ] Backup, Sentry, logs
+- [x] `templates/pages/privacidade.html` — conteúdo completo da LGPD
+- [x] `templates/pages/termos.html` — termos de uso completos
+- [x] `templates/pages/exclusao_dados.html` — 3 formas de exclusão
+- [x] `config/server/gunicorn.conf.py` — Gunicorn gevent, porta 9093, logs
+- [x] `config/server/nginx.conf` — HTTPS, static, proxy, HSTS
+- [x] `config/server/supervisor.conf` — web + worker + beat
+- [x] `deploy.sh` — primeiro deploy (root, apt, venv, certbot)
+- [x] `fabfile.py` — deploy, restart, logs, backup, shell (Fabric 3)
+- [x] `config/settings.py` — LOGGING estruturado + Sentry (condicional ao DSN)
+- [x] `requirements.txt` — `sentry-sdk[django]` ativado
+- [x] `.env.exemplo` — `LOG_LEVEL`, `SENTRY_TRACES_SAMPLE_RATE` adicionados
 
 ### 🔲 Fase 6 — Meta: verificação e Análise do App
 

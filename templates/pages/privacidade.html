@@ -1,8 +1,183 @@
 {% extends "base.html" %}
 {% block title %}Política de Privacidade{% endblock %}
+{% block description %}Como a Sorteio Insta coleta, usa e protege seus dados pessoais, em conformidade com a LGPD.{% endblock %}
+
 {% block content %}
-<div class="max-w-3xl mx-auto px-4 py-16">
-  <h1 class="text-3xl font-extrabold mb-8">Política de Privacidade</h1>
-  <p class="text-gray-500 dark:text-gray-400">Conteúdo em elaboração. Ver <code>docs/projeto/meta/POLITICA_DE_PRIVACIDADE.md</code>.</p>
+<!-- Navbar mínima -->
+<header class="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950">
+  <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="{% url 'pages:landing' %}"
+       class="font-extrabold text-lg bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
+      Sorteio Insta
+    </a>
+    <a href="{% url 'pages:landing' %}"
+       class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← Início</a>
+  </div>
+</header>
+
+<div class="max-w-3xl mx-auto px-4 py-16 prose prose-gray dark:prose-invert max-w-none">
+
+  <h1 class="text-3xl font-extrabold mb-2">Política de Privacidade</h1>
+  <p class="text-sm text-gray-500 mb-10">Última atualização: 14/09/2026</p>
+
+  <p>
+    Esta Política explica como <strong>Soluções e Sistemas</strong> (nome fantasia), inscrita no CNPJ
+    <strong>40.144.482/0001-78</strong>, com sede em R. Cabo José Benício, 102, Maternidade, Patos/PB,
+    CEP 58701-384 ("nós"), trata dados pessoais na plataforma <strong>Sorteio Insta</strong> ("Plataforma"),
+    disponível em <strong>sorteio.repsys.com.br</strong>, em conformidade com a Lei Geral de Proteção de
+    Dados (Lei nº 13.709/2018 – LGPD).
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">1. Quem é o controlador</h2>
+  <p>
+    O controlador dos dados é Soluções e Sistemas. Contato do encarregado (DPO):
+    <strong>Heldon José</strong> — <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a>.
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">2. Quais dados coletamos</h2>
+
+  <h3 class="text-base font-semibold mt-6 mb-2">2.1 Dados da sua conta do Instagram (quando você faz login)</h3>
+  <p>Com a sua autorização, por meio da API oficial da Meta, recebemos:</p>
+  <ul class="list-disc pl-5 space-y-1 text-sm">
+    <li>identificador da conta, nome de usuário (@), nome e foto de perfil, tipo de conta e número de publicações;</li>
+    <li><strong>token de acesso</strong>, armazenado de forma criptografada;</li>
+    <li>dados das <strong>suas publicações</strong>: identificador, legenda, miniatura, tipo, data, link e quantidade de comentários.</li>
+  </ul>
+
+  <h3 class="text-base font-semibold mt-6 mb-2">2.2 Comentários das publicações escolhidas</h3>
+  <p>
+    Quando você cria um sorteio, lemos os <strong>comentários da publicação escolhida</strong>: nome de usuário de
+    quem comentou, texto, data e respostas. Esses dados pertencem a terceiros que comentaram publicamente na sua
+    publicação e são usados <strong>somente</strong> para executar o sorteio solicitado por você.
+  </p>
+
+  <h3 class="text-base font-semibold mt-6 mb-2">2.3 Dados de uso e compra</h3>
+  <ul class="list-disc pl-5 space-y-1 text-sm">
+    <li>Histórico de sorteios, regras configuradas e ganhadores;</li>
+    <li>Pedidos de créditos e saldo;</li>
+    <li>Dados técnicos: endereço IP, navegador, data e hora de acesso (registros exigidos pelo Marco Civil da Internet).</li>
+  </ul>
+
+  <h3 class="text-base font-semibold mt-6 mb-2">2.4 O que <strong>não</strong> coletamos</h3>
+  <p>
+    Não coletamos sua senha do Instagram, mensagens diretas, lista de seguidores, nem publicamos, respondemos,
+    ocultamos ou apagamos nada em sua conta.
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">3. Para que usamos os dados</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr class="bg-gray-100 dark:bg-gray-800">
+          <th class="text-left px-3 py-2 font-semibold border border-gray-200 dark:border-gray-700">Finalidade</th>
+          <th class="text-left px-3 py-2 font-semibold border border-gray-200 dark:border-gray-700">Base legal (LGPD)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Autenticar você e manter sua conta</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Execução de contrato (art. 7º, V)</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Listar publicações e ler comentários para sorteios</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Execução de contrato (art. 7º, V)</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Guardar histórico e certificado de sorteios</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Legítimo interesse (art. 7º, IX)</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Controlar créditos e compras</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Execução de contrato (art. 7º, V)</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Guardar registros de acesso</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Obrigação legal (art. 7º, II; Marco Civil art. 15)</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Prevenir fraudes e abusos</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Legítimo interesse (art. 7º, IX)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">4. Compartilhamento</h2>
+  <p>Não vendemos nem alugamos dados. Compartilhamos apenas com:</p>
+  <ul class="list-disc pl-5 space-y-1 text-sm">
+    <li><strong>Meta Platforms</strong> (Instagram), como provedora da API usada para login e leitura de dados;</li>
+    <li><strong>Provedores de infraestrutura</strong> (hospedagem, banco de dados, backup, monitoramento de erros), sob obrigação de confidencialidade;</li>
+    <li><strong>Autoridades</strong>, quando exigido por lei ou ordem judicial.</li>
+  </ul>
+  <p class="mt-3">
+    O <strong>certificado público</strong> de um sorteio, quando você compartilha o link, mostra a publicação,
+    as regras, a quantidade de participantes e o(s) nome(s) de usuário do(s) ganhador(es).
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">5. Por quanto tempo guardamos</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr class="bg-gray-100 dark:bg-gray-800">
+          <th class="text-left px-3 py-2 font-semibold border border-gray-200 dark:border-gray-700">Dado</th>
+          <th class="text-left px-3 py-2 font-semibold border border-gray-200 dark:border-gray-700">Retenção</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Token de acesso</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Enquanto a conta estiver conectada; apagado ao desconectar, excluir a conta ou revogar o acesso no Instagram</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Comentários carregados</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Até 90 dias após o sorteio</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Resultado do sorteio (regras, nº de participantes, ganhadores, hash)</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Enquanto a conta existir</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Pedidos e transações de créditos</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">5 anos (obrigações fiscais), anonimizado após exclusão</td></tr>
+        <tr><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">Registros de acesso</td><td class="px-3 py-2 border border-gray-200 dark:border-gray-700">6 meses (Marco Civil da Internet)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">6. Seus direitos</h2>
+  <p>
+    Conforme o art. 18 da LGPD, você pode solicitar: confirmação e acesso aos dados; correção; anonimização,
+    bloqueio ou eliminação; portabilidade; informação sobre compartilhamento; e revogação do consentimento.
+  </p>
+  <p class="mt-3">Como exercer:</p>
+  <ul class="list-disc pl-5 space-y-1 text-sm">
+    <li>Pela Plataforma: <strong>Minha conta → Excluir conta</strong>;</li>
+    <li>Pelo Instagram: <strong>Configurações → Permissões do site → Apps e sites → Remover Sorteio Insta</strong>;</li>
+    <li>Por e-mail: <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a>. Respondemos em até 15 dias.</li>
+  </ul>
+  <p class="mt-3">
+    Veja também: <a href="{% url 'pages:exclusao-dados' %}" class="text-violet-600 hover:underline">Instruções de exclusão de dados</a>.
+  </p>
+  <p class="text-sm mt-3">
+    Quem comentou em uma publicação sorteada e deseja a exclusão do seu comentário da nossa base pode escrever
+    para <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a> informando o @.
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">7. Segurança</h2>
+  <p>
+    Usamos HTTPS, criptografia dos tokens de acesso (Fernet/AES-128-CBC), controle de acesso restrito, backups
+    e atualizações de segurança. Nenhum sistema é 100% seguro. Em caso de incidente relevante, comunicaremos
+    os titulares e a ANPD conforme a lei.
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">8. Cookies</h2>
+  <p>
+    Usamos apenas cookies <strong>essenciais</strong> (sessão e proteção CSRF). Não usamos cookies de publicidade
+    nem rastreamento de terceiros.
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">9. Menores de idade</h2>
+  <p>A Plataforma é destinada a maiores de 18 anos, ou a contas profissionais geridas por responsáveis legais.</p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">10. Alterações</h2>
+  <p>
+    Podemos atualizar esta Política. A data no topo indica a última versão. Mudanças relevantes serão avisadas
+    na Plataforma.
+  </p>
+
+  <h2 class="text-xl font-bold mt-10 mb-3">11. Contato</h2>
+  <p>
+    <strong>Soluções e Sistemas</strong> — Contato: Heldon José —
+    <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a>
+    — WhatsApp (83) 99627-9632
+  </p>
+
+  <p class="mt-10 text-xs text-gray-400">
+    Sorteio Insta não é afiliado, patrocinado ou endossado pelo Instagram ou pela Meta Platforms, Inc.
+  </p>
+
 </div>
+
+<!-- Footer mínimo -->
+<footer class="border-t border-gray-100 dark:border-gray-800 py-6 px-4">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
+    <span>© 2026 Soluções e Sistemas — Sorteio Insta</span>
+    <nav class="flex gap-6">
+      <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">Privacidade</a>
+      <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">Termos</a>
+      <a href="{% url 'pages:exclusao-dados' %}" class="hover:text-gray-900 dark:hover:text-white">Exclusão de dados</a>
+    </nav>
+  </div>
+</footer>
 {% endblock %}
