@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Carregando comentários{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col">
+  <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+        ← Painel
+      </a>
+    </div>
+  </nav>
+
+  <div class="flex-1 flex items-center justify-center px-4">
+    <div class="w-full max-w-md space-y-6 text-center">
+
+      <!-- Thumbnail do post -->
+      {% if raffle.thumbnail_url %}
+      <img src="{{ raffle.thumbnail_url }}" alt=""
+           class="w-24 h-24 rounded-2xl object-cover mx-auto shadow-md">
+      {% endif %}
+
+      <div>
+        <h1 class="text-xl font-bold">Carregando comentários</h1>
+        <p class="text-gray-500 text-sm mt-1">
+          Isso pode levar alguns minutos dependendo do número de comentários.
+        </p>
+      </div>
+
+      <!-- Fragmento de progresso (atualizado via HTMX) -->
+      {% include "raffles/_progresso.html" %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

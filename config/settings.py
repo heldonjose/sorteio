@@ -97,6 +97,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # URL do Django Admin (configurável por env para segurança)
 ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
 
+# Auth
+LOGIN_URL = "/entrar/"
+LOGIN_REDIRECT_URL = "/painel/"
+
 # ── Celery ──────────────────────────────────────────────────────────────────
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/1")
 CELERY_RESULT_BACKEND = "django-db"

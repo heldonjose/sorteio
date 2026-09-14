@@ -15,3 +15,13 @@ def termos(request):
 
 def exclusao_dados(request):
     return render(request, "pages/exclusao_dados.html")
+
+
+def planos(request):
+    from django.conf import settings
+    return render(request, "pages/planos.html", {
+        "price_single": settings.PRICE_SINGLE_CENTS // 100,
+        "pack_credits": settings.PACK_CREDITS,
+        "pack_price": settings.PACK_PRICE_CENTS // 100,
+        "whatsapp": settings.WHATSAPP_NUMBER,
+    })

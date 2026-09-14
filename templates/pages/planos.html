@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Planos{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950">
+  <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+      <span class="text-gray-300 dark:text-gray-700">|</span>
+      <span class="font-semibold">Planos</span>
+    </div>
+  </nav>
+
+  <div class="max-w-3xl mx-auto px-4 py-12 space-y-8">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold">Planos simples</h1>
+      <p class="text-gray-500 mt-2">Sem assinatura. Pague só o que usar.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-6">
+
+      <!-- Gratuito -->
+      <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 space-y-4">
+        <div>
+          <p class="text-sm font-medium text-gray-500">Gratuito</p>
+          <p class="text-4xl font-bold mt-1">R$ 0</p>
+        </div>
+        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <li class="flex gap-2"><span class="text-green-500">✓</span> 5 sorteios vitalícios</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> Certificado auditável</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> Todas as regras</li>
+        </ul>
+        <p class="text-xs text-gray-400">Incluído ao criar a conta.</p>
+      </div>
+
+      <!-- Avulso -->
+      <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 space-y-4 ring-2 ring-violet-500">
+        <div>
+          <p class="text-sm font-medium text-violet-600">Avulso</p>
+          <p class="text-4xl font-bold mt-1">R$ {{ price_single }}</p>
+          <p class="text-sm text-gray-500 mt-1">por sorteio</p>
+        </div>
+        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <li class="flex gap-2"><span class="text-green-500">✓</span> 1 sorteio</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> Re-sorteio gratuito</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> Sem validade</li>
+        </ul>
+        <a href="https://wa.me/{{ whatsapp }}?text=Olá!+Quero+1+sorteio+(R$+{{ price_single }}).+Conta:+@{{ request.user.username|default:'usuario' }}"
+           target="_blank" rel="noopener"
+           class="block w-full text-center py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl text-sm transition-colors">
+          Comprar via WhatsApp
+        </a>
+      </div>
+
+      <!-- Pacote -->
+      <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 space-y-4">
+        <div>
+          <p class="text-sm font-medium text-gray-500">Pacote {{ pack_credits }}</p>
+          <p class="text-4xl font-bold mt-1">R$ {{ pack_price }}</p>
+          <p class="text-sm text-gray-500 mt-1">{{ pack_credits }} sorteios</p>
+        </div>
+        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {{ pack_credits }} sorteios</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> Melhor custo-benefício</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> Sem validade</li>
+        </ul>
+        <a href="https://wa.me/{{ whatsapp }}?text=Olá!+Quero+o+Pacote+{{ pack_credits }}+sorteios+(R$+{{ pack_price }}).+Conta:+@{{ request.user.username|default:'usuario' }}"
+           target="_blank" rel="noopener"
+           class="block w-full text-center py-2.5 bg-gray-900 dark:bg-gray-100 hover:opacity-90 text-white dark:text-gray-900 font-semibold rounded-xl text-sm transition-opacity">
+          Comprar via WhatsApp
+        </a>
+      </div>
+
+    </div>
+
+    <p class="text-center text-xs text-gray-400">
+      Após o pagamento via Pix/WhatsApp, o crédito é liberado manualmente em até 1h útil.
+    </p>
+  </div>
+</div>
+{% endblock %}

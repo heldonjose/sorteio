@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Realizar sorteio{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col"
+     x-data="{
+       phase: 'idle',
+       startDraw() {
+         this.phase = 'spinning';
+         setTimeout(() => {
+           document.getElementById('form-sortear').submit();
+         }, 2200);
+       }
+     }">
+
+  <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="{% url 'raffles:regras' raffle.uuid %}" class="text-gray-400 hover:text-gray-600">
+        ← Regras
+      </a>
+    </div>
+  </nav>
+
+  <div class="flex-1 flex items-center justify-center px-4">
+    <div class="w-full max-w-sm text-center space-y-8">
+
+      {% if error %}
+      <div class="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl text-sm">
+        {{ error }}
+      </div>
+      {% endif %}
+
+      <!-- Animação -->
+      <div>
+        <!-- Idle: ícone de troféu -->
+        <div x-show="phase === 'idle'" class="space-y-4">
+          <div class="w-24 h-24 rounded-full bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center mx-auto">
+            <svg class="w-12 h-12 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold">Pronto para sortear!</h1>
+            <p class="text-gray-500 text-sm mt-1">
+              Saldo: <span class="font-semibold text-violet-600">{{ balance }} sorteio{{ balance|pluralize }}</span>
+            </p>
+          </div>
+          {% if balance > 0 %}
+          <button @click="startDraw()"
+                  class="px-8 py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg rounded-2xl transition-colors shadow-lg shadow-violet-200 dark:shadow-violet-900/40">
+            Sortear agora! 🎉
+          </button>
+          {% else %}
+          <a href="{% url 'pages:planos' %}"
+             class="inline-block px-8 py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg rounded-2xl transition-colors">
+            Ver planos
+          </a>
+          {% endif %}
+        </div>
+
+        <!-- Spinning: animação -->
+        <div x-show="phase === 'spinning'" x-cloak class="space-y-4">
+          <div class="w-24 h-24 rounded-full border-4 border-violet-200 dark:border-violet-800 border-t-violet-600 animate-spin mx-auto"></div>
+          <p class="text-violet-600 font-semibold animate-pulse">Sorteando…</p>
+        </div>
+      </div>
+
+      <!-- Form oculto que faz o POST -->
+      <form method="post" id="form-sortear" class="hidden">
+        {% csrf_token %}
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

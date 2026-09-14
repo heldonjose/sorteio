@@ -144,7 +144,7 @@ def instagram_callback(request):
 
         # ── Login na sessão Django ────────────────────────────────────────────
         login(request, user, backend="django.contrib.auth.backends.ModelBackend")
-        return redirect("pages:landing")  # substituir por 'accounts:painel' na Fase 2
+        return redirect("raffles:painel")
 
     except InstagramAPIError as e:
         logger.error("InstagramAPIError no callback: %s (code=%s)", e, e.code)

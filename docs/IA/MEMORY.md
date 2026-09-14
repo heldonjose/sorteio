@@ -52,6 +52,16 @@ Atualizar conforme o projeto avança.
 - .gitignore, .env.exemplo, pytest.ini, conftest.py
 - docs/DESENVOLVIMENTO.md (guia de retomada entre PCs)
 
+### ✅ Fase 2 — Núcleo de sorteios (concluída em 2026-09-14)
+- Views: painel, historico, novo, carregar, regras, sortear, resultado, certificado
+- Task Celery `load_comments` — paginação, progresso, retry por rate-limit
+- HTMX: `_progresso.html` (polling), `_participantes_count.html`, `_posts.html`
+- Templates: painel, novo, carregar, regras, sortear, resultado, certificado, histórico
+- `pages:planos` adicionado
+- `LOGIN_URL`, `LOGIN_REDIRECT_URL` em settings
+- 21 testes de integração (test_views.py)
+- 115 testes no total passando
+
 ### ✅ Fase 1 — Login com Instagram (concluída em 2026-09-14)
 - OAuth: `/entrar/` → authorize → callback → token longo → login Django
 - Callbacks Meta: `POST /meta/deauthorize/` e `POST /meta/data-deletion/`

@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Regras do sorteio{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950">
+  <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+      <span class="text-gray-300 dark:text-gray-700">|</span>
+      <span class="font-semibold">Regras do sorteio</span>
+    </div>
+  </nav>
+
+  <div class="max-w-2xl mx-auto px-4 py-8 space-y-6">
+
+    <!-- Info do post -->
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-4 flex gap-4 items-start">
+      {% if raffle.thumbnail_url %}
+      <img src="{{ raffle.thumbnail_url }}" alt="" class="w-16 h-16 rounded-xl object-cover flex-shrink-0">
+      {% endif %}
+      <div class="flex-1 min-w-0">
+        <p class="text-sm text-gray-600 dark:text-gray-400 truncate">
+          {{ raffle.caption|default:"(sem legenda)"|truncatechars:120 }}
+        </p>
+        <p class="text-xs text-gray-400 mt-1">
+          {{ raffle.loaded_comments }} comentário{{ raffle.loaded_comments|pluralize }} carregado{{ raffle.loaded_comments|pluralize }}
+          · carregado às {{ raffle.load_finished_at|date:"H:i" }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Formulário de regras -->
+    <form method="post"
+          id="form-regras"
+          hx-get="{% url 'raffles:participantes' raffle.uuid %}"
+          hx-trigger="change delay:400ms"
+          hx-target="#participantes-count"
+          hx-include="#form-regras"
+          class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 space-y-5">
+      {% csrf_token %}
+
+      <!-- Participantes ao vivo -->
+      <div class="flex items-center justify-between pb-4 border-b border-gray-100 dark:border-gray-800">
+        <span class="text-sm text-gray-500">Participantes válidos:</span>
+        <span class="text-2xl font-bold">
+          <span id="participantes-count">{{ participants_count }}</span>
+        </span>
+      </div>
+
+      <!-- Ganhadores e suplentes -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="winners_count">Ganhadores</label>
+          <input type="number" id="winners_count" name="winners_count"
+                 value="{{ raffle.winners_count }}" min="1" max="100"
+                 class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="alternates_count">Suplentes</label>
+          <input type="number" id="alternates_count" name="alternates_count"
+                 value="{{ raffle.alternates_count }}" min="0" max="100"
+                 class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <fieldset class="space-y-3">
+        <legend class="text-sm font-medium text-gray-700 dark:text-gray-300">Filtros</legend>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input type="checkbox" name="unique_per_user" {% if raffle.unique_per_user %}checked{% endif %}
+                 class="w-4 h-4 accent-violet-600">
+          <span class="text-sm">1 entrada por usuário (mais justo)</span>
+        </label>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input type="checkbox" name="exclude_owner" {% if raffle.exclude_owner %}checked{% endif %}
+                 class="w-4 h-4 accent-violet-600">
+          <span class="text-sm">Excluir o dono do perfil</span>
+        </label>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input type="checkbox" name="include_replies" {% if raffle.include_replies %}checked{% endif %}
+                 class="w-4 h-4 accent-violet-600">
+          <span class="text-sm">Incluir respostas a comentários</span>
+        </label>
+      </fieldset>
+
+      <!-- Palavra obrigatória -->
+      <div>
+        <label class="block text-sm font-medium mb-1" for="required_keyword">
+          Palavra/hashtag obrigatória
+          <span class="text-gray-400 font-normal">(opcional)</span>
+        </label>
+        <input type="text" id="required_keyword" name="required_keyword"
+               value="{{ raffle.required_keyword }}" placeholder="ex: #sorteio"
+               class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
+      </div>
+
+      <!-- Mínimo de menções -->
+      <div>
+        <label class="block text-sm font-medium mb-1" for="min_mentions">
+          Mínimo de @ menções distintas
+          <span class="text-gray-400 font-normal">(0 = sem limite)</span>
+        </label>
+        <input type="number" id="min_mentions" name="min_mentions"
+               value="{{ raffle.min_mentions }}" min="0" max="20"
+               class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
+      </div>
+
+      <!-- Usuários excluídos -->
+      <div>
+        <label class="block text-sm font-medium mb-1" for="excluded_usernames">
+          Usuários excluídos
+          <span class="text-gray-400 font-normal">(um por linha ou separados por vírgula)</span>
+        </label>
+        <textarea id="excluded_usernames" name="excluded_usernames" rows="3"
+                  placeholder="@fulano&#10;@ciclano"
+                  class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none">{{ raffle.excluded_usernames|join:"\n" }}</textarea>
+      </div>
+
+      <!-- Botão -->
+      <button type="submit"
+              class="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors">
+        Sortear agora →
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

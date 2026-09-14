@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Novo sorteio{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950">
+  <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+        ← Painel
+      </a>
+      <span class="text-gray-300 dark:text-gray-700">|</span>
+      <span class="font-semibold">Escolher post</span>
+    </div>
+  </nav>
+
+  <div class="max-w-5xl mx-auto px-4 py-8"
+       x-data="{
+         selectedId: '',
+         selectedPermalink: '',
+         selectedCaption: '',
+         selectedThumbnail: '',
+         selectedType: '',
+         selectPost(id, permalink, caption, thumbnail, type) {
+           this.selectedId = id;
+           this.selectedPermalink = permalink;
+           this.selectedCaption = caption;
+           this.selectedThumbnail = thumbnail;
+           this.selectedType = type;
+         }
+       }">
+
+    <h1 class="text-2xl font-bold mb-6">Escolha o post para sortear</h1>
+
+    {% if error %}
+    <div class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl text-sm">
+      {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="post" id="form-novo">
+      {% csrf_token %}
+      <input type="hidden" name="ig_media_id"    x-model="selectedId">
+      <input type="hidden" name="permalink"       x-model="selectedPermalink">
+      <input type="hidden" name="caption"         x-model="selectedCaption">
+      <input type="hidden" name="thumbnail_url"   x-model="selectedThumbnail">
+      <input type="hidden" name="media_type"      x-model="selectedType">
+
+      <!-- Grade de posts -->
+      <div id="posts-grid"
+           class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6"
+           @change="
+             const inp = $event.target;
+             if (inp.type === 'radio') {
+               selectPost(inp.dataset.id, inp.dataset.permalink, inp.dataset.caption, inp.dataset.thumbnail, inp.dataset.type);
+             }
+           ">
+        {% include "raffles/_posts.html" with posts=posts error=error after=after %}
+      </div>
+
+      <!-- Post selecionado + botão -->
+      <div x-show="selectedId" x-cloak class="mt-6 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-sm flex gap-4 items-start">
+        <img x-show="selectedThumbnail" :src="selectedThumbnail" class="w-20 h-20 rounded-lg object-cover flex-shrink-0">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm text-gray-500 truncate" x-text="selectedCaption || '(sem legenda)'"></p>
+          <a :href="selectedPermalink" target="_blank" rel="noopener"
+             class="text-xs text-violet-600 hover:underline">Ver no Instagram ↗</a>
+        </div>
+        <button type="submit"
+                class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors whitespace-nowrap">
+          Usar este post →
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

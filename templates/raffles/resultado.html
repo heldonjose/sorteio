@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}Resultado do sorteio{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script>
+  // Dispara confete ao carregar a página pela primeira vez
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!sessionStorage.getItem('confete_{{ raffle.uuid }}')) {
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+      sessionStorage.setItem('confete_{{ raffle.uuid }}', '1');
+    }
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950">
+  <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+      <div class="flex items-center gap-3">
+        <a href="{% url 'raffles:certificado' raffle.uuid %}" target="_blank"
+           class="text-sm text-violet-600 hover:underline">
+          🔗 Certificado público
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-2xl mx-auto px-4 py-8 space-y-6">
+
+    <!-- Cabeçalho -->
+    <div class="text-center space-y-2">
+      <h1 class="text-2xl font-bold">Resultado do sorteio 🎉</h1>
+      {% if raffle.thumbnail_url %}
+      <img src="{{ raffle.thumbnail_url }}" alt=""
+           class="w-20 h-20 rounded-2xl object-cover mx-auto mt-3 shadow-md">
+      {% endif %}
+      <p class="text-gray-500 text-sm">
+        {{ raffle.caption|default:""|truncatechars:80 }}
+      </p>
+    </div>
+
+    <!-- Rodadas -->
+    {% for draw in all_draws %}
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm overflow-hidden">
+      <div class="px-5 py-3 bg-gray-50 dark:bg-gray-800 flex items-center justify-between">
+        <span class="font-semibold text-sm">
+          Rodada {{ draw.round }}
+          {% if draw.reason %}<span class="text-gray-400 font-normal">— {{ draw.reason }}</span>{% endif %}
+        </span>
+        <span class="text-xs text-gray-400">{{ draw.created_at|date:"d/m/Y H:i" }}</span>
+      </div>
+
+      <div class="divide-y divide-gray-100 dark:divide-gray-800">
+        {% for winner in draw.winners.all %}
+        <div class="px-5 py-3 flex items-center gap-3
+          {% if not winner.is_alternate %}bg-violet-50 dark:bg-violet-950/30{% endif %}">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
+            {% if not winner.is_alternate %}bg-violet-600 text-white{% else %}bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400{% endif %}
+            text-sm font-bold">
+            {{ winner.position }}
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm">@{{ winner.username }}
+              {% if winner.is_alternate %}
+              <span class="text-xs font-normal text-gray-400">(suplente)</span>
+              {% endif %}
+            </p>
+            <p class="text-xs text-gray-400 truncate">{{ winner.comment_text|truncatechars:80 }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="px-5 py-2 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-800">
+        {{ draw.valid_entries }} participante{{ draw.valid_entries|pluralize }} válido{{ draw.valid_entries|pluralize }} ·
+        SHA-256: <span class="font-mono">{{ draw.participants_hash|truncatechars:16 }}…</span>
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- Re-sortear -->
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-5"
+         x-data="{ open: false }">
+      <button @click="open = !open"
+              class="w-full text-left text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center justify-between">
+        <span>Re-sortear</span>
+        <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+
+      <div x-show="open" x-cloak class="mt-4 space-y-3">
+        <p class="text-xs text-gray-500">
+          O re-sorteio é gratuito e fica registrado no certificado público.
+        </p>
+        <form method="post" action="{% url 'raffles:sortear' raffle.uuid %}">
+          {% csrf_token %}
+          <input type="text" name="reason" placeholder="Motivo do re-sorteio (ex: ganhador não seguia o perfil)"
+                 required
+                 class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 mb-3">
+          <button type="submit"
+                  class="w-full py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl text-sm transition-colors">
+            Confirmar re-sorteio
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Ações -->
+    <div class="flex gap-3">
+      <a href="{% url 'raffles:regras' raffle.uuid %}"
+         class="flex-1 text-center py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+        Ajustar regras
+      </a>
+      <a href="{% url 'raffles:certificado' raffle.uuid %}" target="_blank"
+         class="flex-1 text-center py-2.5 bg-violet-600 hover:bg-violet-700 text-white rounded-xl text-sm font-semibold transition-colors">
+        Ver certificado
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

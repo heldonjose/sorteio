@@ -92,7 +92,19 @@ Acesse: http://localhost:8000 | Admin: http://localhost:8000/admin/
 - [x] Testes: views (mocks da API), task (refresh + erros + skip)
 - [ ] Dev local com HTTPS: `cloudflared tunnel --url http://localhost:8000` (manual)
 
-### 🔲 Fase 2 — Núcleo de sorteios
+### ✅ Fase 2 — Núcleo de sorteios (concluída em 2026-09-14)
+
+- [x] `apps/raffles/views.py` — painel, historico, novo, carregar, regras, sortear, resultado, certificado
+- [x] `apps/raffles/urls.py` — rotas completas (`/painel/`, `/sorteios/…`, `/r/<uuid>/`)
+- [x] `apps/raffles/tasks.py` — `load_comments` (Celery, paginação, progresso, retry rate-limit)
+- [x] Templates: painel, novo, carregar, regras, sortear, resultado, certificado, histórico
+- [x] HTMX: `_progresso.html` (polling 1.5s), `_participantes_count.html`, `_posts.html`
+- [x] `pages:planos` — view + template + URL
+- [x] `config/settings.py` — `LOGIN_URL`, `LOGIN_REDIRECT_URL`
+- [x] Callback de login → redireciona para `raffles:painel`
+- [x] 21 testes de integração (115 total passando)
+
+### 🔲 Fase 3 — Créditos e admin
 
 - [ ] Listagem de posts + busca por link (`GET /me/media`)
 - [ ] Tarefa Celery de carregamento de comentários com progresso (HTMX)

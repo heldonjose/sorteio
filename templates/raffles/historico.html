@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Histórico de sorteios{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950">
+  <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+      <span class="text-gray-300 dark:text-gray-700">|</span>
+      <span class="font-semibold">Histórico</span>
+    </div>
+  </nav>
+
+  <div class="max-w-5xl mx-auto px-4 py-8 space-y-6">
+
+    <!-- Filtro de status -->
+    <div class="flex gap-2 flex-wrap">
+      <a href="{% url 'raffles:historico' %}"
+         class="px-3 py-1.5 rounded-lg text-sm transition-colors
+           {% if not status_filter %}bg-violet-600 text-white{% else %}bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800{% endif %}">
+        Todos
+      </a>
+      {% for code, label in STATUS_CHOICES %}
+      <a href="?status={{ code }}"
+         class="px-3 py-1.5 rounded-lg text-sm transition-colors
+           {% if status_filter == code %}bg-violet-600 text-white{% else %}bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800{% endif %}">
+        {{ label }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Lista -->
+    {% if raffles %}
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm divide-y divide-gray-100 dark:divide-gray-800">
+      {% for raffle in raffles %}
+      <a href="{% if raffle.status == 'DRAWN' %}{% url 'raffles:resultado' raffle.uuid %}{% elif raffle.status == 'READY' %}{% url 'raffles:regras' raffle.uuid %}{% elif raffle.status == 'LOADING' %}{% url 'raffles:carregar' raffle.uuid %}{% else %}{% url 'raffles:carregar' raffle.uuid %}{% endif %}"
+         class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+        <div class="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 flex-shrink-0">
+          {% if raffle.thumbnail_url %}
+          <img src="{{ raffle.thumbnail_url }}" alt="" class="w-full h-full object-cover">
+          {% else %}
+          <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">sem img</div>
+          {% endif %}
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium truncate">
+            {{ raffle.caption|default:"(sem legenda)"|truncatechars:80 }}
+          </p>
+          <p class="text-xs text-gray-400 mt-0.5">
+            Criado em {{ raffle.created_at|date:"d/m/Y H:i" }}
+            {% if raffle.drawn_at %} · Sorteado em {{ raffle.drawn_at|date:"d/m/Y" }}{% endif %}
+          </p>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-full font-medium flex-shrink-0
+          {% if raffle.status == 'DRAWN' %}bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400
+          {% elif raffle.status == 'READY' %}bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400
+          {% elif raffle.status == 'LOADING' %}bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-400
+          {% elif raffle.status == 'FAILED' %}bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400
+          {% else %}bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400{% endif %}">
+          {{ raffle.get_status_display }}
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-16 text-gray-400">
+      <p class="font-medium">Nenhum sorteio encontrado.</p>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
