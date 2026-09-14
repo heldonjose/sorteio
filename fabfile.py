@@ -3,18 +3,22 @@ fabfile.py — Deploy dia a dia com Fabric 3
 Uso:
     fab deploy            # pull + migrate + collectstatic + restart
     fab restart           # reinicia gunicorn + celery sem deploy
-    fab logs              # tail dos logs de erro
+    fab logs              # tail do log de erro do gunicorn
+    fab celery-logs       # tail do log do worker celery
     fab shell             # Django shell no servidor
     fab createsuperuser   # cria superusuário no servidor
+    fab status            # status dos processos
+    fab dbbackup          # backup do banco PostgreSQL
 """
 from fabric import task, Connection
 
-HOST  = "sorteio.repsys.com.br"
-USER  = "sorteio"
-APP   = "/srv/sorteio"
-VENV  = f"{APP}/venv/bin"
+HOST   = "sorteio.repsys.com.br"
+VENV   = "/webapps/sorteio/bin"
+CODE   = "/webapps/sorteio/sorteio"
 PYTHON = f"{VENV}/python"
 PIP    = f"{VENV}/pip"
+SVCS   = "sorteio_web sorteio_worker sorteio_beat"
+LOGS   = "/webapps/sorteio/logs"
 
 
 def _conn() -> Connection:
@@ -22,11 +26,7 @@ def _conn() -> Connection:
 
 
 def _manage(c: Connection, cmd: str) -> None:
-    c.run(f"cd {APP} && sudo -u {USER} {PYTHON} manage.py {cmd}", pty=True)
-
-
-def _svc(c: Connection, action: str, target: str = "sorteio:*") -> None:
-    c.run(f"supervisorctl {action} {target}")
+    c.run(f"cd {CODE} && {PYTHON} manage.py {cmd}", pty=True)
 
 
 @task
@@ -35,10 +35,10 @@ def deploy(c):
     conn = _conn()
     with conn:
         print("→ Pull")
-        conn.run(f"git -C {APP} pull")
+        conn.run(f"git -C {CODE} pull")
 
         print("→ Instalando dependências")
-        conn.run(f"sudo -u {USER} {PIP} install -r {APP}/requirements.txt -q")
+        conn.run(f"{PIP} install -r {CODE}/requirements.txt -q")
 
         print("→ Migrações")
         _manage(conn, "migrate --noinput")
@@ -50,7 +50,7 @@ def deploy(c):
         _manage(conn, "collectstatic --noinput")
 
         print("→ Restart")
-        _svc(conn, "restart")
+        conn.run(f"supervisorctl restart {SVCS}")
 
         print("✓ Deploy concluído")
 
@@ -59,22 +59,22 @@ def deploy(c):
 def restart(c):
     """Reinicia gunicorn e celery sem fazer deploy."""
     with _conn() as conn:
-        _svc(conn, "restart")
+        conn.run(f"supervisorctl restart {SVCS}")
         print("✓ Serviços reiniciados")
 
 
 @task
 def logs(c):
-    """Exibe os logs de erro em tempo real."""
+    """Exibe os logs de erro do gunicorn em tempo real."""
     with _conn() as conn:
-        conn.run(f"tail -f /var/log/sorteio/gunicorn-error.log", pty=True)
+        conn.run(f"tail -f {LOGS}/gunicorn_error.log", pty=True)
 
 
 @task
 def celery_logs(c):
     """Exibe os logs do worker Celery."""
     with _conn() as conn:
-        conn.run(f"tail -f /var/log/sorteio/celery-worker.log", pty=True)
+        conn.run(f"tail -f {LOGS}/celery_worker.log", pty=True)
 
 
 @task
@@ -95,7 +95,7 @@ def createsuperuser(c):
 def status(c):
     """Status dos processos Supervisor."""
     with _conn() as conn:
-        conn.run("supervisorctl status sorteio:*")
+        conn.run(f"supervisorctl status {SVCS}")
 
 
 @task
@@ -105,7 +105,7 @@ def dbbackup(c):
     stamp = datetime.datetime.now().strftime("%Y%m%d_%H%M")
     with _conn() as conn:
         conn.run(
-            f"sudo -u postgres pg_dump sorteio | gzip > /srv/backup/sorteio_{stamp}.sql.gz",
+            f"sudo -u postgres pg_dump sorteio | gzip > /webapps/back/sorteio_{stamp}.sql.gz",
             warn=True,
         )
-        print(f"✓ Backup: /srv/backup/sorteio_{stamp}.sql.gz")
+        print(f"✓ Backup: /webapps/back/sorteio_{stamp}.sql.gz")

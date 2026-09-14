@@ -1,0 +1,45 @@
+{% load static %}<!DOCTYPE html>
+<html
+  lang="pt-BR"
+  x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
+  x-init="$watch('darkMode', v => localStorage.setItem('darkMode', v))"
+  :class="{ 'dark': darkMode }"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada — {{ APP_NAME }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 antialiased min-h-screen transition-colors duration-200">
+
+  <div class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+
+    <!-- Número 404 decorativo -->
+    <p class="text-8xl font-extrabold bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent select-none leading-none mb-6">
+      404
+    </p>
+
+    <h1 class="text-2xl font-bold mb-2">Página não encontrada</h1>
+    <p class="text-gray-500 dark:text-gray-400 max-w-sm mb-8">
+      O link que você seguiu pode estar quebrado ou a página foi removida.
+    </p>
+
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 text-white font-bold text-sm hover:opacity-90 active:scale-95 transition-all shadow-md shadow-violet-500/20"
+    >
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      Voltar ao início
+    </a>
+
+  </div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+</body>
+</html>
