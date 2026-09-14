@@ -73,6 +73,14 @@ Acesse: http://localhost:8000 | Admin: http://localhost:8000/admin/
 - [x] `Makefile` — comandos de desenvolvimento
 - [x] `.gitignore`, `.env.exemplo`, `pytest.ini`
 
+### ✅ Fix — Setup de testes (2026-09-14)
+
+- [x] `Makefile`: `PYTEST = $(PYTHON) -m pytest` (usa o pytest do venv, não o do sistema)
+- [x] `pytest.ini`: aponta para `config.settings_test` em vez de `config.settings`
+- [x] `config/settings_test.py`: auto-gera `FIELD_ENCRYPTION_KEY` para testes (resolve timing do pytest-django)
+- [x] `tests/e2e/conftest.py`: `DJANGO_ALLOW_ASYNC_UNSAFE=true` (compatibilidade pytest-playwright)
+- [x] `apps/accounts/tasks.py`: imports de módulos externos no nível do módulo (permite `@patch`)
+
 ### ✅ Fase 1 — Login com Instagram (concluída em 2026-09-14)
 
 - [x] OAuth completo: `/entrar/` → `/auth/instagram/authorize/` → callback → token longo
@@ -164,6 +172,8 @@ templates/
 | Re-sorteio | Gratuito. Registrado com motivo na `Draw` de rodada seguinte. |
 | Celery | Redis DB 1, fila `sorteio`, resultados no PostgreSQL (`django-db`) |
 | Testes | pytest + pytest-django + pytest-playwright. Todos em `tests/<app>/`. |
+| Settings de teste | `config/settings_test.py` (herda `settings.py` + gera `FIELD_ENCRYPTION_KEY`). O `pytest.ini` aponta para ele. |
+| E2E + Django | `DJANGO_ALLOW_ASYNC_UNSAFE=true` em `tests/e2e/conftest.py` — necessário por causa do event loop interno do pytest-playwright. |
 
 ---
 

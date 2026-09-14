@@ -72,7 +72,11 @@ Ver docs/DESENVOLVIMENTO.md para o roadmap completo.
 - Crédito é debitado apenas na **primeira** rodada de sorteio (status passa para `DRAWN`)
 - Saldo calculado via livro-razão (`Sum('amount')`) — nunca campo editável solto
 - Débito usa `select_for_update` para evitar condição de corrida
-- `FIELD_ENCRYPTION_KEY` gerada em `conftest.py` para testes (nova a cada run, ok)
+- `FIELD_ENCRYPTION_KEY` gerada em `config/settings_test.py` (nova a cada run, ok)
+- `pytest.ini` aponta para `config.settings_test` (não `config.settings`) — garante chave antes do Django inicializar
+- E2E (pytest-playwright): `os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"` em `tests/e2e/conftest.py` — necessário porque playwright usa event loop interno que Django detecta como async
+- Makefile: `PYTEST = $(PYTHON) -m pytest` — garante que o pytest do venv é usado, não o do sistema
+- Tasks Celery: imports de módulos externos (ex: `refresh_long_token`) devem ficar no topo do arquivo, não dentro da função — permite `@patch("apps.accounts.tasks.X")` nos testes
 
 ---
 

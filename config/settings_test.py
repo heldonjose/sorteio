@@ -6,3 +6,6 @@ from cryptography.fernet import Fernet
 # (descartada ao fim — não persistida em lugar nenhum)
 if not FIELD_ENCRYPTION_KEY:  # noqa: F405
     FIELD_ENCRYPTION_KEY = Fernet.generate_key().decode()  # noqa: F405
+
+# Permite operações síncronas Django dentro do event loop do pytest-playwright
+DJANGO_ALLOW_ASYNC_UNSAFE = True

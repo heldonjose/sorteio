@@ -6,7 +6,13 @@ Pré-requisitos (uma vez):
     manage.py tailwind build   (para o CSS estar disponível)
 """
 
+import os
+
 import pytest
+
+# pytest-playwright usa um event loop interno que Django detecta como contexto async.
+# Essa flag permite operações síncronas do Django dentro desse event loop.
+os.environ.setdefault("DJANGO_ALLOW_ASYNC_UNSAFE", "true")
 
 
 @pytest.fixture(scope="session")
