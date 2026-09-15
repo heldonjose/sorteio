@@ -100,24 +100,22 @@ Atualizar conforme o projeto avança.
 
 ---
 
-## Meta App Review — Estado (parado em 14/09/2026)
+## Meta App Review — Estado (ENVIADO em 15/09/2026)
 
-Formulário em: developers.facebook.com → Sorteio Pro → Análise do app → submissão em andamento
+**SUBMISSAO COMPLETA** — aguardando resposta da Meta (prazo: ate 20 dias).
 
-- ✅ Verificação — empresa "A Q DA R DANTAS" (CNPJ 40.144.482/0001-78) enviada para análise (~2 dias úteis)
-- ✅ Configurações do app — concluída
-- 🔄 Uso permitido — em andamento:
-  - ✅ `instagram_business_basic` — preenchido e salvo
-  - ⏳ `instagram_business_manage_comments` — falta: texto + upload do vídeo + marcar conformidade
-- ⏳ Tratamento de dados — não iniciado
-- ⏳ Instruções da análise — não iniciado (sobe o vídeo + instruções para o revisor)
+Painel do app: https://developers.facebook.com/apps/1829415881559086/dashboard/?business_id=1185803250316568
 
-Vídeo para upload: `/home/heldonjose/Videos/Screencasts/Screencast from 14-09-2026 17:41:23.webm`
+- ✅ Verificação — empresa "A Q DA R DANTAS" (CNPJ 40.144.482/0001-78)
+- ✅ Configurações do app
+- ✅ Uso permitido — `instagram_business_basic` + `instagram_business_manage_comments`
+- ✅ Tratamento de dados
+- ✅ Instruções da análise
+- Permissões em análise: `instagram_business_basic` + `instagram_business_manage_comments`
 
-Texto para `instagram_business_manage_comments`:
-> Sorteio Pro uses instagram_business_manage_comments to read all comments on a selected Instagram post in order to run a transparent and auditable giveaway raffle. The app calls GET /{media-id}/comments to fetch all comments, filters them according to rules defined by the account owner (minimum mentions, exclude replies, required keywords, etc.), and randomly selects winners using a cryptographically secure method. The result is published as a public certificate with a SHA-256 hash of all participants for independent verification. The app only READS comments — it never creates, edits, or deletes any comment. To test: go to https://sorteio.repsys.com.br, login with Instagram Business account, select a post, the app loads comments and runs the raffle.
-
-Permissões na submissão: `instagram_business_basic` + `instagram_business_manage_comments`
+Pendências após aprovação:
+- Clicar "Publicar" na página go_live do painel
+- Remover tester "sandalias helokids" (manter até aprovação)
 
 ---
 
