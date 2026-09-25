@@ -13,6 +13,7 @@ from django.contrib.auth import login, logout
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
@@ -73,19 +74,19 @@ def instagram_callback(request):
         return render(
             request,
             "accounts/error.html",
-            {"message": "Erro de segurança (state inválido). Tente fazer login novamente."},
+            {"message": _("Erro de segurança (state inválido). Tente fazer login novamente.")},
             status=400,
         )
 
     # ── Verificação de erro retornado pela Meta ───────────────────────────────
     if "error" in request.GET:
-        error_desc = request.GET.get("error_description", "Acesso negado.")
+        error_desc = request.GET.get("error_description") or _("Acesso negado.")
         return render(request, "accounts/error.html", {"message": error_desc})
 
     # O code pode vir com sufixo "#_" — remover
     code = request.GET.get("code", "").split("#")[0]
     if not code:
-        return render(request, "accounts/error.html", {"message": "Código de autorização ausente."})
+        return render(request, "accounts/error.html", {"message": _("Código de autorização ausente.")})
 
     try:
         # ── Troca de tokens ───────────────────────────────────────────────────
@@ -126,7 +127,7 @@ def instagram_callback(request):
             )
 
         # ── Criar ou atualizar InstagramAccount ───────────────────────────────
-        account, _ = InstagramAccount.objects.get_or_create(
+        account, _created = InstagramAccount.objects.get_or_create(
             user=user,
             defaults={"ig_user_id": ig_user_id, "username": username},
         )
@@ -151,14 +152,14 @@ def instagram_callback(request):
         return render(
             request,
             "accounts/error.html",
-            {"message": f"Erro ao conectar com o Instagram: {e}"},
+            {"message": _("Erro ao conectar com o Instagram: %(error)s") % {"error": e}},
         )
     except Exception as e:
         logger.exception("Erro inesperado no callback do Instagram")
         return render(
             request,
             "accounts/error.html",
-            {"message": "Erro inesperado. Por favor, tente novamente."},
+            {"message": _("Erro inesperado. Por favor, tente novamente.")},
         )
 
 

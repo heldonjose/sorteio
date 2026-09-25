@@ -1,0 +1,1951 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-25 11:01-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/accounts/views.py:77
+msgid "Erro de segurança (state inválido). Tente fazer login novamente."
+msgstr "Security error (invalid state). Please try logging in again."
+
+#: apps/accounts/views.py:83
+msgid "Acesso negado."
+msgstr "Access denied."
+
+#: apps/accounts/views.py:89
+msgid "Código de autorização ausente."
+msgstr "Missing authorization code."
+
+#: apps/accounts/views.py:155
+#, python-format
+msgid "Erro ao conectar com o Instagram: %(error)s"
+msgstr "Error connecting to Instagram: %(error)s"
+
+#: apps/accounts/views.py:162
+msgid "Erro inesperado. Por favor, tente novamente."
+msgstr "Unexpected error. Please try again."
+
+#: apps/billing/models.py:22
+msgid "Créditos gratuitos (boas-vindas)"
+msgstr "Free credits (welcome)"
+
+#: apps/billing/models.py:23
+msgid "Compra avulsa — 1 sorteio"
+msgstr "Single purchase — 1 giveaway"
+
+#: apps/billing/models.py:24
+msgid "Compra pacote — 30 sorteios"
+msgstr "Pack purchase — 30 giveaways"
+
+#: apps/billing/models.py:25
+msgid "Uso em sorteio"
+msgstr "Used in giveaway"
+
+#: apps/billing/models.py:26
+msgid "Ajuste / cortesia"
+msgstr "Adjustment / courtesy"
+
+#: apps/billing/models.py:27
+msgid "Estorno"
+msgstr "Refund"
+
+#: apps/billing/models.py:78
+msgid "Avulso — 1 sorteio (R$10)"
+msgstr "Single — 1 giveaway (R$10)"
+
+#: apps/billing/models.py:79
+msgid "Pacote — 30 sorteios (R$100)"
+msgstr "Pack — 30 giveaways (R$100)"
+
+#: apps/billing/models.py:86
+msgid "Aguardando pagamento"
+msgstr "Awaiting payment"
+
+#: apps/billing/models.py:87
+msgid "Pago e liberado"
+msgstr "Paid and released"
+
+#: apps/billing/models.py:88
+msgid "Cancelado"
+msgstr "Canceled"
+
+#: apps/raffles/models.py:23
+msgid "Rascunho"
+msgstr "Draft"
+
+#: apps/raffles/models.py:24 templates/raffles/carregar.html:3
+#: templates/raffles/carregar.html:27
+msgid "Carregando comentários"
+msgstr "Loading comments"
+
+#: apps/raffles/models.py:25
+msgid "Pronto para sortear"
+msgstr "Ready to draw"
+
+#: apps/raffles/models.py:26
+msgid "Sorteado"
+msgstr "Drawn"
+
+#: apps/raffles/models.py:27
+msgid "Falha"
+msgstr "Failed"
+
+#: apps/raffles/models.py:145
+msgid "Saldo insuficiente para realizar o sorteio."
+msgstr "Insufficient balance to run the giveaway."
+
+#: apps/raffles/tasks.py:42
+msgid "Conta do Instagram não encontrada ou token inválido."
+msgstr "Instagram account not found or invalid token."
+
+#: apps/raffles/views.py:82
+msgid "Selecione um post."
+msgstr "Select a post."
+
+#: apps/raffles/views.py:115
+msgid "Conta do Instagram não conectada."
+msgstr "Instagram account not connected."
+
+#: apps/raffles/views.py:125
+#, python-format
+msgid "Erro ao carregar posts: %(error)s"
+msgstr "Error loading posts: %(error)s"
+
+#: templates/404.html:11 templates/404.html:59
+msgid "Página não encontrada"
+msgstr "Page not found"
+
+#: templates/404.html:62
+msgid ""
+"O link que você seguiu pode estar quebrado ou essa página não existe mais. "
+"Mas não se preocupe — você não está perdido!"
+msgstr ""
+"The link you followed may be broken, or this page no longer exists. But "
+"don't worry — you're not lost!"
+
+#: templates/404.html:71 templates/500.html:68
+msgid "Ir para o início"
+msgstr "Go to home page"
+
+#: templates/404.html:78
+msgid "Voltar"
+msgstr "Go back"
+
+#: templates/500.html:11
+msgid "Erro interno"
+msgstr "Internal error"
+
+#: templates/500.html:56 templates/accounts/error.html:16
+msgid "Algo deu errado"
+msgstr "Something went wrong"
+
+#: templates/500.html:59
+msgid ""
+"Ocorreu um erro interno no servidor e nossa equipe já foi notificada. Tente "
+"novamente em alguns instantes."
+msgstr ""
+"An internal server error occurred and our team has been notified. Please try"
+" again in a few moments."
+
+#: templates/500.html:75 templates/accounts/error.html:25
+msgid "Tentar novamente"
+msgstr "Try again"
+
+#: templates/accounts/conta.html:3 templates/accounts/conta.html:13
+msgid "Minha conta"
+msgstr "My account"
+
+#: templates/accounts/conta.html:11 templates/pages/planos.html:12
+#: templates/raffles/carregar.html:11 templates/raffles/historico.html:10
+#: templates/raffles/novo.html:11 templates/raffles/painel.html:3
+#: templates/raffles/painel.html:31 templates/raffles/regras.html:10
+#: templates/raffles/resultado.html:23
+msgid "Painel"
+msgstr "Dashboard"
+
+#: templates/accounts/conta.html:40
+#, python-format
+msgid "válido até %(date)s"
+msgstr "valid until %(date)s"
+
+#: templates/accounts/conta.html:42
+msgid "expirado — faça login novamente"
+msgstr "expired — please log in again"
+
+#: templates/accounts/conta.html:49
+msgid "sorteio"
+msgid_plural "sorteios"
+msgstr[0] "giveaway"
+msgstr[1] "giveaways"
+
+#: templates/accounts/conta.html:51 templates/raffles/painel.html:35
+msgid "Adquirir mais"
+msgstr "Get more"
+
+#: templates/accounts/conta.html:59
+msgid "Extrato de créditos"
+msgstr "Credit statement"
+
+#: templates/accounts/conta.html:81
+msgid "Nenhuma transação ainda."
+msgstr "No transactions yet."
+
+#: templates/accounts/conta.html:90
+msgid "Pedidos de compra"
+msgstr "Purchase orders"
+
+#: templates/accounts/conta.html:96
+#, python-format
+msgid "Pedido #%(pk)s"
+msgstr "Order #%(pk)s"
+
+#: templates/accounts/conta.html:113
+msgid "Ações da conta"
+msgstr "Account actions"
+
+#: templates/accounts/conta.html:119
+msgid "Sair da conta"
+msgstr "Log out"
+
+#: templates/accounts/conta.html:127
+msgid "Excluir minha conta"
+msgstr "Delete my account"
+
+#: templates/accounts/conta.html:133
+msgid ""
+"Seus dados pessoais e comentários serão apagados. Esta ação é irreversível."
+msgstr ""
+"Your personal data and comments will be deleted. This action cannot be "
+"undone."
+
+#: templates/accounts/conta.html:138
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: templates/accounts/conta.html:144
+msgid "Confirmar exclusão"
+msgstr "Confirm deletion"
+
+#: templates/accounts/error.html:4
+msgid "Erro"
+msgstr "Error"
+
+#: templates/accounts/error.html:18
+msgid "Ocorreu um erro inesperado. Por favor, tente novamente."
+msgstr "An unexpected error occurred. Please try again."
+
+#: templates/accounts/error.html:30
+msgid "Voltar para a página inicial"
+msgstr "Back to home page"
+
+#: templates/accounts/login.html:4
+msgid "Entrar"
+msgstr "Log in"
+
+#: templates/accounts/login.html:19
+msgid "Bem-vindo de volta"
+msgstr "Welcome back"
+
+#: templates/accounts/login.html:20
+msgid "Entre com sua conta profissional do Instagram"
+msgstr "Log in with your Instagram professional account"
+
+#: templates/accounts/login.html:35 templates/pages/landing.html:31
+#: templates/pages/landing.html:66
+msgid "Entrar com Instagram"
+msgstr "Log in with Instagram"
+
+#: templates/accounts/login.html:40
+msgid "Requer conta profissional"
+msgstr "Professional account required"
+
+#: templates/accounts/login.html:42
+msgid ""
+"O app só funciona com contas do tipo <strong>Empresa</strong> ou "
+"<strong>Criador de conteúdo</strong> (conta profissional). Contas pessoais "
+"não têm acesso à API de comentários."
+msgstr ""
+"The app only works with <strong>Business</strong> or "
+"<strong>Creator</strong> accounts (professional accounts). Personal accounts"
+" don't have access to the comments API."
+
+#: templates/accounts/login.html:51
+msgid "Como mudar para conta profissional"
+msgstr "How to switch to a professional account"
+
+#: templates/accounts/login.html:58 templates/pages/exclusao_dados.html:112
+#: templates/pages/landing.html:316 templates/pages/privacidade.html:214
+#: templates/pages/termos.html:179
+msgid "Privacidade"
+msgstr "Privacy"
+
+#: templates/accounts/login.html:60 templates/pages/exclusao_dados.html:113
+#: templates/pages/landing.html:317 templates/pages/privacidade.html:215
+#: templates/pages/termos.html:180
+msgid "Termos"
+msgstr "Terms"
+
+#: templates/base.html:11 templates/base.html:17 templates/base.html:24
+#: templates/raffles/painel.html:12
+msgid "Sorteio"
+msgstr "Giveaway"
+
+#: templates/base.html:12
+msgid ""
+"Sorteios transparentes e auditáveis para o Instagram. Certificado público, "
+"re-sorteio gratuito, resultados verificáveis."
+msgstr ""
+"Transparent, auditable Instagram giveaways. Public certificate, free redraw,"
+" verifiable results."
+
+#: templates/base.html:18 templates/base.html:25
+msgid "Sorteios transparentes e auditáveis para o Instagram."
+msgstr "Transparent, auditable Instagram giveaways."
+
+#: templates/base.html:47
+msgid "Ir para o conteúdo"
+msgstr "Skip to content"
+
+#: templates/base.html:70
+msgid "Fechar"
+msgstr "Close"
+
+#: templates/components/lang_switcher.html:2
+msgid "Idioma"
+msgstr "Language"
+
+#: templates/pages/exclusao_dados.html:3
+#: templates/pages/exclusao_dados.html:26
+msgid "Exclusão de Dados"
+msgstr "Data Deletion"
+
+#: templates/pages/exclusao_dados.html:4
+#, python-format
+msgid ""
+"Como solicitar a exclusão dos seus dados pessoais da plataforma "
+"%(APP_NAME)s."
+msgstr ""
+"How to request deletion of your personal data from the %(APP_NAME)s "
+"platform."
+
+#: templates/pages/exclusao_dados.html:18 templates/pages/privacidade.html:18
+#: templates/pages/termos.html:18
+msgid "Início"
+msgstr "Home"
+
+#: templates/pages/exclusao_dados.html:27 templates/pages/privacidade.html:27
+#: templates/pages/termos.html:27
+msgid "Última atualização: 14/09/2026"
+msgstr "Last updated: 09/14/2026"
+
+#: templates/pages/exclusao_dados.html:30
+#, python-format
+msgid ""
+"Você pode pedir a exclusão dos seus dados da plataforma "
+"<strong>%(APP_NAME)s</strong> a qualquer momento, de três formas:"
+msgstr ""
+"You can request deletion of your data from the <strong>%(APP_NAME)s</strong>"
+" platform at any time, in three ways:"
+
+#: templates/pages/exclusao_dados.html:40
+msgid "Pela plataforma"
+msgstr "Through the platform"
+
+#: templates/pages/exclusao_dados.html:43
+msgid ""
+"Entre em <strong>sorteio.repsys.com.br</strong> com sua conta do Instagram."
+msgstr ""
+"Sign in at <strong>sorteio.repsys.com.br</strong> with your Instagram "
+"account."
+
+#: templates/pages/exclusao_dados.html:44
+msgid "Acesse <strong>Minha conta</strong>."
+msgstr "Go to <strong>My account</strong>."
+
+#: templates/pages/exclusao_dados.html:45
+msgid ""
+"Clique em <strong>Excluir minha conta e meus dados</strong> e confirme."
+msgstr "Click <strong>Delete my account and my data</strong> and confirm."
+
+#: templates/pages/exclusao_dados.html:47
+msgid ""
+"A exclusão é imediata para token de acesso, dados de perfil e comentários "
+"carregados."
+msgstr ""
+"Your access token, profile data and loaded comments are deleted immediately."
+
+#: templates/pages/exclusao_dados.html:54
+msgid "Pelo Instagram"
+msgstr "Through Instagram"
+
+#: templates/pages/exclusao_dados.html:57
+msgid ""
+"No Instagram, vá em <strong>Configurações e privacidade → Permissões do site"
+" → Apps e sites</strong>."
+msgstr ""
+"On Instagram, go to <strong>Settings and privacy → Website permissions → "
+"Apps and websites</strong>."
+
+#: templates/pages/exclusao_dados.html:58
+#, python-format
+msgid ""
+"Em <strong>Ativos</strong>, encontre <strong>%(APP_NAME)s</strong> e clique "
+"em <strong>Remover</strong>."
+msgstr ""
+"Under <strong>Active</strong>, find <strong>%(APP_NAME)s</strong> and click "
+"<strong>Remove</strong>."
+
+#: templates/pages/exclusao_dados.html:59
+msgid ""
+"A Meta nos avisa automaticamente. Excluímos seus dados e geramos um "
+"<strong>código de confirmação</strong>."
+msgstr ""
+"Meta notifies us automatically. We delete your data and generate a "
+"<strong>confirmation code</strong>."
+
+#: templates/pages/exclusao_dados.html:67
+msgid "Por e-mail"
+msgstr "By email"
+
+#: templates/pages/exclusao_dados.html:70
+msgid ""
+"Envie um e-mail para <a href=\"mailto:alinnequele@gmail.com\" class=\"text-"
+"violet-600 hover:underline\">alinnequele@gmail.com</a> com o assunto "
+"<strong>\"Exclusão de dados\"</strong> informando o seu @ do Instagram. "
+"Respondemos em até 15 dias."
+msgstr ""
+"Send an email to <a href=\"mailto:alinnequele@gmail.com\" class=\"text-"
+"violet-600 hover:underline\">alinnequele@gmail.com</a> with the subject "
+"<strong>\"Data deletion\"</strong> stating your Instagram @ handle. We "
+"respond within 15 days."
+
+#: templates/pages/exclusao_dados.html:79
+msgid "O que é excluído"
+msgstr "What is deleted"
+
+#: templates/pages/exclusao_dados.html:81
+msgid "Token de acesso ao Instagram"
+msgstr "Instagram access token"
+
+#: templates/pages/exclusao_dados.html:82
+msgid "Dados do perfil (@, nome, foto)"
+msgstr "Profile data (@, name, photo)"
+
+#: templates/pages/exclusao_dados.html:83
+msgid "Comentários carregados dos sorteios"
+msgstr "Comments loaded for giveaways"
+
+#: templates/pages/exclusao_dados.html:84
+msgid "Histórico de sorteios e certificados públicos"
+msgstr "Giveaway history and public certificates"
+
+#: templates/pages/exclusao_dados.html:88
+msgid "O que pode ser mantido (por obrigação legal)"
+msgstr "What may be retained (legal obligation)"
+
+#: templates/pages/exclusao_dados.html:90
+msgid ""
+"Registros de pedidos e pagamentos, <strong>anonimizados</strong>, por até 5 "
+"anos (obrigação fiscal)"
+msgstr ""
+"Order and payment records, <strong>anonymized</strong>, for up to 5 years "
+"(tax obligation)"
+
+#: templates/pages/exclusao_dados.html:91
+msgid ""
+"Registros de acesso (IP, data e hora) por 6 meses (Marco Civil da Internet)"
+msgstr ""
+"Access logs (IP, date and time) for 6 months (Brazilian Internet Civil "
+"Framework – Marco Civil da Internet)"
+
+#: templates/pages/exclusao_dados.html:96
+msgid "Pessoas que comentaram em um post sorteado"
+msgstr "People who commented on a giveaway post"
+
+#: templates/pages/exclusao_dados.html:97
+msgid ""
+"Se você comentou em uma publicação usada em sorteio e quer que seu "
+"comentário seja removido da nossa base, escreva para <a "
+"href=\"mailto:alinnequele@gmail.com\" class=\"text-violet-600 "
+"hover:underline\">alinnequele@gmail.com</a> informando o seu @ e o link da "
+"publicação."
+msgstr ""
+"If you commented on a post used in a giveaway and want your comment removed "
+"from our database, write to <a href=\"mailto:alinnequele@gmail.com\" "
+"class=\"text-violet-600 hover:underline\">alinnequele@gmail.com</a> stating "
+"your @ handle and the link to the post."
+
+#: templates/pages/exclusao_dados.html:114 templates/pages/landing.html:318
+#: templates/pages/privacidade.html:216 templates/pages/termos.html:181
+msgid "Exclusão de dados"
+msgstr "Data deletion"
+
+#: templates/pages/exclusao_dados_status.html:3
+msgid "Status da exclusão de dados"
+msgstr "Data deletion status"
+
+#: templates/pages/exclusao_dados_status.html:25
+msgid "Solicitação de exclusão registrada"
+msgstr "Deletion request registered"
+
+#: templates/pages/exclusao_dados_status.html:27
+#, python-format
+msgid ""
+"Recebemos a solicitação de exclusão dos seus dados enviada pelo Instagram. "
+"Seus dados pessoais foram removidos da plataforma %(APP_NAME)s."
+msgstr ""
+"We received the request to delete your data sent by Instagram. Your personal"
+" data has been removed from the %(APP_NAME)s platform."
+
+#: templates/pages/exclusao_dados_status.html:34
+msgid "Código de confirmação"
+msgstr "Confirmation code"
+
+#: templates/pages/exclusao_dados_status.html:39
+msgid "Em caso de dúvidas, entre em contato:"
+msgstr "If you have any questions, contact us:"
+
+#: templates/pages/landing.html:4
+msgid "Sorteios transparentes para o Instagram"
+msgstr "Transparent giveaways for Instagram"
+
+#: templates/pages/landing.html:5
+msgid ""
+"Sorteios auditáveis para o Instagram com certificado público. Gratuito para "
+"os primeiros 5 sorteios."
+msgstr ""
+"Auditable Instagram giveaways with a public certificate. Free for your first"
+" 5 giveaways."
+
+#: templates/pages/landing.html:21
+msgid "Alternar tema"
+msgstr "Toggle theme"
+
+#: templates/pages/landing.html:47
+#, python-format
+msgid "100%% gratuito para os primeiros 5 sorteios"
+msgstr "100%% free for your first 5 giveaways"
+
+#: templates/pages/landing.html:50
+msgctxt "hero: antes do destaque"
+msgid "Sorteios"
+msgstr "Giveaways"
+
+#: templates/pages/landing.html:52
+msgctxt "hero: destaque"
+msgid "transparentes"
+msgstr "transparent"
+
+#: templates/pages/landing.html:54
+msgctxt "hero: depois do destaque"
+msgid "para o Instagram"
+msgstr "for Instagram"
+
+#: templates/pages/landing.html:57
+msgid ""
+"Conecte sua conta profissional, escolha um post, defina as regras e sorteie "
+"com resultado auditável e certificado público — em menos de 2 minutos."
+msgstr ""
+"Connect your professional account, pick a post, set the rules and draw with "
+"an auditable result and a public certificate — in under 2 minutes."
+
+#: templates/pages/landing.html:69
+msgid "Requer conta profissional (Empresa ou Criador de conteúdo)"
+msgstr "Requires a professional account (Business or Creator)"
+
+#: templates/pages/landing.html:77
+msgid "Como funciona"
+msgstr "How it works"
+
+#: templates/pages/landing.html:78
+msgid "Três passos, menos de 2 minutos."
+msgstr "Three steps, under 2 minutes."
+
+#: templates/pages/landing.html:83
+msgid "Conecte o Instagram"
+msgstr "Connect Instagram"
+
+#: templates/pages/landing.html:84
+msgid "Login oficial com sua conta profissional via autenticação da Meta."
+msgstr ""
+"Official login with your professional account through Meta authentication."
+
+#: templates/pages/landing.html:88
+msgid "Escolha o post e as regras"
+msgstr "Pick the post and the rules"
+
+#: templates/pages/landing.html:89
+msgid ""
+"Selecione a publicação, defina filtros (hashtag, @menções, participação "
+"única…) e carregue os comentários."
+msgstr ""
+"Select the post, set filters (hashtag, @mentions, one entry per person…) and"
+" load the comments."
+
+#: templates/pages/landing.html:93
+msgid "Sorteie e compartilhe"
+msgstr "Draw and share"
+
+#: templates/pages/landing.html:94
+msgid ""
+"O ganhador é sorteado com certificado público e auditável. Compartilhe o "
+"link com sua audiência."
+msgstr ""
+"The winner is drawn with a public, auditable certificate. Share the link "
+"with your audience."
+
+#: templates/pages/landing.html:103 templates/pages/planos.html:30
+msgid "Planos simples"
+msgstr "Simple plans"
+
+#: templates/pages/landing.html:104
+msgid "Pague só quando precisar. Créditos não expiram."
+msgstr "Pay only when you need it. Credits never expire."
+
+#: templates/pages/landing.html:109
+msgid "Grátis"
+msgstr "Free"
+
+#: templates/pages/landing.html:111
+msgid "para sempre"
+msgstr "forever"
+
+#: templates/pages/landing.html:113 templates/pages/planos.html:43
+msgid "5 sorteios vitalícios"
+msgstr "5 lifetime giveaways"
+
+#: templates/pages/landing.html:114 templates/pages/planos.html:44
+msgid "Certificado auditável"
+msgstr "Auditable certificate"
+
+#: templates/pages/landing.html:115 templates/pages/planos.html:59
+msgid "Re-sorteio gratuito"
+msgstr "Free redraw"
+
+#: templates/pages/landing.html:118
+msgid "Começar grátis"
+msgstr "Start for free"
+
+#: templates/pages/landing.html:124 templates/pages/planos.html:53
+msgid "Avulso"
+msgstr "Single"
+
+#: templates/pages/landing.html:126 templates/pages/planos.html:55
+msgid "por sorteio"
+msgstr "per giveaway"
+
+#: templates/pages/landing.html:128
+msgid "1 sorteio adicional"
+msgstr "1 extra giveaway"
+
+#: templates/pages/landing.html:129 templates/pages/landing.html:145
+msgid "Pague via Pix/WhatsApp"
+msgstr "Pay via Pix/WhatsApp"
+
+#: templates/pages/landing.html:130
+msgid "Crédito não expira"
+msgstr "Credit never expires"
+
+#: templates/pages/landing.html:133 templates/pages/landing.html:149
+#: templates/pages/planos.html:68 templates/pages/planos.html:97
+msgid "Comprar via WhatsApp"
+msgstr "Buy via WhatsApp"
+
+#: templates/pages/landing.html:139
+msgid "MAIS POPULAR"
+msgstr "MOST POPULAR"
+
+#: templates/pages/landing.html:140
+msgid "Pacote 30"
+msgstr "Pack of 30"
+
+#: templates/pages/landing.html:142
+msgid "30 sorteios — R$3,33 cada"
+msgstr "30 giveaways — R$3.33 each"
+
+#: templates/pages/landing.html:144
+msgid "30 sorteios"
+msgstr "30 giveaways"
+
+#: templates/pages/landing.html:146
+msgid "Créditos não expiram"
+msgstr "Credits never expire"
+
+#: templates/pages/landing.html:159
+msgid "Perguntas frequentes"
+msgstr "Frequently asked questions"
+
+#: templates/pages/landing.html:160
+msgid "Tudo que você precisa saber antes de começar."
+msgstr "Everything you need to know before you start."
+
+#: templates/pages/landing.html:219
+msgid "Preciso ter conta Business ou Creator?"
+msgstr "Do I need a Business or Creator account?"
+
+#: templates/pages/landing.html:226
+msgid ""
+"Sim. A API do Instagram só permite ler comentários de contas profissionais "
+"(Business ou Creator). Contas pessoais não têm acesso à API de comentários "
+"da Meta."
+msgstr ""
+"Yes. The Instagram API only allows reading comments from professional "
+"accounts (Business or Creator). Personal accounts don't have access to "
+"Meta's comments API."
+
+#: templates/pages/landing.html:234
+msgid "O sorteio é realmente aleatório e auditável?"
+msgstr "Is the draw really random and auditable?"
+
+#: templates/pages/landing.html:241
+msgid "Sim. Usamos"
+msgstr "Yes. We use"
+
+#: templates/pages/landing.html:241
+msgid ""
+"(gerador criptograficamente seguro do Python) e geramos um hash SHA-256 dos "
+"participantes válidos antes do sorteio. O certificado público registra o "
+"hash, o número de participantes e o método — qualquer pessoa pode verificar "
+"a integridade do resultado."
+msgstr ""
+"(Python's cryptographically secure generator) and create a SHA-256 hash of "
+"the valid participants before the draw. The public certificate records the "
+"hash, the number of participants and the method — anyone can verify the "
+"integrity of the result."
+
+#: templates/pages/landing.html:249
+msgid "O que acontece se o ganhador não cumpriu as regras?"
+msgstr "What if the winner didn't follow the rules?"
+
+#: templates/pages/landing.html:256
+msgid ""
+"Você pode fazer um re-sorteio gratuitamente, informando o motivo (ex.: "
+"\"ganhador não seguia o perfil\"). O certificado registra todas as rodadas, "
+"mantendo a transparência do processo."
+msgstr ""
+"You can run a redraw for free, stating the reason (e.g., \"winner wasn't "
+"following the profile\"). The certificate records every round, keeping the "
+"process transparent."
+
+#: templates/pages/landing.html:264
+msgid "Meus dados ficam seguros?"
+msgstr "Is my data safe?"
+
+#: templates/pages/landing.html:271
+msgid ""
+"Seu token de acesso ao Instagram é armazenado criptografado com Fernet "
+"(AES-128-CBC). Nunca armazenamos sua senha. Você pode revogar o acesso a "
+"qualquer momento nas configurações do Instagram ou excluir sua conta "
+"diretamente no app."
+msgstr ""
+"Your Instagram access token is stored encrypted with Fernet (AES-128-CBC). "
+"We never store your password. You can revoke access at any time in your "
+"Instagram settings or delete your account directly in the app."
+
+#: templates/pages/landing.html:279
+msgid "Os créditos expiram?"
+msgstr "Do credits expire?"
+
+#: templates/pages/landing.html:286
+msgid ""
+"Não. Créditos adquiridos ficam disponíveis indefinidamente. Você paga uma "
+"vez e usa quando precisar."
+msgstr ""
+"No. Purchased credits stay available indefinitely. You pay once and use them"
+" whenever you need."
+
+#: templates/pages/landing.html:297
+msgid "Pronto para sortear?"
+msgstr "Ready to draw?"
+
+#: templates/pages/landing.html:298
+msgid ""
+"Crie sua conta gratuitamente e faça seus 5 primeiros sorteios sem pagar "
+"nada."
+msgstr ""
+"Create your account for free and run your first 5 giveaways at no cost."
+
+#: templates/pages/landing.html:306
+msgid "Começar grátis agora"
+msgstr "Start free now"
+
+#: templates/pages/planos.html:3 templates/pages/planos.html:15
+msgid "Planos"
+msgstr "Plans"
+
+#: templates/pages/planos.html:20 templates/raffles/painel.html:33
+#: templates/raffles/sortear.html:49
+msgid "Saldo:"
+msgstr "Balance:"
+
+#: templates/pages/planos.html:20 templates/raffles/painel.html:33
+#: templates/raffles/sortear.html:49
+#, python-format
+msgid "%(counter)s sorteio"
+msgid_plural "%(counter)s sorteios"
+msgstr[0] "%(counter)s giveaway"
+msgstr[1] "%(counter)s giveaways"
+
+#: templates/pages/planos.html:31
+msgid "Sem assinatura. Pague só o que usar."
+msgstr "No subscription. Pay only for what you use."
+
+#: templates/pages/planos.html:39
+msgid "Gratuito"
+msgstr "Free"
+
+#: templates/pages/planos.html:45
+msgid "Todas as regras"
+msgstr "All rules"
+
+#: templates/pages/planos.html:47
+msgid "Incluído ao criar a conta."
+msgstr "Included when you create your account."
+
+#: templates/pages/planos.html:58
+msgid "1 sorteio"
+msgstr "1 giveaway"
+
+#: templates/pages/planos.html:60 templates/pages/planos.html:89
+msgid "Sem validade"
+msgstr "Never expires"
+
+#: templates/pages/planos.html:74 templates/pages/planos.html:103
+msgid "Entrar para comprar"
+msgstr "Log in to buy"
+
+#: templates/pages/planos.html:82
+#, python-format
+msgid "Pacote %(pack_credits)s"
+msgstr "Pack of %(pack_credits)s"
+
+#: templates/pages/planos.html:84 templates/pages/planos.html:87
+#, python-format
+msgid "%(pack_credits)s sorteios"
+msgstr "%(pack_credits)s giveaways"
+
+#: templates/pages/planos.html:88
+msgid "Melhor custo-benefício"
+msgstr "Best value"
+
+#: templates/pages/planos.html:111
+msgid ""
+"Após o pagamento via Pix/WhatsApp, o crédito é liberado manualmente em até "
+"1h útil."
+msgstr ""
+"After payment via Pix/WhatsApp, the credit is released manually within 1 "
+"business hour."
+
+#: templates/pages/planos.html:119
+msgid "Ver minha conta e extrato"
+msgstr "View my account and statement"
+
+#: templates/pages/privacidade.html:3 templates/pages/privacidade.html:26
+msgid "Política de Privacidade"
+msgstr "Privacy Policy"
+
+#: templates/pages/privacidade.html:4
+#, python-format
+msgid ""
+"Como a %(APP_NAME)s coleta, usa e protege seus dados pessoais, em "
+"conformidade com a LGPD."
+msgstr ""
+"How %(APP_NAME)s collects, uses and protects your personal data, in "
+"compliance with the LGPD (Brazilian General Data Protection Law)."
+
+#: templates/pages/privacidade.html:31 templates/pages/termos.html:31
+msgid ""
+"Esta é uma tradução para o inglês fornecida por conveniência. Em caso de "
+"divergência, prevalece a versão em português."
+msgstr ""
+"This is an English translation provided for convenience. In case of any "
+"discrepancy, the Portuguese version prevails."
+
+#: templates/pages/privacidade.html:36
+#, python-format
+msgid ""
+"Esta Política explica como <strong>Soluções e Sistemas</strong> (nome "
+"fantasia), inscrita no CNPJ <strong>40.144.482/0001-78</strong>, com sede em"
+" R. Cabo José Benício, 102, Maternidade, Patos/PB, CEP 58701-384 (\"nós\"), "
+"trata dados pessoais na plataforma <strong>%(APP_NAME)s</strong> "
+"(\"Plataforma\"), disponível em <strong>sorteio.repsys.com.br</strong>, em "
+"conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 – "
+"LGPD)."
+msgstr ""
+"This Policy explains how <strong>Soluções e Sistemas</strong> (trade name), "
+"registered under CNPJ <strong>40.144.482/0001-78</strong>, headquartered at "
+"R. Cabo José Benício, 102, Maternidade, Patos/PB, Brazil, ZIP 58701-384 "
+"(\"we\"), processes personal data on the <strong>%(APP_NAME)s</strong> "
+"platform (\"Platform\"), available at "
+"<strong>sorteio.repsys.com.br</strong>, in compliance with the Brazilian "
+"General Data Protection Law (Law No. 13,709/2018 – LGPD)."
+
+#: templates/pages/privacidade.html:45
+msgid "1. Quem é o controlador"
+msgstr "1. Who is the controller"
+
+#: templates/pages/privacidade.html:47
+msgid ""
+"O controlador dos dados é Soluções e Sistemas. Contato do encarregado (DPO):"
+" <strong>Heldon José</strong> — <a href=\"mailto:alinnequele@gmail.com\" "
+"class=\"text-violet-600 hover:underline\">alinnequele@gmail.com</a>."
+msgstr ""
+"The data controller is Soluções e Sistemas. Data Protection Officer (DPO) "
+"contact: <strong>Heldon José</strong> — <a "
+"href=\"mailto:alinnequele@gmail.com\" class=\"text-violet-600 "
+"hover:underline\">alinnequele@gmail.com</a>."
+
+#: templates/pages/privacidade.html:53
+msgid "2. Quais dados coletamos"
+msgstr "2. What data we collect"
+
+#: templates/pages/privacidade.html:55
+msgid "2.1 Dados da sua conta do Instagram (quando você faz login)"
+msgstr "2.1 Your Instagram account data (when you log in)"
+
+#: templates/pages/privacidade.html:56
+msgid "Com a sua autorização, por meio da API oficial da Meta, recebemos:"
+msgstr "With your authorization, through Meta's official API, we receive:"
+
+#: templates/pages/privacidade.html:58
+msgid ""
+"identificador da conta, nome de usuário (@), nome e foto de perfil, tipo de "
+"conta e número de publicações;"
+msgstr ""
+"account ID, username (@), name and profile picture, account type and number "
+"of posts;"
+
+#: templates/pages/privacidade.html:59
+msgid "<strong>token de acesso</strong>, armazenado de forma criptografada;"
+msgstr "<strong>access token</strong>, stored encrypted;"
+
+#: templates/pages/privacidade.html:60
+msgid ""
+"dados das <strong>suas publicações</strong>: identificador, legenda, "
+"miniatura, tipo, data, link e quantidade de comentários."
+msgstr ""
+"data about <strong>your posts</strong>: ID, caption, thumbnail, type, date, "
+"link and number of comments."
+
+#: templates/pages/privacidade.html:63
+msgid "2.2 Comentários das publicações escolhidas"
+msgstr "2.2 Comments on the selected posts"
+
+#: templates/pages/privacidade.html:65
+msgid ""
+"Quando você cria um sorteio, lemos os <strong>comentários da publicação "
+"escolhida</strong>: nome de usuário de quem comentou, texto, data e "
+"respostas. Esses dados pertencem a terceiros que comentaram publicamente na "
+"sua publicação e são usados <strong>somente</strong> para executar o sorteio"
+" solicitado por você."
+msgstr ""
+"When you create a giveaway, we read the <strong>comments on the selected "
+"post</strong>: the commenter's username, text, date and replies. This data "
+"belongs to third parties who publicly commented on your post and is used "
+"<strong>only</strong> to run the giveaway you requested."
+
+#: templates/pages/privacidade.html:72
+msgid "2.3 Dados de uso e compra"
+msgstr "2.3 Usage and purchase data"
+
+#: templates/pages/privacidade.html:74
+msgid "Histórico de sorteios, regras configuradas e ganhadores;"
+msgstr "Giveaway history, configured rules and winners;"
+
+#: templates/pages/privacidade.html:75
+msgid "Pedidos de créditos e saldo;"
+msgstr "Credit orders and balance;"
+
+#: templates/pages/privacidade.html:76
+msgid ""
+"Dados técnicos: endereço IP, navegador, data e hora de acesso (registros "
+"exigidos pelo Marco Civil da Internet)."
+msgstr ""
+"Technical data: IP address, browser, date and time of access (logs required "
+"by the Brazilian Internet Civil Framework – Marco Civil da Internet)."
+
+#: templates/pages/privacidade.html:79
+msgid "2.4 O que <strong>não</strong> coletamos"
+msgstr "2.4 What we do <strong>not</strong> collect"
+
+#: templates/pages/privacidade.html:81
+msgid ""
+"Não coletamos sua senha do Instagram, mensagens diretas, lista de "
+"seguidores, nem publicamos, respondemos, ocultamos ou apagamos nada em sua "
+"conta."
+msgstr ""
+"We do not collect your Instagram password, direct messages or follower list,"
+" and we never post, reply to, hide or delete anything on your account."
+
+#: templates/pages/privacidade.html:87
+msgid "3. Para que usamos os dados"
+msgstr "3. What we use the data for"
+
+#: templates/pages/privacidade.html:92
+msgid "Finalidade"
+msgstr "Purpose"
+
+#: templates/pages/privacidade.html:93
+msgid "Base legal (LGPD)"
+msgstr "Legal basis (LGPD)"
+
+#: templates/pages/privacidade.html:97
+msgid "Autenticar você e manter sua conta"
+msgstr "Authenticate you and maintain your account"
+
+#: templates/pages/privacidade.html:97 templates/pages/privacidade.html:98
+#: templates/pages/privacidade.html:100
+msgid "Execução de contrato (art. 7º, V)"
+msgstr "Performance of a contract (art. 7, V)"
+
+#: templates/pages/privacidade.html:98
+msgid "Listar publicações e ler comentários para sorteios"
+msgstr "List posts and read comments for giveaways"
+
+#: templates/pages/privacidade.html:99
+msgid "Guardar histórico e certificado de sorteios"
+msgstr "Keep giveaway history and certificates"
+
+#: templates/pages/privacidade.html:99 templates/pages/privacidade.html:102
+msgid "Legítimo interesse (art. 7º, IX)"
+msgstr "Legitimate interest (art. 7, IX)"
+
+#: templates/pages/privacidade.html:100
+msgid "Controlar créditos e compras"
+msgstr "Manage credits and purchases"
+
+#: templates/pages/privacidade.html:101
+msgid "Guardar registros de acesso"
+msgstr "Keep access logs"
+
+#: templates/pages/privacidade.html:101
+msgid "Obrigação legal (art. 7º, II; Marco Civil art. 15)"
+msgstr "Legal obligation (art. 7, II; Marco Civil art. 15)"
+
+#: templates/pages/privacidade.html:102
+msgid "Prevenir fraudes e abusos"
+msgstr "Prevent fraud and abuse"
+
+#: templates/pages/privacidade.html:107
+msgid "4. Compartilhamento"
+msgstr "4. Sharing"
+
+#: templates/pages/privacidade.html:108
+msgid "Não vendemos nem alugamos dados. Compartilhamos apenas com:"
+msgstr "We do not sell or rent data. We share it only with:"
+
+#: templates/pages/privacidade.html:110
+msgid ""
+"<strong>Meta Platforms</strong> (Instagram), como provedora da API usada "
+"para login e leitura de dados;"
+msgstr ""
+"<strong>Meta Platforms</strong> (Instagram), as the provider of the API used"
+" for login and data reading;"
+
+#: templates/pages/privacidade.html:111
+msgid ""
+"<strong>Provedores de infraestrutura</strong> (hospedagem, banco de dados, "
+"backup, monitoramento de erros), sob obrigação de confidencialidade;"
+msgstr ""
+"<strong>Infrastructure providers</strong> (hosting, database, backup, error "
+"monitoring), under confidentiality obligations;"
+
+#: templates/pages/privacidade.html:112
+msgid ""
+"<strong>Autoridades</strong>, quando exigido por lei ou ordem judicial."
+msgstr "<strong>Authorities</strong>, when required by law or court order."
+
+#: templates/pages/privacidade.html:115
+msgid ""
+"O <strong>certificado público</strong> de um sorteio, quando você "
+"compartilha o link, mostra a publicação, as regras, a quantidade de "
+"participantes e o(s) nome(s) de usuário do(s) ganhador(es)."
+msgstr ""
+"A giveaway's <strong>public certificate</strong>, when you share its link, "
+"shows the post, the rules, the number of participants and the username(s) of"
+" the winner(s)."
+
+#: templates/pages/privacidade.html:121
+msgid "5. Por quanto tempo guardamos"
+msgstr "5. How long we keep data"
+
+#: templates/pages/privacidade.html:126
+msgid "Dado"
+msgstr "Data"
+
+#: templates/pages/privacidade.html:127
+msgid "Retenção"
+msgstr "Retention"
+
+#: templates/pages/privacidade.html:131
+msgid "Token de acesso"
+msgstr "Access token"
+
+#: templates/pages/privacidade.html:131
+msgid ""
+"Enquanto a conta estiver conectada; apagado ao desconectar, excluir a conta "
+"ou revogar o acesso no Instagram"
+msgstr ""
+"While the account is connected; deleted when you disconnect, delete your "
+"account or revoke access on Instagram"
+
+#: templates/pages/privacidade.html:132
+msgid "Comentários carregados"
+msgstr "Loaded comments"
+
+#: templates/pages/privacidade.html:132
+msgid "Até 90 dias após o sorteio"
+msgstr "Up to 90 days after the giveaway"
+
+#: templates/pages/privacidade.html:133
+msgid "Resultado do sorteio (regras, nº de participantes, ganhadores, hash)"
+msgstr "Giveaway result (rules, number of participants, winners, hash)"
+
+#: templates/pages/privacidade.html:133
+msgid "Enquanto a conta existir"
+msgstr "While the account exists"
+
+#: templates/pages/privacidade.html:134
+msgid "Pedidos e transações de créditos"
+msgstr "Credit orders and transactions"
+
+#: templates/pages/privacidade.html:134
+msgid "5 anos (obrigações fiscais), anonimizado após exclusão"
+msgstr "5 years (tax obligations), anonymized after deletion"
+
+#: templates/pages/privacidade.html:135
+msgid "Registros de acesso"
+msgstr "Access logs"
+
+#: templates/pages/privacidade.html:135
+msgid "6 meses (Marco Civil da Internet)"
+msgstr "6 months (Marco Civil da Internet)"
+
+#: templates/pages/privacidade.html:140
+msgid "6. Seus direitos"
+msgstr "6. Your rights"
+
+#: templates/pages/privacidade.html:142
+msgid ""
+"Conforme o art. 18 da LGPD, você pode solicitar: confirmação e acesso aos "
+"dados; correção; anonimização, bloqueio ou eliminação; portabilidade; "
+"informação sobre compartilhamento; e revogação do consentimento."
+msgstr ""
+"Under art. 18 of the LGPD, you may request: confirmation of and access to "
+"your data; correction; anonymization, blocking or deletion; portability; "
+"information about sharing; and withdrawal of consent."
+
+#: templates/pages/privacidade.html:147
+msgid "Como exercer:"
+msgstr "How to exercise them:"
+
+#: templates/pages/privacidade.html:149
+msgid "Pela Plataforma: <strong>Minha conta → Excluir conta</strong>;"
+msgstr "Through the Platform: <strong>My account → Delete account</strong>;"
+
+#: templates/pages/privacidade.html:150
+#, python-format
+msgid ""
+"Pelo Instagram: <strong>Configurações → Permissões do site → Apps e sites → "
+"Remover %(APP_NAME)s</strong>;"
+msgstr ""
+"Through Instagram: <strong>Settings → Website permissions → Apps and "
+"websites → Remove %(APP_NAME)s</strong>;"
+
+#: templates/pages/privacidade.html:151
+msgid ""
+"Por e-mail: <a href=\"mailto:alinnequele@gmail.com\" class=\"text-violet-600"
+" hover:underline\">alinnequele@gmail.com</a>. Respondemos em até 15 dias."
+msgstr ""
+"By email: <a href=\"mailto:alinnequele@gmail.com\" class=\"text-violet-600 "
+"hover:underline\">alinnequele@gmail.com</a>. We respond within 15 days."
+
+#: templates/pages/privacidade.html:155
+#, python-format
+msgid ""
+"Veja também: <a href=\"%(exclusao_url)s\" class=\"text-violet-600 "
+"hover:underline\">Instruções de exclusão de dados</a>."
+msgstr ""
+"See also: <a href=\"%(exclusao_url)s\" class=\"text-violet-600 "
+"hover:underline\">Data deletion instructions</a>."
+
+#: templates/pages/privacidade.html:160
+msgid ""
+"Quem comentou em uma publicação sorteada e deseja a exclusão do seu "
+"comentário da nossa base pode escrever para <a "
+"href=\"mailto:alinnequele@gmail.com\" class=\"text-violet-600 "
+"hover:underline\">alinnequele@gmail.com</a> informando o @."
+msgstr ""
+"Anyone who commented on a giveaway post and wants their comment deleted from"
+" our database can write to <a href=\"mailto:alinnequele@gmail.com\" "
+"class=\"text-violet-600 hover:underline\">alinnequele@gmail.com</a> stating "
+"their @ handle."
+
+#: templates/pages/privacidade.html:166
+msgid "7. Segurança"
+msgstr "7. Security"
+
+#: templates/pages/privacidade.html:168
+#, python-format
+msgid ""
+"Usamos HTTPS, criptografia dos tokens de acesso (Fernet/AES-128-CBC), "
+"controle de acesso restrito, backups e atualizações de segurança. Nenhum "
+"sistema é 100%% seguro. Em caso de incidente relevante, comunicaremos os "
+"titulares e a ANPD conforme a lei."
+msgstr ""
+"We use HTTPS, encryption of access tokens (Fernet/AES-128-CBC), restricted "
+"access control, backups and security updates. No system is 100%% secure. In "
+"the event of a relevant incident, we will notify data subjects and the ANPD "
+"(Brazilian Data Protection Authority) as required by law."
+
+#: templates/pages/privacidade.html:175
+msgid "8. Cookies"
+msgstr "8. Cookies"
+
+#: templates/pages/privacidade.html:177
+msgid ""
+"Usamos apenas cookies <strong>essenciais</strong> (sessão e proteção CSRF). "
+"Não usamos cookies de publicidade nem rastreamento de terceiros."
+msgstr ""
+"We use only <strong>essential</strong> cookies (session and CSRF "
+"protection). We do not use advertising cookies or third-party tracking."
+
+#: templates/pages/privacidade.html:183
+msgid "9. Menores de idade"
+msgstr "9. Minors"
+
+#: templates/pages/privacidade.html:184
+msgid ""
+"A Plataforma é destinada a maiores de 18 anos, ou a contas profissionais "
+"geridas por responsáveis legais."
+msgstr ""
+"The Platform is intended for people aged 18 or over, or for professional "
+"accounts managed by legal guardians."
+
+#: templates/pages/privacidade.html:186 templates/pages/termos.html:147
+msgid "10. Alterações"
+msgstr "10. Changes"
+
+#: templates/pages/privacidade.html:188
+msgid ""
+"Podemos atualizar esta Política. A data no topo indica a última versão. "
+"Mudanças relevantes serão avisadas na Plataforma."
+msgstr ""
+"We may update this Policy. The date at the top indicates the latest version."
+" Relevant changes will be announced on the Platform."
+
+#: templates/pages/privacidade.html:194
+msgid "11. Contato"
+msgstr "11. Contact"
+
+#: templates/pages/privacidade.html:196
+msgid ""
+"<strong>Soluções e Sistemas</strong> — Contato: Heldon José — <a "
+"href=\"mailto:alinnequele@gmail.com\" class=\"text-violet-600 "
+"hover:underline\">alinnequele@gmail.com</a> — WhatsApp (83) 99627-9632"
+msgstr ""
+"<strong>Soluções e Sistemas</strong> — Contact: Heldon José — <a "
+"href=\"mailto:alinnequele@gmail.com\" class=\"text-violet-600 "
+"hover:underline\">alinnequele@gmail.com</a> — WhatsApp +55 (83) 99627-9632"
+
+#: templates/pages/privacidade.html:204
+#, python-format
+msgid ""
+"%(APP_NAME)s não é afiliado, patrocinado ou endossado pelo Instagram ou pela"
+" Meta Platforms, Inc."
+msgstr ""
+"%(APP_NAME)s is not affiliated with, sponsored or endorsed by Instagram or "
+"Meta Platforms, Inc."
+
+#: templates/pages/termos.html:3 templates/pages/termos.html:26
+msgid "Termos de Uso"
+msgstr "Terms of Use"
+
+#: templates/pages/termos.html:4
+#, python-format
+msgid ""
+"Termos de uso da plataforma %(APP_NAME)s — regras, créditos, "
+"responsabilidades e limitações."
+msgstr ""
+"Terms of use of the %(APP_NAME)s platform — rules, credits, responsibilities"
+" and limitations."
+
+#: templates/pages/termos.html:37
+#, python-format
+msgid ""
+"Estes Termos regem o uso da plataforma <strong>%(APP_NAME)s</strong> "
+"(\"Plataforma\"), oferecida por <strong>Soluções e Sistemas</strong>, CNPJ "
+"<strong>40.144.482/0001-78</strong> (\"nós\"). Ao entrar com sua conta do "
+"Instagram, você (\"Usuário\") concorda com estes Termos e com a <a "
+"href=\"%(privacidade_url)s\" class=\"text-violet-600 "
+"hover:underline\">Política de Privacidade</a>."
+msgstr ""
+"These Terms govern the use of the <strong>%(APP_NAME)s</strong> platform "
+"(\"Platform\"), offered by <strong>Soluções e Sistemas</strong>, CNPJ "
+"<strong>40.144.482/0001-78</strong> (\"we\"). By signing in with your "
+"Instagram account, you (\"User\") agree to these Terms and to the <a "
+"href=\"%(privacidade_url)s\" class=\"text-violet-600 "
+"hover:underline\">Privacy Policy</a>."
+
+#: templates/pages/termos.html:53
+msgid "1. O que a Plataforma faz"
+msgstr "1. What the Platform does"
+
+#: templates/pages/termos.html:55
+msgid ""
+"Ferramenta para <strong>sortear aleatoriamente</strong> participantes a "
+"partir dos comentários de publicações da <strong>própria conta "
+"profissional</strong> do Usuário no Instagram, aplicando regras definidas "
+"pelo Usuário, e manter o histórico e o certificado desses sorteios."
+msgstr ""
+"A tool to <strong>randomly draw</strong> participants from the comments on "
+"posts of the User's <strong>own professional account</strong> on Instagram, "
+"applying rules defined by the User, and to keep the history and certificate "
+"of these giveaways."
+
+#: templates/pages/termos.html:64
+msgid "2. Requisitos"
+msgstr "2. Requirements"
+
+#: templates/pages/termos.html:66
+msgid "Ter 18 anos ou mais e capacidade legal;"
+msgstr "Be 18 years of age or older and have legal capacity;"
+
+#: templates/pages/termos.html:67
+msgid ""
+"Possuir conta <strong>profissional</strong> (Empresa ou Criador de conteúdo)"
+" no Instagram e autorizar o acesso pela Meta;"
+msgstr ""
+"Have a <strong>professional</strong> Instagram account (Business or Creator)"
+" and authorize access through Meta;"
+
+#: templates/pages/termos.html:68
+msgid "Usar apenas contas que você tem o direito de administrar."
+msgstr "Use only accounts you have the right to manage."
+
+#: templates/pages/termos.html:73
+msgid "3. Créditos e preços"
+msgstr "3. Credits and prices"
+
+#: templates/pages/termos.html:75
+msgid ""
+"Cada conta do Instagram recebe <strong>5 (cinco) sorteios "
+"gratuitos</strong>, uma única vez."
+msgstr ""
+"Each Instagram account receives <strong>5 (five) free giveaways</strong>, "
+"one time only."
+
+#: templates/pages/termos.html:76
+msgid ""
+"Após isso, os sorteios são pagos: <strong>R$ 10,00 por sorteio</strong> ou "
+"<strong>pacote de 30 sorteios por R$ 100,00</strong>. Os preços podem mudar,"
+" sem afetar créditos já adquiridos."
+msgstr ""
+"After that, giveaways are paid: <strong>R$ 10.00 per giveaway</strong> or a "
+"<strong>pack of 30 giveaways for R$ 100.00</strong>. Prices may change "
+"without affecting credits already purchased."
+
+#: templates/pages/termos.html:77
+msgid ""
+"<strong>1 crédito é consumido quando o sorteio é realizado pela primeira "
+"vez.</strong> Carregar comentários e configurar regras não consome crédito. "
+"Re-sorteios dentro do mesmo sorteio são gratuitos."
+msgstr ""
+"<strong>1 credit is consumed when the giveaway is drawn for the first "
+"time.</strong> Loading comments and configuring rules does not consume "
+"credits. Re-draws within the same giveaway are free."
+
+#: templates/pages/termos.html:78
+msgid ""
+"A compra é feita pelo WhatsApp (83) 99627-9632. Os créditos são liberados "
+"após a confirmação do pagamento, em até 24 horas em horário comercial."
+msgstr ""
+"Purchases are made via WhatsApp +55 (83) 99627-9632. Credits are released "
+"after payment is confirmed, within 24 business hours."
+
+#: templates/pages/termos.html:79
+msgid "Os créditos comprados <strong>não expiram</strong>."
+msgstr "Purchased credits <strong>do not expire</strong>."
+
+#: templates/pages/termos.html:80
+msgid ""
+"<strong>Direito de arrependimento:</strong> créditos <strong>não "
+"utilizados</strong> podem ser reembolsados em até 7 dias da compra (art. 49 "
+"do CDC)."
+msgstr ""
+"<strong>Right of withdrawal:</strong> <strong>unused</strong> credits may be"
+" refunded within 7 days of purchase (art. 49 of the Brazilian Consumer "
+"Protection Code – CDC)."
+
+#: templates/pages/termos.html:81
+msgid ""
+"Créditos são pessoais e não podem ser transferidos nem convertidos em "
+"dinheiro."
+msgstr ""
+"Credits are personal and cannot be transferred or converted into cash."
+
+#: templates/pages/termos.html:86
+msgid "4. Responsabilidades do organizador"
+msgstr "4. Organizer responsibilities"
+
+#: templates/pages/termos.html:87
+msgid ""
+"O Usuário é o <strong>único responsável</strong> pela promoção que realiza, "
+"incluindo:"
+msgstr ""
+"The User is <strong>solely responsible</strong> for the promotion they run, "
+"including:"
+
+#: templates/pages/termos.html:89
+msgid ""
+"<strong>Legislação brasileira:</strong> promoções comerciais com sorteio "
+"podem exigir <strong>autorização prévia</strong> do órgão competente (Lei nº"
+" 5.768/1971). A Plataforma é apenas uma ferramenta e não obtém autorizações "
+"em nome do Usuário;"
+msgstr ""
+"<strong>Brazilian law:</strong> commercial promotions involving draws may "
+"require <strong>prior authorization</strong> from the competent authority "
+"(Law No. 5,768/1971). The Platform is only a tool and does not obtain "
+"authorizations on the User's behalf;"
+
+#: templates/pages/termos.html:90
+msgid ""
+"Criar e divulgar o regulamento, as regras de participação e a entrega dos "
+"prêmios;"
+msgstr ""
+"Creating and publishing the official rules, participation rules and prize "
+"delivery;"
+
+#: templates/pages/termos.html:91
+msgid "Cumprir as <strong>Diretrizes de Promoções do Instagram</strong>;"
+msgstr "Complying with the <strong>Instagram Promotion Guidelines</strong>;"
+
+#: templates/pages/termos.html:92
+msgid "Tratar de forma adequada os dados dos participantes e ganhadores."
+msgstr "Handling participants' and winners' data appropriately."
+
+#: templates/pages/termos.html:97
+msgid "5. Transparência e resultado"
+msgstr "5. Transparency and results"
+
+#: templates/pages/termos.html:99
+msgid ""
+"O sorteio usa gerador de números aleatórios criptograficamente seguro (<code"
+" class=\"font-mono bg-gray-100 dark:bg-gray-800 px-1 "
+"rounded\">secrets.SystemRandom</code>), executado em nossos servidores."
+msgstr ""
+"The draw uses a cryptographically secure random number generator (<code "
+"class=\"font-mono bg-gray-100 dark:bg-gray-800 px-1 "
+"rounded\">secrets.SystemRandom</code>), running on our servers."
+
+#: templates/pages/termos.html:100
+msgid ""
+"Cada rodada registra data e hora, regras, número de participantes válidos e "
+"um hash SHA-256 da lista."
+msgstr ""
+"Each round records the date and time, rules, number of valid participants "
+"and a SHA-256 hash of the list."
+
+#: templates/pages/termos.html:101
+msgid ""
+"O resultado depende dos comentários disponibilizados pela API da Meta no "
+"momento do carregamento. Comentários apagados, ocultados ou filtrados pelo "
+"Instagram podem não ser considerados."
+msgstr ""
+"The result depends on the comments made available by the Meta API at the "
+"time of loading. Comments deleted, hidden or filtered by Instagram may not "
+"be considered."
+
+#: templates/pages/termos.html:106
+msgid "6. Uso proibido"
+msgstr "6. Prohibited use"
+
+#: templates/pages/termos.html:108
+msgid ""
+"É proibido: fraudar resultados ou enganar participantes; acessar contas de "
+"terceiros sem autorização; tentar burlar limites, créditos ou a segurança do"
+" sistema; fazer engenharia reversa; usar a Plataforma para atividades "
+"ilegais, incluindo jogos de azar não autorizados. Podemos suspender contas "
+"que violem estes Termos."
+msgstr ""
+"It is prohibited to: rig results or deceive participants; access third-party"
+" accounts without authorization; attempt to circumvent limits, credits or "
+"system security; reverse engineer; use the Platform for illegal activities, "
+"including unauthorized gambling. We may suspend accounts that violate these "
+"Terms."
+
+#: templates/pages/termos.html:118
+msgid "7. Disponibilidade e limitações"
+msgstr "7. Availability and limitations"
+
+#: templates/pages/termos.html:120
+msgid ""
+"A Plataforma depende da API do Instagram. Mudanças ou indisponibilidade da "
+"Meta podem afetar o serviço, sem que isso gere responsabilidade nossa."
+msgstr ""
+"The Platform depends on the Instagram API. Changes or unavailability on "
+"Meta's side may affect the service, without any liability on our part."
+
+#: templates/pages/termos.html:121
+msgid ""
+"Oferecemos o serviço \"no estado em que se encontra\". Na máxima extensão "
+"permitida pela lei, nossa responsabilidade se limita ao valor pago nos "
+"últimos 3 meses."
+msgstr ""
+"We provide the service \"as is\". To the maximum extent permitted by law, "
+"our liability is limited to the amount paid in the last 3 months."
+
+#: templates/pages/termos.html:122
+msgid ""
+"Não nos responsabilizamos pela entrega de prêmios nem por disputas entre "
+"organizador e participantes."
+msgstr ""
+"We are not responsible for delivering prizes or for disputes between "
+"organizers and participants."
+
+#: templates/pages/termos.html:127
+msgid "8. Propriedade intelectual"
+msgstr "8. Intellectual property"
+
+#: templates/pages/termos.html:129
+#, python-format
+msgid ""
+"A marca, o layout e o código da Plataforma nos pertencem. Instagram é marca "
+"registrada da Meta Platforms, Inc. <strong>%(APP_NAME)s não é afiliado, "
+"patrocinado ou endossado pelo Instagram ou pela Meta.</strong>"
+msgstr ""
+"The Platform's brand, layout and code belong to us. Instagram is a "
+"registered trademark of Meta Platforms, Inc. <strong>%(APP_NAME)s is not "
+"affiliated with, sponsored or endorsed by Instagram or Meta.</strong>"
+
+#: templates/pages/termos.html:137
+msgid "9. Encerramento"
+msgstr "9. Termination"
+
+#: templates/pages/termos.html:139
+msgid ""
+"Você pode desconectar ou excluir sua conta a qualquer momento em "
+"<strong>Minha conta</strong>. Créditos não utilizados em contas excluídas "
+"são perdidos, salvo reembolso nos termos do item 3."
+msgstr ""
+"You can disconnect or delete your account at any time under <strong>My "
+"account</strong>. Unused credits in deleted accounts are forfeited, except "
+"for refunds under item 3."
+
+#: templates/pages/termos.html:149
+msgid ""
+"Podemos alterar estes Termos, informando mudanças relevantes na Plataforma. "
+"O uso continuado após a alteração significa concordância."
+msgstr ""
+"We may change these Terms, announcing relevant changes on the Platform. "
+"Continued use after the change constitutes acceptance."
+
+#: templates/pages/termos.html:157
+msgid "11. Foro e lei aplicável"
+msgstr "11. Governing law and jurisdiction"
+
+#: templates/pages/termos.html:158
+msgid ""
+"Aplicam-se as leis brasileiras. Fica eleito o foro do domicílio do "
+"consumidor."
+msgstr ""
+"Brazilian law applies. The courts of the consumer's domicile shall have "
+"jurisdiction."
+
+#: templates/pages/termos.html:162
+msgid "12. Contato"
+msgstr "12. Contact"
+
+#: templates/raffles/_posts.html:20
+msgid "Post"
+msgstr "Post"
+
+#: templates/raffles/_posts.html:39
+#, python-format
+msgid "%(counter)s comentário"
+msgid_plural "%(counter)s comentários"
+msgstr[0] "%(counter)s comment"
+msgstr[1] "%(counter)s comments"
+
+#: templates/raffles/_posts.html:54
+msgid "Carregar mais posts"
+msgstr "Load more posts"
+
+#: templates/raffles/_posts.html:60
+msgid "Nenhum post encontrado nesta conta."
+msgstr "No posts found on this account."
+
+#: templates/raffles/_progresso.html:14
+#, python-format
+msgid "%(counter)s comentário carregado!"
+msgid_plural "%(counter)s comentários carregados!"
+msgstr[0] "%(counter)s comment loaded!"
+msgstr[1] "%(counter)s comments loaded!"
+
+#: templates/raffles/_progresso.html:18
+msgid "Configurar regras"
+msgstr "Set up rules"
+
+#: templates/raffles/_progresso.html:23
+msgid "Falha ao carregar comentários."
+msgstr "Failed to load comments."
+
+#: templates/raffles/_progresso.html:27
+msgid "Escolher outro post"
+msgstr "Choose another post"
+
+#: templates/raffles/_progresso.html:38
+#, python-format
+msgid ""
+"Carregando comentários… <span class=\"font-semibold text-"
+"violet-600\">%(n)s</span> até agora"
+msgstr ""
+"Loading comments… <span class=\"font-semibold text-violet-600\">%(n)s</span>"
+" so far"
+
+#: templates/raffles/carregar.html:29
+msgid "Isso pode levar alguns minutos dependendo do número de comentários."
+msgstr "This may take a few minutes depending on the number of comments."
+
+#: templates/raffles/certificado.html:3
+#, python-format
+msgid "Certificado — @%(username)s"
+msgstr "Certificate — @%(username)s"
+
+#: templates/raffles/certificado.html:4
+#, python-format
+msgid ""
+"Certificado auditável do sorteio de @%(username)s. Verifique os ganhadores e"
+" a integridade do resultado."
+msgstr ""
+"Auditable giveaway certificate for @%(username)s. Check the winners and the "
+"integrity of the result."
+
+#: templates/raffles/certificado.html:6 templates/raffles/certificado.html:11
+#, python-format
+msgid "Certificado de sorteio — @%(username)s"
+msgstr "Giveaway certificate — @%(username)s"
+
+#: templates/raffles/certificado.html:7
+#, python-format
+msgid ""
+"Sorteio realizado em %(date)s. Confira os ganhadores e o hash SHA-256 de "
+"auditoria."
+msgstr ""
+"Giveaway drawn on %(date)s. See the winners and the SHA-256 audit hash."
+
+#: templates/raffles/certificado.html:12
+#, python-format
+msgid ""
+"Sorteio realizado em %(date)s. Verifique a integridade do resultado pelo "
+"hash SHA-256."
+msgstr ""
+"Giveaway drawn on %(date)s. Verify the integrity of the result with the "
+"SHA-256 hash."
+
+#: templates/raffles/certificado.html:25
+msgid "Certificado verificado"
+msgstr "Verified certificate"
+
+#: templates/raffles/certificado.html:28
+msgid "Certificado de sorteio"
+msgstr "Giveaway certificate"
+
+#: templates/raffles/certificado.html:48
+msgid "Ver publicação no Instagram"
+msgstr "View post on Instagram"
+
+#: templates/raffles/certificado.html:60 templates/raffles/resultado.html:53
+#, python-format
+msgid "Rodada %(round)s"
+msgstr "Round %(round)s"
+
+#: templates/raffles/certificado.html:76 templates/raffles/resultado.html:71
+msgid "suplente"
+msgstr "alternate"
+
+#: templates/raffles/certificado.html:88 templates/raffles/regras.html:47
+msgid "Participantes válidos:"
+msgstr "Valid participants:"
+
+#: templates/raffles/certificado.html:91
+msgid "Método:"
+msgstr "Method:"
+
+#: templates/raffles/certificado.html:101
+msgid "Ver regras aplicadas"
+msgstr "View applied rules"
+
+#: templates/raffles/certificado.html:104
+msgid "1 entrada por usuário:"
+msgstr "1 entry per user:"
+
+#: templates/raffles/certificado.html:104
+#: templates/raffles/certificado.html:105
+#: templates/raffles/certificado.html:106
+msgid "Sim"
+msgstr "Yes"
+
+#: templates/raffles/certificado.html:104
+#: templates/raffles/certificado.html:105
+#: templates/raffles/certificado.html:106
+msgid "Não"
+msgstr "No"
+
+#: templates/raffles/certificado.html:105
+msgid "Incluir respostas:"
+msgstr "Include replies:"
+
+#: templates/raffles/certificado.html:106
+msgid "Excluir dono:"
+msgstr "Exclude owner:"
+
+#: templates/raffles/certificado.html:108
+msgid "Palavra obrigatória:"
+msgstr "Required keyword:"
+
+#: templates/raffles/certificado.html:111
+msgid "Mínimo de menções:"
+msgstr "Minimum mentions:"
+
+#: templates/raffles/certificado.html:114
+msgid "Excluídos:"
+msgstr "Excluded:"
+
+#: templates/raffles/certificado.html:123
+#, python-format
+msgid ""
+"Sorteio realizado por %(APP_NAME)s. Este certificado não pode ser alterado."
+msgstr "Giveaway run by %(APP_NAME)s. This certificate cannot be changed."
+
+#: templates/raffles/historico.html:3
+msgid "Histórico de sorteios"
+msgstr "Giveaway history"
+
+#: templates/raffles/historico.html:12
+msgid "Histórico"
+msgstr "History"
+
+#: templates/raffles/historico.html:24
+msgid "Todos"
+msgstr "All"
+
+#: templates/raffles/historico.html:45
+msgid "sem img"
+msgstr "no image"
+
+#: templates/raffles/historico.html:50 templates/raffles/novo.html:56
+#: templates/raffles/painel.html:74 templates/raffles/regras.html:26
+msgid "(sem legenda)"
+msgstr "(no caption)"
+
+#: templates/raffles/historico.html:53
+#, python-format
+msgid "Criado em %(date)s"
+msgstr "Created on %(date)s"
+
+#: templates/raffles/historico.html:54
+#, python-format
+msgid "Sorteado em %(date)s"
+msgstr "Drawn on %(date)s"
+
+#: templates/raffles/historico.html:70
+msgid "Nenhum sorteio encontrado."
+msgstr "No giveaways found."
+
+#: templates/raffles/novo.html:3 templates/raffles/painel.html:42
+msgid "Novo sorteio"
+msgstr "New giveaway"
+
+#: templates/raffles/novo.html:14
+msgid "Escolher post"
+msgstr "Choose a post"
+
+#: templates/raffles/novo.html:23
+msgid "Aguarde…"
+msgstr "Please wait…"
+
+#: templates/raffles/novo.html:43
+msgid "Escolha o post para sortear"
+msgstr "Choose the post for your giveaway"
+
+#: templates/raffles/novo.html:46 templates/raffles/novo.html:111
+msgid "Usar este post"
+msgstr "Use this post"
+
+#: templates/raffles/novo.html:107
+msgid "Ver no Instagram"
+msgstr "View on Instagram"
+
+#: templates/raffles/painel.html:20
+msgid "Sair"
+msgstr "Log out"
+
+#: templates/raffles/painel.html:47 templates/raffles/sortear.html:60
+msgid "Ver planos"
+msgstr "See plans"
+
+#: templates/raffles/painel.html:95
+msgid "Ver histórico completo"
+msgstr "See full history"
+
+#: templates/raffles/painel.html:105
+msgid "Nenhum sorteio ainda"
+msgstr "No giveaways yet"
+
+#: templates/raffles/painel.html:106
+msgid "Crie seu primeiro sorteio!"
+msgstr "Create your first giveaway!"
+
+#: templates/raffles/regras.html:3 templates/raffles/regras.html:12
+msgid "Regras do sorteio"
+msgstr "Giveaway rules"
+
+#: templates/raffles/regras.html:29
+#, python-format
+msgid "%(counter)s comentário carregado"
+msgid_plural "%(counter)s comentários carregados"
+msgstr[0] "%(counter)s comment loaded"
+msgstr[1] "%(counter)s comments loaded"
+
+#: templates/raffles/regras.html:30
+#, python-format
+msgid "carregado às %(time)s"
+msgstr "loaded at %(time)s"
+
+#: templates/raffles/regras.html:56
+msgid "Ganhadores"
+msgstr "Winners"
+
+#: templates/raffles/regras.html:62
+msgid "Suplentes"
+msgstr "Alternates"
+
+#: templates/raffles/regras.html:71
+msgid "Filtros"
+msgstr "Filters"
+
+#: templates/raffles/regras.html:76
+msgid "1 entrada por usuário (mais justo)"
+msgstr "1 entry per user (fairer)"
+
+#: templates/raffles/regras.html:82
+msgid "Excluir o dono do perfil"
+msgstr "Exclude the profile owner"
+
+#: templates/raffles/regras.html:88
+msgid "Incluir respostas a comentários"
+msgstr "Include replies to comments"
+
+#: templates/raffles/regras.html:95
+msgid "Palavra/hashtag obrigatória"
+msgstr "Required word/hashtag"
+
+#: templates/raffles/regras.html:96
+msgid "(opcional)"
+msgstr "(optional)"
+
+#: templates/raffles/regras.html:99
+msgid "ex: #sorteio"
+msgstr "e.g. #giveaway"
+
+#: templates/raffles/regras.html:106
+msgid "Mínimo de @ menções distintas"
+msgstr "Minimum distinct @mentions"
+
+#: templates/raffles/regras.html:107
+msgid "(0 = sem limite)"
+msgstr "(0 = no minimum)"
+
+#: templates/raffles/regras.html:117
+msgid "Usuários excluídos"
+msgstr "Excluded users"
+
+#: templates/raffles/regras.html:118
+msgid "(um por linha ou separados por vírgula)"
+msgstr "(one per line or comma-separated)"
+
+#: templates/raffles/regras.html:121
+msgid "@fulano"
+msgstr "@john"
+
+#: templates/raffles/regras.html:121
+msgid "@ciclano"
+msgstr "@jane"
+
+#: templates/raffles/regras.html:128
+msgid "Sortear agora"
+msgstr "Draw now"
+
+#: templates/raffles/resultado.html:3 templates/raffles/resultado.html:38
+msgid "Resultado do sorteio"
+msgstr "Giveaway result"
+
+#: templates/raffles/resultado.html:27
+msgid "Certificado público"
+msgstr "Public certificate"
+
+#: templates/raffles/resultado.html:81
+#, python-format
+msgid "%(counter)s participante válido"
+msgid_plural "%(counter)s participantes válidos"
+msgstr[0] "%(counter)s valid participant"
+msgstr[1] "%(counter)s valid participants"
+
+#: templates/raffles/resultado.html:92
+msgid "Re-sortear"
+msgstr "Redraw"
+
+#: templates/raffles/resultado.html:101
+msgid "O re-sorteio é gratuito e fica registrado no certificado público."
+msgstr "Redraws are free and are recorded on the public certificate."
+
+#: templates/raffles/resultado.html:105
+msgid "Motivo do re-sorteio (ex: ganhador não seguia o perfil)"
+msgstr "Reason for the redraw (e.g. winner didn't follow the profile)"
+
+#: templates/raffles/resultado.html:110
+msgid "Confirmar re-sorteio"
+msgstr "Confirm redraw"
+
+#: templates/raffles/resultado.html:120
+msgid "Ajustar regras"
+msgstr "Adjust rules"
+
+#: templates/raffles/resultado.html:124
+msgid "Ver certificado"
+msgstr "View certificate"
+
+#: templates/raffles/sortear.html:3
+msgid "Realizar sorteio"
+msgstr "Run giveaway"
+
+#: templates/raffles/sortear.html:21
+msgid "Regras"
+msgstr "Rules"
+
+#: templates/raffles/sortear.html:47
+msgid "Pronto para sortear!"
+msgstr "Ready to draw!"
+
+#: templates/raffles/sortear.html:55
+msgid "Sortear agora!"
+msgstr "Draw now!"
+
+#: templates/raffles/sortear.html:68
+msgid "Sorteando…"
+msgstr "Drawing…"

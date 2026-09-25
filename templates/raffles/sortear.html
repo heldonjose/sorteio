@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Realizar sorteio{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Realizar sorteio" %}{% endblock %}
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col"
@@ -14,10 +16,11 @@
      }">
 
   <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
       <a href="{% url 'raffles:regras' raffle.uuid %}" class="text-gray-400 hover:text-gray-600">
-        ← Regras
+        ← {% translate "Regras" %}
       </a>
+      {% include "components/lang_switcher.html" %}
     </div>
   </nav>
 
@@ -41,20 +44,20 @@
             </svg>
           </div>
           <div>
-            <h1 class="text-2xl font-bold">Pronto para sortear!</h1>
+            <h1 class="text-2xl font-bold">{% translate "Pronto para sortear!" %}</h1>
             <p class="text-gray-500 text-sm mt-1">
-              Saldo: <span class="font-semibold text-violet-600">{{ balance }} sorteio{{ balance|pluralize }}</span>
+              {% translate "Saldo:" %} <span class="font-semibold text-violet-600">{% blocktranslate trimmed count counter=balance %}{{ counter }} sorteio{% plural %}{{ counter }} sorteios{% endblocktranslate %}</span>
             </p>
           </div>
           {% if balance > 0 %}
           <button @click="startDraw()"
                   class="px-8 py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg rounded-2xl transition-colors shadow-lg shadow-violet-200 dark:shadow-violet-900/40">
-            Sortear agora! 🎉
+            {% translate "Sortear agora!" %} 🎉
           </button>
           {% else %}
           <a href="{% url 'pages:planos' %}"
              class="inline-block px-8 py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg rounded-2xl transition-colors">
-            Ver planos
+            {% translate "Ver planos" %}
           </a>
           {% endif %}
         </div>
@@ -62,7 +65,7 @@
         <!-- Spinning: animação -->
         <div x-show="phase === 'spinning'" x-cloak class="space-y-4">
           <div class="w-24 h-24 rounded-full border-4 border-violet-200 dark:border-violet-800 border-t-violet-600 animate-spin mx-auto"></div>
-          <p class="text-violet-600 font-semibold animate-pulse">Sorteando…</p>
+          <p class="text-violet-600 font-semibold animate-pulse">{% translate "Sorteando…" %}</p>
         </div>
       </div>
 

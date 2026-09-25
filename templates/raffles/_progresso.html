@@ -1,4 +1,4 @@
-{% comment %}Fragmento HTMX — progresso do carregamento de comentários.{% endcomment %}
+{% load i18n %}{% comment %}Fragmento HTMX — progresso do carregamento de comentários.{% endcomment %}
 {% if raffle.status == 'READY' %}
   <div id="progresso"
        hx-get="{% url 'raffles:progresso' raffle.uuid %}"
@@ -10,20 +10,20 @@
       </svg>
     </div>
     <p class="text-green-700 dark:text-green-400 font-semibold">
-      {{ raffle.loaded_comments }} comentário{{ raffle.loaded_comments|pluralize }} carregado{{ raffle.loaded_comments|pluralize }}!
+      {% blocktranslate trimmed count counter=raffle.loaded_comments %}{{ counter }} comentário carregado!{% plural %}{{ counter }} comentários carregados!{% endblocktranslate %}
     </p>
     <a href="{% url 'raffles:regras' raffle.uuid %}"
        class="inline-block px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl font-semibold transition-colors">
-      Configurar regras →
+      {% translate "Configurar regras" %} →
     </a>
   </div>
 {% elif raffle.status == 'FAILED' %}
   <div id="progresso" class="text-center space-y-3">
-    <p class="text-red-600 dark:text-red-400 font-semibold">Falha ao carregar comentários.</p>
-    <p class="text-sm text-gray-500">{{ raffle.load_error }}</p>
+    <p class="text-red-600 dark:text-red-400 font-semibold">{% translate "Falha ao carregar comentários." %}</p>
+    <p class="text-sm text-gray-500">{% translate raffle.load_error %}</p>
     <a href="{% url 'raffles:novo' %}"
        class="inline-block px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-sm">
-      Escolher outro post
+      {% translate "Escolher outro post" %}
     </a>
   </div>
 {% else %}
@@ -34,8 +34,7 @@
        hx-swap="outerHTML"
        class="space-y-3">
     <p class="text-center text-gray-600 dark:text-gray-400">
-      Carregando comentários…
-      <span class="font-semibold text-violet-600">{{ raffle.loaded_comments }}</span> até agora
+      {% blocktranslate trimmed with n=raffle.loaded_comments %}Carregando comentários… <span class="font-semibold text-violet-600">{{ n }}</span> até agora{% endblocktranslate %}
     </p>
     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
       <div class="bg-violet-600 h-2 rounded-full transition-all duration-500"

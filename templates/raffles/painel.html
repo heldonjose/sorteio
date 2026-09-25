@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Painel{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Painel" %}{% endblock %}
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -7,14 +9,15 @@
   <!-- Navbar -->
   <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
     <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-      <span class="font-bold text-violet-600 text-lg">Sorteio</span>
+      <span class="font-bold text-violet-600 text-lg">{% translate "Sorteio" %}</span>
       <div class="flex items-center gap-4">
+        {% include "components/lang_switcher.html" %}
         <a href="{% url 'billing:conta' %}" class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">
           @{{ request.user.username }}
         </a>
         <form method="post" action="{% url 'accounts:logout' %}">
           {% csrf_token %}
-          <button class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">Sair</button>
+          <button class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">{% translate "Sair" %}</button>
         </form>
       </div>
     </div>
@@ -25,23 +28,23 @@
     <!-- Saldo + CTA -->
     <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
       <div>
-        <h1 class="text-2xl font-bold">Painel</h1>
+        <h1 class="text-2xl font-bold">{% translate "Painel" %}</h1>
         <p class="text-gray-500 text-sm mt-1">
-          Saldo: <span class="font-semibold text-violet-600">{{ balance }} sorteio{{ balance|pluralize }}</span>
+          {% translate "Saldo:" %} <span class="font-semibold text-violet-600">{% blocktranslate trimmed count counter=balance %}{{ counter }} sorteio{% plural %}{{ counter }} sorteios{% endblocktranslate %}</span>
           {% if balance == 0 %}
-            · <a href="{% url 'pages:planos' %}" class="text-violet-600 hover:underline">Adquirir mais</a>
+            · <a href="{% url 'pages:planos' %}" class="text-violet-600 hover:underline">{% translate "Adquirir mais" %}</a>
           {% endif %}
         </p>
       </div>
       {% if balance > 0 %}
       <a href="{% url 'raffles:novo' %}"
          class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors whitespace-nowrap">
-        + Novo sorteio
+        + {% translate "Novo sorteio" %}
       </a>
       {% else %}
       <a href="{% url 'pages:planos' %}"
          class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors whitespace-nowrap">
-        Ver planos
+        {% translate "Ver planos" %}
       </a>
       {% endif %}
     </div>
@@ -68,10 +71,10 @@
         <!-- Info -->
         <div class="flex-1 min-w-0">
           <p class="text-sm font-medium truncate">
-            {{ raffle.caption|default:"(sem legenda)"|truncatechars:60 }}
+            {% translate "(sem legenda)" as t_no_caption %}{{ raffle.caption|default:t_no_caption|truncatechars:60 }}
           </p>
           <p class="text-xs text-gray-400 mt-0.5">
-            {{ raffle.created_at|date:"d/m/Y H:i" }}
+            {{ raffle.created_at|date:"SHORT_DATETIME_FORMAT" }}
           </p>
         </div>
         <!-- Status badge -->
@@ -89,7 +92,7 @@
 
     <div class="text-center">
       <a href="{% url 'raffles:historico' %}" class="text-sm text-violet-600 hover:underline">
-        Ver histórico completo
+        {% translate "Ver histórico completo" %}
       </a>
     </div>
 
@@ -99,8 +102,8 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
               d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
       </svg>
-      <p class="font-medium">Nenhum sorteio ainda</p>
-      <p class="text-sm mt-1">Crie seu primeiro sorteio!</p>
+      <p class="font-medium">{% translate "Nenhum sorteio ainda" %}</p>
+      <p class="text-sm mt-1">{% translate "Crie seu primeiro sorteio!" %}</p>
     </div>
     {% endif %}
 

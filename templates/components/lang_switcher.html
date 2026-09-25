@@ -1,0 +1,11 @@
+{% load i18n %}{% get_current_language as LANG %}
+<form method="post" action="{% url 'set_language' %}" class="inline-flex items-center rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden text-xs font-semibold" aria-label="{% translate 'Idioma' %}">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <button type="submit" name="language" value="en" lang="en"
+          class="px-2 py-1 {% if LANG == 'en' %}bg-violet-600 text-white{% else %}text-gray-500 hover:text-gray-900 dark:hover:text-gray-100{% endif %}"
+          {% if LANG == 'en' %}aria-current="true"{% endif %}>EN</button>
+  <button type="submit" name="language" value="pt-br" lang="pt-BR"
+          class="px-2 py-1 {% if LANG == 'pt-br' %}bg-violet-600 text-white{% else %}text-gray-500 hover:text-gray-900 dark:hover:text-gray-100{% endif %}"
+          {% if LANG == 'pt-br' %}aria-current="true"{% endif %}>PT</button>
+</form>

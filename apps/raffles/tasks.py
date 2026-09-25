@@ -4,6 +4,7 @@ import logging
 
 from celery import shared_task
 from django.utils import timezone
+from django.utils.translation import gettext_noop
 
 from apps.instagram.client import InstagramAPIError, InstagramClient
 
@@ -37,7 +38,8 @@ def load_comments(self, raffle_id: int) -> dict:
     try:
         access_token = raffle.user.instagram_account.access_token
     except Exception:
-        _fail_raffle(raffle, "Conta do Instagram não encontrada ou token inválido.")
+        # Guardado em português; traduzido na exibição ({% translate raffle.load_error %})
+        _fail_raffle(raffle, gettext_noop("Conta do Instagram não encontrada ou token inválido."))
         return {"error": "no_token"}
 
     client = InstagramClient(access_token)

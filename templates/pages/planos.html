@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Planos{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Planos" %}{% endblock %}
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -7,23 +9,26 @@
     <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
         {% if request.user.is_authenticated %}
-        <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+        <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← {% translate "Painel" %}</a>
         <span class="text-gray-300 dark:text-gray-700">|</span>
         {% endif %}
-        <span class="font-semibold">Planos</span>
+        <span class="font-semibold">{% translate "Planos" %}</span>
       </div>
-      {% if request.user.is_authenticated %}
-      <span class="text-sm text-gray-500">
-        Saldo: <span class="font-semibold text-violet-600">{{ balance }} sorteio{{ balance|pluralize }}</span>
-      </span>
-      {% endif %}
+      <div class="flex items-center gap-3">
+        {% if request.user.is_authenticated %}
+        <span class="text-sm text-gray-500">
+          {% translate "Saldo:" %} <span class="font-semibold text-violet-600">{% blocktranslate trimmed count counter=balance %}{{ counter }} sorteio{% plural %}{{ counter }} sorteios{% endblocktranslate %}</span>
+        </span>
+        {% endif %}
+        {% include "components/lang_switcher.html" %}
+      </div>
     </div>
   </nav>
 
   <div class="max-w-3xl mx-auto px-4 py-12 space-y-8">
     <div class="text-center">
-      <h1 class="text-3xl font-bold">Planos simples</h1>
-      <p class="text-gray-500 mt-2">Sem assinatura. Pague só o que usar.</p>
+      <h1 class="text-3xl font-bold">{% translate "Planos simples" %}</h1>
+      <p class="text-gray-500 mt-2">{% translate "Sem assinatura. Pague só o que usar." %}</p>
     </div>
 
     <div class="grid sm:grid-cols-3 gap-6">
@@ -31,28 +36,28 @@
       <!-- Gratuito -->
       <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 space-y-4">
         <div>
-          <p class="text-sm font-medium text-gray-500">Gratuito</p>
+          <p class="text-sm font-medium text-gray-500">{% translate "Gratuito" %}</p>
           <p class="text-4xl font-bold mt-1">R$ 0</p>
         </div>
         <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-          <li class="flex gap-2"><span class="text-green-500">✓</span> 5 sorteios vitalícios</li>
-          <li class="flex gap-2"><span class="text-green-500">✓</span> Certificado auditável</li>
-          <li class="flex gap-2"><span class="text-green-500">✓</span> Todas as regras</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "5 sorteios vitalícios" %}</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "Certificado auditável" %}</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "Todas as regras" %}</li>
         </ul>
-        <p class="text-xs text-gray-400">Incluído ao criar a conta.</p>
+        <p class="text-xs text-gray-400">{% translate "Incluído ao criar a conta." %}</p>
       </div>
 
       <!-- Avulso -->
       <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 space-y-4 ring-2 ring-violet-500">
         <div>
-          <p class="text-sm font-medium text-violet-600">Avulso</p>
+          <p class="text-sm font-medium text-violet-600">{% translate "Avulso" %}</p>
           <p class="text-4xl font-bold mt-1">R$ {{ price_single }}</p>
-          <p class="text-sm text-gray-500 mt-1">por sorteio</p>
+          <p class="text-sm text-gray-500 mt-1">{% translate "por sorteio" %}</p>
         </div>
         <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-          <li class="flex gap-2"><span class="text-green-500">✓</span> 1 sorteio</li>
-          <li class="flex gap-2"><span class="text-green-500">✓</span> Re-sorteio gratuito</li>
-          <li class="flex gap-2"><span class="text-green-500">✓</span> Sem validade</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "1 sorteio" %}</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "Re-sorteio gratuito" %}</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "Sem validade" %}</li>
         </ul>
         {% if request.user.is_authenticated %}
         <form method="post" action="{% url 'billing:comprar' %}">
@@ -60,13 +65,13 @@
           <input type="hidden" name="plan" value="SINGLE">
           <button type="submit"
                   class="w-full py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl text-sm transition-colors">
-            Comprar via WhatsApp
+            {% translate "Comprar via WhatsApp" %}
           </button>
         </form>
         {% else %}
         <a href="{% url 'accounts:login' %}"
            class="block w-full text-center py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl text-sm transition-colors">
-          Entrar para comprar
+          {% translate "Entrar para comprar" %}
         </a>
         {% endif %}
       </div>
@@ -74,14 +79,14 @@
       <!-- Pacote -->
       <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 space-y-4">
         <div>
-          <p class="text-sm font-medium text-gray-500">Pacote {{ pack_credits }}</p>
+          <p class="text-sm font-medium text-gray-500">{% blocktranslate trimmed %}Pacote {{ pack_credits }}{% endblocktranslate %}</p>
           <p class="text-4xl font-bold mt-1">R$ {{ pack_price }}</p>
-          <p class="text-sm text-gray-500 mt-1">{{ pack_credits }} sorteios</p>
+          <p class="text-sm text-gray-500 mt-1">{% blocktranslate trimmed %}{{ pack_credits }} sorteios{% endblocktranslate %}</p>
         </div>
         <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-          <li class="flex gap-2"><span class="text-green-500">✓</span> {{ pack_credits }} sorteios</li>
-          <li class="flex gap-2"><span class="text-green-500">✓</span> Melhor custo-benefício</li>
-          <li class="flex gap-2"><span class="text-green-500">✓</span> Sem validade</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% blocktranslate trimmed %}{{ pack_credits }} sorteios{% endblocktranslate %}</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "Melhor custo-benefício" %}</li>
+          <li class="flex gap-2"><span class="text-green-500">✓</span> {% translate "Sem validade" %}</li>
         </ul>
         {% if request.user.is_authenticated %}
         <form method="post" action="{% url 'billing:comprar' %}">
@@ -89,13 +94,13 @@
           <input type="hidden" name="plan" value="PACK_30">
           <button type="submit"
                   class="w-full py-2.5 bg-gray-900 dark:bg-gray-100 hover:opacity-90 text-white dark:text-gray-900 font-semibold rounded-xl text-sm transition-opacity">
-            Comprar via WhatsApp
+            {% translate "Comprar via WhatsApp" %}
           </button>
         </form>
         {% else %}
         <a href="{% url 'accounts:login' %}"
            class="block w-full text-center py-2.5 bg-gray-900 dark:bg-gray-100 hover:opacity-90 text-white dark:text-gray-900 font-semibold rounded-xl text-sm transition-opacity">
-          Entrar para comprar
+          {% translate "Entrar para comprar" %}
         </a>
         {% endif %}
       </div>
@@ -103,7 +108,7 @@
     </div>
 
     <p class="text-center text-xs text-gray-400">
-      Após o pagamento via Pix/WhatsApp, o crédito é liberado manualmente em até 1h útil.
+      {% translate "Após o pagamento via Pix/WhatsApp, o crédito é liberado manualmente em até 1h útil." %}
     </p>
 
     {% if request.user.is_authenticated %}
@@ -111,7 +116,7 @@
     {% with pedidos=request.user.purchase_requests.filter %}
     <div class="text-center">
       <a href="{% url 'billing:conta' %}" class="text-sm text-violet-600 hover:underline">
-        Ver minha conta e extrato →
+        {% translate "Ver minha conta e extrato" %} →
       </a>
     </div>
     {% endwith %}

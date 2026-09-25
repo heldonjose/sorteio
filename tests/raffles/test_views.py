@@ -61,7 +61,7 @@ class TestHistorico:
 class TestNovo:
     def test_get_shows_form(self, client, test_user, instagram_account):
         with patch("apps.raffles.views._load_posts") as mock:
-            mock.return_value = ([], "")
+            mock.return_value = ([], "", "")
             client.force_login(test_user)
             resp = client.get(reverse("raffles:novo"))
         assert resp.status_code == 200
@@ -86,7 +86,7 @@ class TestNovo:
         assert f"/sorteios/{raffle.uuid}/carregar/" in resp["Location"]
 
     def test_post_without_media_id_shows_error(self, client, test_user, instagram_account):
-        with patch("apps.raffles.views._load_posts", return_value=([], "")):
+        with patch("apps.raffles.views._load_posts", return_value=([], "", "")):
             client.force_login(test_user)
             resp = client.post(reverse("raffles:novo"), {"ig_media_id": ""})
         assert resp.status_code == 200

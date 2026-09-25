@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Termos de Uso{% endblock %}
-{% block description %}Termos de uso da plataforma {{ APP_NAME }} — regras, créditos, responsabilidades e limitações.{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Termos de Uso" %}{% endblock %}
+{% block description %}{% blocktranslate trimmed %}Termos de uso da plataforma {{ APP_NAME }} — regras, créditos, responsabilidades e limitações.{% endblocktranslate %}{% endblock %}
+
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <!-- Navbar mínima -->
@@ -10,21 +13,33 @@
        class="font-extrabold text-lg bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
       {{ APP_NAME }}
     </a>
-    <a href="{% url 'pages:landing' %}"
-       class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← Início</a>
+    <div class="flex items-center gap-3">
+      <a href="{% url 'pages:landing' %}"
+         class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← {% translate "Início" %}</a>
+      {% include "components/lang_switcher.html" %}
+    </div>
   </div>
 </header>
 
 <div class="max-w-3xl mx-auto px-4 py-16">
 
-  <h1 class="text-3xl font-extrabold mb-2">Termos de Uso</h1>
-  <p class="text-sm text-gray-500 mb-10">Última atualização: 14/09/2026</p>
+  <h1 class="text-3xl font-extrabold mb-2">{% translate "Termos de Uso" %}</h1>
+  <p class="text-sm text-gray-500 mb-10">{% translate "Última atualização: 14/09/2026" %}</p>
+
+  {% get_current_language as LANG %}{% if LANG != 'pt-br' %}
+  <p class="text-sm text-gray-500 italic mb-8">
+    {% blocktranslate trimmed %}Esta é uma tradução para o inglês fornecida por conveniência. Em caso de divergência, prevalece a versão em português.{% endblocktranslate %}
+  </p>
+  {% endif %}
 
   <p class="text-gray-700 dark:text-gray-300 mb-6">
+    {% url 'pages:privacidade' as privacidade_url %}
+    {% blocktranslate trimmed %}
     Estes Termos regem o uso da plataforma <strong>{{ APP_NAME }}</strong> ("Plataforma"), oferecida por
     <strong>Soluções e Sistemas</strong>, CNPJ <strong>40.144.482/0001-78</strong> ("nós"). Ao entrar com
     sua conta do Instagram, você ("Usuário") concorda com estes Termos e com a
-    <a href="{% url 'pages:privacidade' %}" class="text-violet-600 hover:underline">Política de Privacidade</a>.
+    <a href="{{ privacidade_url }}" class="text-violet-600 hover:underline">Política de Privacidade</a>.
+    {% endblocktranslate %}
   </p>
 
   {% for section in sections %}
@@ -35,106 +50,116 @@
   {% empty %}
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">1. O que a Plataforma faz</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "1. O que a Plataforma faz" %}</h2>
     <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+      {% blocktranslate trimmed %}
       Ferramenta para <strong>sortear aleatoriamente</strong> participantes a partir dos comentários de
       publicações da <strong>própria conta profissional</strong> do Usuário no Instagram, aplicando regras
       definidas pelo Usuário, e manter o histórico e o certificado desses sorteios.
+      {% endblocktranslate %}
     </p>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">2. Requisitos</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "2. Requisitos" %}</h2>
     <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700 dark:text-gray-300">
-      <li>Ter 18 anos ou mais e capacidade legal;</li>
-      <li>Possuir conta <strong>profissional</strong> (Empresa ou Criador de conteúdo) no Instagram e autorizar o acesso pela Meta;</li>
-      <li>Usar apenas contas que você tem o direito de administrar.</li>
+      <li>{% translate "Ter 18 anos ou mais e capacidade legal;" %}</li>
+      <li>{% blocktranslate trimmed %}Possuir conta <strong>profissional</strong> (Empresa ou Criador de conteúdo) no Instagram e autorizar o acesso pela Meta;{% endblocktranslate %}</li>
+      <li>{% translate "Usar apenas contas que você tem o direito de administrar." %}</li>
     </ul>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">3. Créditos e preços</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "3. Créditos e preços" %}</h2>
     <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-      <li>Cada conta do Instagram recebe <strong>5 (cinco) sorteios gratuitos</strong>, uma única vez.</li>
-      <li>Após isso, os sorteios são pagos: <strong>R$ 10,00 por sorteio</strong> ou <strong>pacote de 30 sorteios por R$ 100,00</strong>. Os preços podem mudar, sem afetar créditos já adquiridos.</li>
-      <li><strong>1 crédito é consumido quando o sorteio é realizado pela primeira vez.</strong> Carregar comentários e configurar regras não consome crédito. Re-sorteios dentro do mesmo sorteio são gratuitos.</li>
-      <li>A compra é feita pelo WhatsApp (83) 99627-9632. Os créditos são liberados após a confirmação do pagamento, em até 24 horas em horário comercial.</li>
-      <li>Os créditos comprados <strong>não expiram</strong>.</li>
-      <li><strong>Direito de arrependimento:</strong> créditos <strong>não utilizados</strong> podem ser reembolsados em até 7 dias da compra (art. 49 do CDC).</li>
-      <li>Créditos são pessoais e não podem ser transferidos nem convertidos em dinheiro.</li>
+      <li>{% blocktranslate trimmed %}Cada conta do Instagram recebe <strong>5 (cinco) sorteios gratuitos</strong>, uma única vez.{% endblocktranslate %}</li>
+      <li>{% blocktranslate trimmed %}Após isso, os sorteios são pagos: <strong>R$ 10,00 por sorteio</strong> ou <strong>pacote de 30 sorteios por R$ 100,00</strong>. Os preços podem mudar, sem afetar créditos já adquiridos.{% endblocktranslate %}</li>
+      <li>{% blocktranslate trimmed %}<strong>1 crédito é consumido quando o sorteio é realizado pela primeira vez.</strong> Carregar comentários e configurar regras não consome crédito. Re-sorteios dentro do mesmo sorteio são gratuitos.{% endblocktranslate %}</li>
+      <li>{% translate "A compra é feita pelo WhatsApp (83) 99627-9632. Os créditos são liberados após a confirmação do pagamento, em até 24 horas em horário comercial." %}</li>
+      <li>{% blocktranslate trimmed %}Os créditos comprados <strong>não expiram</strong>.{% endblocktranslate %}</li>
+      <li>{% blocktranslate trimmed %}<strong>Direito de arrependimento:</strong> créditos <strong>não utilizados</strong> podem ser reembolsados em até 7 dias da compra (art. 49 do CDC).{% endblocktranslate %}</li>
+      <li>{% translate "Créditos são pessoais e não podem ser transferidos nem convertidos em dinheiro." %}</li>
     </ul>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">4. Responsabilidades do organizador</h2>
-    <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">O Usuário é o <strong>único responsável</strong> pela promoção que realiza, incluindo:</p>
+    <h2 class="text-xl font-bold mb-3">{% translate "4. Responsabilidades do organizador" %}</h2>
+    <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">{% blocktranslate trimmed %}O Usuário é o <strong>único responsável</strong> pela promoção que realiza, incluindo:{% endblocktranslate %}</p>
     <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-      <li><strong>Legislação brasileira:</strong> promoções comerciais com sorteio podem exigir <strong>autorização prévia</strong> do órgão competente (Lei nº 5.768/1971). A Plataforma é apenas uma ferramenta e não obtém autorizações em nome do Usuário;</li>
-      <li>Criar e divulgar o regulamento, as regras de participação e a entrega dos prêmios;</li>
-      <li>Cumprir as <strong>Diretrizes de Promoções do Instagram</strong>;</li>
-      <li>Tratar de forma adequada os dados dos participantes e ganhadores.</li>
+      <li>{% blocktranslate trimmed %}<strong>Legislação brasileira:</strong> promoções comerciais com sorteio podem exigir <strong>autorização prévia</strong> do órgão competente (Lei nº 5.768/1971). A Plataforma é apenas uma ferramenta e não obtém autorizações em nome do Usuário;{% endblocktranslate %}</li>
+      <li>{% translate "Criar e divulgar o regulamento, as regras de participação e a entrega dos prêmios;" %}</li>
+      <li>{% blocktranslate trimmed %}Cumprir as <strong>Diretrizes de Promoções do Instagram</strong>;{% endblocktranslate %}</li>
+      <li>{% translate "Tratar de forma adequada os dados dos participantes e ganhadores." %}</li>
     </ul>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">5. Transparência e resultado</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "5. Transparência e resultado" %}</h2>
     <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-      <li>O sorteio usa gerador de números aleatórios criptograficamente seguro (<code class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">secrets.SystemRandom</code>), executado em nossos servidores.</li>
-      <li>Cada rodada registra data e hora, regras, número de participantes válidos e um hash SHA-256 da lista.</li>
-      <li>O resultado depende dos comentários disponibilizados pela API da Meta no momento do carregamento. Comentários apagados, ocultados ou filtrados pelo Instagram podem não ser considerados.</li>
+      <li>{% blocktranslate trimmed %}O sorteio usa gerador de números aleatórios criptograficamente seguro (<code class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">secrets.SystemRandom</code>), executado em nossos servidores.{% endblocktranslate %}</li>
+      <li>{% translate "Cada rodada registra data e hora, regras, número de participantes válidos e um hash SHA-256 da lista." %}</li>
+      <li>{% translate "O resultado depende dos comentários disponibilizados pela API da Meta no momento do carregamento. Comentários apagados, ocultados ou filtrados pelo Instagram podem não ser considerados." %}</li>
     </ul>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">6. Uso proibido</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "6. Uso proibido" %}</h2>
     <p class="text-sm text-gray-700 dark:text-gray-300">
+      {% blocktranslate trimmed %}
       É proibido: fraudar resultados ou enganar participantes; acessar contas de terceiros sem autorização;
       tentar burlar limites, créditos ou a segurança do sistema; fazer engenharia reversa; usar a Plataforma
       para atividades ilegais, incluindo jogos de azar não autorizados. Podemos suspender contas que violem
       estes Termos.
+      {% endblocktranslate %}
     </p>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">7. Disponibilidade e limitações</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "7. Disponibilidade e limitações" %}</h2>
     <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-      <li>A Plataforma depende da API do Instagram. Mudanças ou indisponibilidade da Meta podem afetar o serviço, sem que isso gere responsabilidade nossa.</li>
-      <li>Oferecemos o serviço "no estado em que se encontra". Na máxima extensão permitida pela lei, nossa responsabilidade se limita ao valor pago nos últimos 3 meses.</li>
-      <li>Não nos responsabilizamos pela entrega de prêmios nem por disputas entre organizador e participantes.</li>
+      <li>{% translate "A Plataforma depende da API do Instagram. Mudanças ou indisponibilidade da Meta podem afetar o serviço, sem que isso gere responsabilidade nossa." %}</li>
+      <li>{% blocktranslate trimmed %}Oferecemos o serviço "no estado em que se encontra". Na máxima extensão permitida pela lei, nossa responsabilidade se limita ao valor pago nos últimos 3 meses.{% endblocktranslate %}</li>
+      <li>{% translate "Não nos responsabilizamos pela entrega de prêmios nem por disputas entre organizador e participantes." %}</li>
     </ul>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">8. Propriedade intelectual</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "8. Propriedade intelectual" %}</h2>
     <p class="text-sm text-gray-700 dark:text-gray-300">
+      {% blocktranslate trimmed %}
       A marca, o layout e o código da Plataforma nos pertencem. Instagram é marca registrada da Meta Platforms, Inc.
       <strong>{{ APP_NAME }} não é afiliado, patrocinado ou endossado pelo Instagram ou pela Meta.</strong>
+      {% endblocktranslate %}
     </p>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">9. Encerramento</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "9. Encerramento" %}</h2>
     <p class="text-sm text-gray-700 dark:text-gray-300">
+      {% blocktranslate trimmed %}
       Você pode desconectar ou excluir sua conta a qualquer momento em <strong>Minha conta</strong>.
       Créditos não utilizados em contas excluídas são perdidos, salvo reembolso nos termos do item 3.
+      {% endblocktranslate %}
     </p>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">10. Alterações</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "10. Alterações" %}</h2>
     <p class="text-sm text-gray-700 dark:text-gray-300">
+      {% blocktranslate trimmed %}
       Podemos alterar estes Termos, informando mudanças relevantes na Plataforma. O uso continuado após
       a alteração significa concordância.
+      {% endblocktranslate %}
     </p>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">11. Foro e lei aplicável</h2>
-    <p class="text-sm text-gray-700 dark:text-gray-300">Aplicam-se as leis brasileiras. Fica eleito o foro do domicílio do consumidor.</p>
+    <h2 class="text-xl font-bold mb-3">{% translate "11. Foro e lei aplicável" %}</h2>
+    <p class="text-sm text-gray-700 dark:text-gray-300">{% translate "Aplicam-se as leis brasileiras. Fica eleito o foro do domicílio do consumidor." %}</p>
   </section>
 
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-3">12. Contato</h2>
+    <h2 class="text-xl font-bold mb-3">{% translate "12. Contato" %}</h2>
     <p class="text-sm text-gray-700 dark:text-gray-300">
       Heldon José —
       <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a>
@@ -151,9 +176,9 @@
   <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
     <span>© 2026 Soluções e Sistemas — {{ APP_NAME }}</span>
     <nav class="flex gap-6">
-      <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">Privacidade</a>
-      <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">Termos</a>
-      <a href="{% url 'pages:exclusao-dados' %}" class="hover:text-gray-900 dark:hover:text-white">Exclusão de dados</a>
+      <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">{% translate "Privacidade" %}</a>
+      <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">{% translate "Termos" %}</a>
+      <a href="{% url 'pages:exclusao-dados' %}" class="hover:text-gray-900 dark:hover:text-white">{% translate "Exclusão de dados" %}</a>
     </nav>
   </div>
 </footer>

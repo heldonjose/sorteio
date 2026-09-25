@@ -1,13 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Regras do sorteio{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Regras do sorteio" %}{% endblock %}
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
   <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
     <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← {% translate "Painel" %}</a>
       <span class="text-gray-300 dark:text-gray-700">|</span>
-      <span class="font-semibold">Regras do sorteio</span>
+      <span class="font-semibold">{% translate "Regras do sorteio" %}</span>
+      <div class="ml-auto">{% include "components/lang_switcher.html" %}</div>
     </div>
   </nav>
 
@@ -20,11 +23,11 @@
       {% endif %}
       <div class="flex-1 min-w-0">
         <p class="text-sm text-gray-600 dark:text-gray-400 truncate">
-          {{ raffle.caption|default:"(sem legenda)"|truncatechars:120 }}
+          {% translate "(sem legenda)" as t_no_caption %}{{ raffle.caption|default:t_no_caption|truncatechars:120 }}
         </p>
         <p class="text-xs text-gray-400 mt-1">
-          {{ raffle.loaded_comments }} comentário{{ raffle.loaded_comments|pluralize }} carregado{{ raffle.loaded_comments|pluralize }}
-          · carregado às {{ raffle.load_finished_at|date:"H:i" }}
+          {% blocktranslate trimmed count counter=raffle.loaded_comments %}{{ counter }} comentário carregado{% plural %}{{ counter }} comentários carregados{% endblocktranslate %}
+          · {% blocktranslate trimmed with time=raffle.load_finished_at|date:"H:i" %}carregado às {{ time }}{% endblocktranslate %}
         </p>
       </div>
     </div>
@@ -41,7 +44,7 @@
 
       <!-- Participantes ao vivo -->
       <div class="flex items-center justify-between pb-4 border-b border-gray-100 dark:border-gray-800">
-        <span class="text-sm text-gray-500">Participantes válidos:</span>
+        <span class="text-sm text-gray-500">{% translate "Participantes válidos:" %}</span>
         <span class="text-2xl font-bold">
           <span id="participantes-count">{{ participants_count }}</span>
         </span>
@@ -50,13 +53,13 @@
       <!-- Ganhadores e suplentes -->
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium mb-1" for="winners_count">Ganhadores</label>
+          <label class="block text-sm font-medium mb-1" for="winners_count">{% translate "Ganhadores" %}</label>
           <input type="number" id="winners_count" name="winners_count"
                  value="{{ raffle.winners_count }}" min="1" max="100"
                  class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
         </div>
         <div>
-          <label class="block text-sm font-medium mb-1" for="alternates_count">Suplentes</label>
+          <label class="block text-sm font-medium mb-1" for="alternates_count">{% translate "Suplentes" %}</label>
           <input type="number" id="alternates_count" name="alternates_count"
                  value="{{ raffle.alternates_count }}" min="0" max="100"
                  class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
@@ -65,43 +68,43 @@
 
       <!-- Filtros -->
       <fieldset class="space-y-3">
-        <legend class="text-sm font-medium text-gray-700 dark:text-gray-300">Filtros</legend>
+        <legend class="text-sm font-medium text-gray-700 dark:text-gray-300">{% translate "Filtros" %}</legend>
 
         <label class="flex items-center gap-3 cursor-pointer">
           <input type="checkbox" name="unique_per_user" {% if raffle.unique_per_user %}checked{% endif %}
                  class="w-4 h-4 accent-violet-600">
-          <span class="text-sm">1 entrada por usuário (mais justo)</span>
+          <span class="text-sm">{% translate "1 entrada por usuário (mais justo)" %}</span>
         </label>
 
         <label class="flex items-center gap-3 cursor-pointer">
           <input type="checkbox" name="exclude_owner" {% if raffle.exclude_owner %}checked{% endif %}
                  class="w-4 h-4 accent-violet-600">
-          <span class="text-sm">Excluir o dono do perfil</span>
+          <span class="text-sm">{% translate "Excluir o dono do perfil" %}</span>
         </label>
 
         <label class="flex items-center gap-3 cursor-pointer">
           <input type="checkbox" name="include_replies" {% if raffle.include_replies %}checked{% endif %}
                  class="w-4 h-4 accent-violet-600">
-          <span class="text-sm">Incluir respostas a comentários</span>
+          <span class="text-sm">{% translate "Incluir respostas a comentários" %}</span>
         </label>
       </fieldset>
 
       <!-- Palavra obrigatória -->
       <div>
         <label class="block text-sm font-medium mb-1" for="required_keyword">
-          Palavra/hashtag obrigatória
-          <span class="text-gray-400 font-normal">(opcional)</span>
+          {% translate "Palavra/hashtag obrigatória" %}
+          <span class="text-gray-400 font-normal">{% translate "(opcional)" %}</span>
         </label>
         <input type="text" id="required_keyword" name="required_keyword"
-               value="{{ raffle.required_keyword }}" placeholder="ex: #sorteio"
+               value="{{ raffle.required_keyword }}" placeholder="{% translate 'ex: #sorteio' %}"
                class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
       </div>
 
       <!-- Mínimo de menções -->
       <div>
         <label class="block text-sm font-medium mb-1" for="min_mentions">
-          Mínimo de @ menções distintas
-          <span class="text-gray-400 font-normal">(0 = sem limite)</span>
+          {% translate "Mínimo de @ menções distintas" %}
+          <span class="text-gray-400 font-normal">{% translate "(0 = sem limite)" %}</span>
         </label>
         <input type="number" id="min_mentions" name="min_mentions"
                value="{{ raffle.min_mentions }}" min="0" max="20"
@@ -111,18 +114,18 @@
       <!-- Usuários excluídos -->
       <div>
         <label class="block text-sm font-medium mb-1" for="excluded_usernames">
-          Usuários excluídos
-          <span class="text-gray-400 font-normal">(um por linha ou separados por vírgula)</span>
+          {% translate "Usuários excluídos" %}
+          <span class="text-gray-400 font-normal">{% translate "(um por linha ou separados por vírgula)" %}</span>
         </label>
         <textarea id="excluded_usernames" name="excluded_usernames" rows="3"
-                  placeholder="@fulano&#10;@ciclano"
+                  placeholder="{% translate '@fulano' %}&#10;{% translate '@ciclano' %}"
                   class="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none">{{ raffle.excluded_usernames|join:"\n" }}</textarea>
       </div>
 
       <!-- Botão -->
       <button type="submit"
               class="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors">
-        Sortear agora →
+        {% translate "Sortear agora" %} →
       </button>
     </form>
 

@@ -1,13 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Minha conta{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Minha conta" %}{% endblock %}
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
   <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
-      <span class="text-gray-300 dark:text-gray-700">|</span>
-      <span class="font-semibold">Minha conta</span>
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← {% translate "Painel" %}</a>
+        <span class="text-gray-300 dark:text-gray-700">|</span>
+        <span class="font-semibold">{% translate "Minha conta" %}</span>
+      </div>
+      {% include "components/lang_switcher.html" %}
     </div>
   </nav>
 
@@ -32,18 +37,18 @@
         <p class="text-sm text-gray-400">{{ ig_account.name }}</p>
         <p class="text-xs text-gray-400 mt-0.5">
           Token: {% if ig_account.token_is_valid %}
-            <span class="text-green-500">válido até {{ ig_account.token_expires_at|date:"d/m/Y" }}</span>
+            <span class="text-green-500">{% blocktranslate trimmed with date=ig_account.token_expires_at|date:"SHORT_DATE_FORMAT" %}válido até {{ date }}{% endblocktranslate %}</span>
           {% else %}
-            <span class="text-red-500">expirado — faça login novamente</span>
+            <span class="text-red-500">{% translate "expirado — faça login novamente" %}</span>
           {% endif %}
         </p>
         {% endif %}
       </div>
       <div class="text-right flex-shrink-0">
         <p class="text-2xl font-bold text-violet-600">{{ balance }}</p>
-        <p class="text-xs text-gray-400">sorteio{{ balance|pluralize }}</p>
+        <p class="text-xs text-gray-400">{% blocktranslate trimmed count counter=balance %}sorteio{% plural %}sorteios{% endblocktranslate %}</p>
         <a href="{% url 'billing:planos' %}" class="text-xs text-violet-600 hover:underline mt-1 block">
-          Adquirir mais
+          {% translate "Adquirir mais" %}
         </a>
       </div>
     </div>
@@ -51,7 +56,7 @@
     <!-- Extrato de créditos -->
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm overflow-hidden">
       <div class="px-5 py-3 border-b border-gray-100 dark:border-gray-800">
-        <h2 class="font-semibold text-sm">Extrato de créditos</h2>
+        <h2 class="font-semibold text-sm">{% translate "Extrato de créditos" %}</h2>
       </div>
       {% if transactions %}
       <div class="divide-y divide-gray-100 dark:divide-gray-800">
@@ -59,10 +64,10 @@
         <div class="px-5 py-3 flex items-center justify-between">
           <div class="flex-1 min-w-0">
             <p class="text-sm">{{ tx.get_kind_display }}</p>
-            {% if tx.note %}
+            {% if tx.note and tx.kind != "FREE_GRANT" %}
             <p class="text-xs text-gray-400 truncate">{{ tx.note }}</p>
             {% endif %}
-            <p class="text-xs text-gray-400">{{ tx.created_at|date:"d/m/Y H:i" }}</p>
+            <p class="text-xs text-gray-400">{{ tx.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
           </div>
           <span class="font-semibold text-sm ml-4 flex-shrink-0
             {% if tx.amount > 0 %}text-green-600{% else %}text-red-500{% endif %}">
@@ -73,7 +78,7 @@
       </div>
       {% else %}
       <div class="px-5 py-8 text-center text-gray-400 text-sm">
-        Nenhuma transação ainda.
+        {% translate "Nenhuma transação ainda." %}
       </div>
       {% endif %}
     </div>
@@ -82,14 +87,14 @@
     {% if pedidos %}
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm overflow-hidden">
       <div class="px-5 py-3 border-b border-gray-100 dark:border-gray-800">
-        <h2 class="font-semibold text-sm">Pedidos de compra</h2>
+        <h2 class="font-semibold text-sm">{% translate "Pedidos de compra" %}</h2>
       </div>
       <div class="divide-y divide-gray-100 dark:divide-gray-800">
         {% for pedido in pedidos %}
         <div class="px-5 py-3 flex items-center justify-between">
           <div>
-            <p class="text-sm font-medium">Pedido #{{ pedido.pk }} — {{ pedido.get_plan_display }}</p>
-            <p class="text-xs text-gray-400">{{ pedido.created_at|date:"d/m/Y" }} · {{ pedido.price_brl }}</p>
+            <p class="text-sm font-medium">{% blocktranslate trimmed with pk=pedido.pk %}Pedido #{{ pk }}{% endblocktranslate %} — {{ pedido.get_plan_display }}</p>
+            <p class="text-xs text-gray-400">{{ pedido.created_at|date:"SHORT_DATE_FORMAT" }} · {{ pedido.price_brl }}</p>
           </div>
           <span class="text-xs px-2 py-1 rounded-full font-medium
             {% if pedido.status == 'PAID' %}bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400
@@ -105,13 +110,13 @@
 
     <!-- Ações perigosas -->
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-5 space-y-4">
-      <h2 class="font-semibold text-sm">Ações da conta</h2>
+      <h2 class="font-semibold text-sm">{% translate "Ações da conta" %}</h2>
 
       <form method="post" action="{% url 'accounts:logout' %}">
         {% csrf_token %}
         <button type="submit"
                 class="w-full py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-          Sair da conta
+          {% translate "Sair da conta" %}
         </button>
       </form>
 
@@ -119,24 +124,24 @@
         <button @click="confirmar = true"
                 x-show="!confirmar"
                 class="w-full py-2.5 border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 rounded-xl text-sm hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors">
-          Excluir minha conta
+          {% translate "Excluir minha conta" %}
         </button>
 
         <div x-show="confirmar" x-cloak
              class="space-y-3 p-4 bg-red-50 dark:bg-red-950/30 rounded-xl border border-red-200 dark:border-red-900">
           <p class="text-sm text-red-700 dark:text-red-400">
-            Seus dados pessoais e comentários serão apagados. Esta ação é irreversível.
+            {% translate "Seus dados pessoais e comentários serão apagados. Esta ação é irreversível." %}
           </p>
           <div class="flex gap-2">
             <button @click="confirmar = false"
                     class="flex-1 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm">
-              Cancelar
+              {% translate "Cancelar" %}
             </button>
             <form method="post" action="{% url 'billing:excluir-conta' %}" class="flex-1">
               {% csrf_token %}
               <button type="submit"
                       class="w-full py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition-colors">
-                Confirmar exclusão
+                {% translate "Confirmar exclusão" %}
               </button>
             </form>
           </div>

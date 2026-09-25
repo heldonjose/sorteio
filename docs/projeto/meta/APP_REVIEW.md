@@ -89,10 +89,11 @@ Dicas: resolução legível (1080p), sem cortes nas etapas de login, cursor vis�
 
 ### 4.4 Instruções de teste para o revisor
 
+> 0. The interface is in English by default (EN/PT switch in the top bar).
 > 1. Access https://sorteio.repsys.com.br and click "Log in with Instagram".
 > 2. Use the test Instagram professional account: username `[CONTA_TESTE]`, password `[SENHA_TESTE]`. (Two-factor authentication is disabled for this account.)
-> 3. After login, click "New raffle", select any post with comments, wait for comments to load, keep default rules and click "Draw".
-> 4. The winner is displayed along with the list of eligible comments. History is available under "My raffles".
+> 3. After login, on the Dashboard click "New giveaway", select any post with comments and click "Use this post". Wait for the comments to load, keep the default rules and click "Draw now".
+> 4. The winner is displayed along with the list of eligible comments. Past giveaways are listed under "History".
 
 - [ ] Conta de teste: **Instagram institucional da empresa** (profissional, tipo Empresa), compartilhado entre os produtos. Criar **semanas antes** da análise e usar normalmente (foto, bio, e-mail e telefone confirmados, posts), para evitar bloqueio por "atividade suspeita" quando o revisor entrar de outro país
 - [ ] Conteúdo mínimo: 3 a 5 posts (1 Reels) e um post com 15 a 30 comentários de **várias contas Testador do Instagram**, com @marcações e hashtag. Em modo desenvolvimento, comentários de contas sem função no app **não aparecem**

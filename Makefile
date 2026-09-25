@@ -7,7 +7,7 @@ MANAGE  = $(PYTHON) manage.py
 PYTEST  = $(PYTHON) -m pytest
 PIP     = pip
 
-.PHONY: help install migrate run tailwind tailwind-watch \
+.PHONY: help install migrate run tailwind tailwind-watch messages compilemessages \
         test test-unit test-integration test-e2e test-e2e-headed \
         lint shell check setup-tasks playwright-install \
         celery-worker celery-beat
@@ -19,6 +19,8 @@ help:
 	@echo "  make run               Servidor de desenvolvimento"
 	@echo "  make tailwind          Build do CSS (Tailwind)"
 	@echo "  make tailwind-watch    Watch do CSS em desenvolvimento"
+	@echo "  make messages          Atualiza locale/en/.../django.po com textos novos"
+	@echo "  make compilemessages   Compila o .po em .mo (o .mo vai para o git)"
 	@echo "  make setup-tasks       Cria PeriodicTasks do Celery Beat no banco"
 	@echo "  make test              Testes unitários + integração (sem E2E)"
 	@echo "  make test-e2e          Testes E2E com Playwright (headless)"
@@ -46,6 +48,12 @@ tailwind:
 
 tailwind-watch:
 	$(MANAGE) tailwind watch
+
+messages:
+	$(MANAGE) makemessages -l en --ignore=venv --ignore=staticfiles --ignore=tests
+
+compilemessages:
+	$(MANAGE) compilemessages -l en --ignore=venv
 
 setup-tasks:
 	$(MANAGE) setup_periodic_tasks

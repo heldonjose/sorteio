@@ -1,6 +1,6 @@
-{% load static %}<!DOCTYPE html>
+{% load static i18n %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
 <html
-  lang="pt-BR"
+  lang="{% if LANGUAGE_CODE == 'pt-br' %}pt-BR{% else %}{{ LANGUAGE_CODE }}{% endif %}"
   x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
   x-init="$watch('darkMode', v => localStorage.setItem('darkMode', v))"
   :class="{ 'dark': darkMode }"
@@ -8,21 +8,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Sorteio{% endblock %} — {{ APP_NAME }}</title>
-  <meta name="description" content="{% block description %}Sorteios transparentes e auditáveis para o Instagram. Certificado público, re-sorteio gratuito, resultados verificáveis.{% endblock %}">
+  <title>{% block title %}{% translate "Sorteio" %}{% endblock %} — {{ APP_NAME }}</title>
+  <meta name="description" content="{% block description %}{% translate "Sorteios transparentes e auditáveis para o Instagram. Certificado público, re-sorteio gratuito, resultados verificáveis." %}{% endblock %}">
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:site_name"   content="{{ APP_NAME }}">
-  <meta property="og:title"       content="{% block og_title %}{% block title_for_og %}Sorteio{% endblock %} — {{ APP_NAME }}{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}Sorteios transparentes e auditáveis para o Instagram.{% endblock %}">
+  <meta property="og:title"       content="{% block og_title %}{% block title_for_og %}{% translate "Sorteio" %}{% endblock %} — {{ APP_NAME }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{% translate "Sorteios transparentes e auditáveis para o Instagram." %}{% endblock %}">
   <meta property="og:url"         content="{{ request.build_absolute_uri }}">
   {% block og_image %}<meta property="og:image" content="{% static 'img/og-default.png' %}">{% endblock %}
 
   <!-- Twitter / X -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="{% block twitter_title %}{% block title_for_tw %}Sorteio{% endblock %} — {{ APP_NAME }}{% endblock %}">
-  <meta name="twitter:description" content="{% block twitter_description %}Sorteios transparentes e auditáveis para o Instagram.{% endblock %}">
+  <meta name="twitter:title"       content="{% block twitter_title %}{% block title_for_tw %}{% translate "Sorteio" %}{% endblock %} — {{ APP_NAME }}{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}{% translate "Sorteios transparentes e auditáveis para o Instagram." %}{% endblock %}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
   <!-- Skip link (acessibilidade) -->
   <a href="#main-content"
      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-violet-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
-    Ir para o conteúdo
+    {% translate "Ir para o conteúdo" %}
   </a>
 
   <!-- Toast de mensagens Django -->
@@ -67,7 +67,7 @@
       {% elif message.tags == 'warning' %}bg-amber-500 text-white
       {% else %}bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900{% endif %}">
       <span class="flex-1">{{ message }}</span>
-      <button @click="show = false" class="opacity-70 hover:opacity-100 flex-shrink-0" aria-label="Fechar">
+      <button @click="show = false" class="opacity-70 hover:opacity-100 flex-shrink-0" aria-label="{% translate 'Fechar' %}">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
@@ -76,6 +76,11 @@
     {% endfor %}
   </div>
   {% endif %}
+
+  {# Seletor de idioma flutuante — páginas com barra de navegação própria sobrescrevem com vazio e incluem components/lang_switcher.html na barra #}
+  {% block floating_lang_switcher %}
+  <div class="fixed top-3 right-3 z-40">{% include "components/lang_switcher.html" %}</div>
+  {% endblock %}
 
   <main id="main-content">
     {% block content %}{% endblock %}

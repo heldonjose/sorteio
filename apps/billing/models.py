@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.db.models import Sum
+from django.utils.translation import gettext_lazy as _
 
 
 class CreditTransaction(models.Model):
@@ -18,12 +19,12 @@ class CreditTransaction(models.Model):
     KIND_REFUND = "REFUND"
 
     KIND_CHOICES = [
-        (KIND_FREE_GRANT, "Créditos gratuitos (boas-vindas)"),
-        (KIND_PURCHASE_SINGLE, "Compra avulsa — 1 sorteio"),
-        (KIND_PURCHASE_PACK, "Compra pacote — 30 sorteios"),
-        (KIND_CONSUME, "Uso em sorteio"),
-        (KIND_ADJUST, "Ajuste / cortesia"),
-        (KIND_REFUND, "Estorno"),
+        (KIND_FREE_GRANT, _("Créditos gratuitos (boas-vindas)")),
+        (KIND_PURCHASE_SINGLE, _("Compra avulsa — 1 sorteio")),
+        (KIND_PURCHASE_PACK, _("Compra pacote — 30 sorteios")),
+        (KIND_CONSUME, _("Uso em sorteio")),
+        (KIND_ADJUST, _("Ajuste / cortesia")),
+        (KIND_REFUND, _("Estorno")),
     ]
 
     user = models.ForeignKey(
@@ -74,17 +75,17 @@ class PurchaseRequest(models.Model):
     PLAN_SINGLE = "SINGLE"
     PLAN_PACK_30 = "PACK_30"
     PLAN_CHOICES = [
-        (PLAN_SINGLE, "Avulso — 1 sorteio (R$10)"),
-        (PLAN_PACK_30, "Pacote — 30 sorteios (R$100)"),
+        (PLAN_SINGLE, _("Avulso — 1 sorteio (R$10)")),
+        (PLAN_PACK_30, _("Pacote — 30 sorteios (R$100)")),
     ]
 
     STATUS_PENDING = "PENDING"
     STATUS_PAID = "PAID"
     STATUS_CANCELED = "CANCELED"
     STATUS_CHOICES = [
-        (STATUS_PENDING, "Aguardando pagamento"),
-        (STATUS_PAID, "Pago e liberado"),
-        (STATUS_CANCELED, "Cancelado"),
+        (STATUS_PENDING, _("Aguardando pagamento")),
+        (STATUS_PAID, _("Pago e liberado")),
+        (STATUS_CANCELED, _("Cancelado")),
     ]
 
     user = models.ForeignKey(

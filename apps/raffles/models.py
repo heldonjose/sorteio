@@ -2,6 +2,7 @@ import uuid as _uuid
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext, gettext_lazy as _
 
 from .algorithm import (
     CommentEntry,
@@ -19,11 +20,11 @@ class Raffle(models.Model):
     STATUS_FAILED = "FAILED"
 
     STATUS_CHOICES = [
-        (STATUS_DRAFT, "Rascunho"),
-        (STATUS_LOADING, "Carregando comentários"),
-        (STATUS_READY, "Pronto para sortear"),
-        (STATUS_DRAWN, "Sorteado"),
-        (STATUS_FAILED, "Falha"),
+        (STATUS_DRAFT, _("Rascunho")),
+        (STATUS_LOADING, _("Carregando comentários")),
+        (STATUS_READY, _("Pronto para sortear")),
+        (STATUS_DRAWN, _("Sorteado")),
+        (STATUS_FAILED, _("Falha")),
     ]
 
     uuid = models.UUIDField(default=_uuid.uuid4, unique=True, editable=False)
@@ -141,7 +142,7 @@ class Raffle(models.Model):
                 )
                 balance = user.credit_balance()
                 if balance < 1:
-                    raise ValueError("Saldo insuficiente para realizar o sorteio.")
+                    raise ValueError(gettext("Saldo insuficiente para realizar o sorteio."))
 
                 CreditTransaction.objects.create(
                     user=self.user,

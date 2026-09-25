@@ -1,13 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Histórico de sorteios{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Histórico de sorteios" %}{% endblock %}
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
   <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
     <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
-      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← Painel</a>
+      <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600">← {% translate "Painel" %}</a>
       <span class="text-gray-300 dark:text-gray-700">|</span>
-      <span class="font-semibold">Histórico</span>
+      <span class="font-semibold">{% translate "Histórico" %}</span>
+      <div class="ml-auto">{% include "components/lang_switcher.html" %}</div>
     </div>
   </nav>
 
@@ -18,7 +21,7 @@
       <a href="{% url 'raffles:historico' %}"
          class="px-3 py-1.5 rounded-lg text-sm transition-colors
            {% if not status_filter %}bg-violet-600 text-white{% else %}bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800{% endif %}">
-        Todos
+        {% translate "Todos" %}
       </a>
       {% for code, label in STATUS_CHOICES %}
       <a href="?status={{ code }}"
@@ -39,16 +42,16 @@
           {% if raffle.thumbnail_url %}
           <img src="{{ raffle.thumbnail_url }}" alt="" class="w-full h-full object-cover">
           {% else %}
-          <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">sem img</div>
+          <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">{% translate "sem img" %}</div>
           {% endif %}
         </div>
         <div class="flex-1 min-w-0">
           <p class="text-sm font-medium truncate">
-            {{ raffle.caption|default:"(sem legenda)"|truncatechars:80 }}
+            {% translate "(sem legenda)" as t_no_caption %}{{ raffle.caption|default:t_no_caption|truncatechars:80 }}
           </p>
           <p class="text-xs text-gray-400 mt-0.5">
-            Criado em {{ raffle.created_at|date:"d/m/Y H:i" }}
-            {% if raffle.drawn_at %} · Sorteado em {{ raffle.drawn_at|date:"d/m/Y" }}{% endif %}
+            {% blocktranslate trimmed with date=raffle.created_at|date:"SHORT_DATETIME_FORMAT" %}Criado em {{ date }}{% endblocktranslate %}
+            {% if raffle.drawn_at %} · {% blocktranslate trimmed with date=raffle.drawn_at|date:"SHORT_DATE_FORMAT" %}Sorteado em {{ date }}{% endblocktranslate %}{% endif %}
           </p>
         </div>
         <span class="text-xs px-2.5 py-1 rounded-full font-medium flex-shrink-0
@@ -64,7 +67,7 @@
     </div>
     {% else %}
     <div class="text-center py-16 text-gray-400">
-      <p class="font-medium">Nenhum sorteio encontrado.</p>
+      <p class="font-medium">{% translate "Nenhum sorteio encontrado." %}</p>
     </div>
     {% endif %}
 

@@ -5,6 +5,7 @@ import logging
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 
 from apps.instagram.client import InstagramAPIError, InstagramClient
@@ -76,9 +77,9 @@ def novo(request):
         media_type   = request.POST.get("media_type", "").strip()
 
         if not ig_media_id:
-            posts_list, _, _ = _load_posts(request.user)
+            posts_list, _cursor, _error = _load_posts(request.user)
             return render(request, "raffles/novo.html", {
-                "error": "Selecione um post.",
+                "error": _("Selecione um post."),
                 "posts": posts_list,
             })
 
@@ -111,7 +112,7 @@ def _load_posts(user, after=None):
     """Retorna (posts_list, next_cursor, error_msg)."""
     client = _instagram_client(user)
     if not client:
-        return [], "", "Conta do Instagram não conectada."
+        return [], "", _("Conta do Instagram não conectada.")
     try:
         data = client.get_media(after=after)
         posts = data.get("data", [])
@@ -121,7 +122,7 @@ def _load_posts(user, after=None):
         return posts, next_cursor, ""
     except InstagramAPIError as e:
         logger.warning("Erro ao carregar posts para @%s: %s", user.username, e)
-        return [], "", f"Erro ao carregar posts: {e}"
+        return [], "", _("Erro ao carregar posts: %(error)s") % {"error": e}
 
 
 # HTMX: carregar mais posts

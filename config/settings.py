@@ -38,6 +38,7 @@ AUTH_USER_MODEL = "accounts.User"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "apps.pages.middleware.DefaultLanguageMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -84,7 +85,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-LANGUAGE_CODE = os.getenv("LANGUAGE_CODE", "pt-br")
+# Idioma padrão da interface (sem cookie de escolha). O navegador (Accept-Language)
+# é ignorado de propósito: o padrão é sempre este, e o usuário troca no seletor EN/PT.
+LANGUAGE_CODE = os.getenv("LANGUAGE_CODE", "en")
+LANGUAGES = [
+    ("en", "English"),
+    ("pt-br", "Português"),
+]
+LOCALE_PATHS = [BASE_DIR / "locale"]
+LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 365
 TIME_ZONE = os.getenv("TIME_ZONE", "America/Sao_Paulo")
 USE_I18N = True
 USE_TZ = True

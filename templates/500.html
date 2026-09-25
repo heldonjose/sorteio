@@ -1,6 +1,6 @@
-{% load static %}<!DOCTYPE html>
+{% load static i18n %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
 <html
-  lang="pt-BR"
+  lang="{% if LANGUAGE_CODE == 'pt-br' %}pt-BR{% else %}{{ LANGUAGE_CODE }}{% endif %}"
   x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
   x-init="$watch('darkMode', v => localStorage.setItem('darkMode', v))"
   :class="{ 'dark': darkMode }"
@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Erro interno</title>
+  <title>{% translate "Erro interno" %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -53,11 +53,10 @@
     </div>
 
     <h1 class="text-3xl sm:text-4xl font-extrabold mb-3 tracking-tight">
-      Algo deu errado
+      {% translate "Algo deu errado" %}
     </h1>
     <p class="text-gray-500 dark:text-gray-400 max-w-md text-base sm:text-lg mb-10 leading-relaxed">
-      Ocorreu um erro interno no servidor e nossa equipe já foi notificada.
-      Tente novamente em alguns instantes.
+      {% translate "Ocorreu um erro interno no servidor e nossa equipe já foi notificada. Tente novamente em alguns instantes." %}
     </p>
 
     <div class="flex flex-col sm:flex-row gap-3 items-center">
@@ -66,14 +65,14 @@
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
         </svg>
-        Ir para o início
+        {% translate "Ir para o início" %}
       </a>
       <button onclick="location.reload()"
               class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 font-semibold text-base hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-95 transition-all">
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
         </svg>
-        Tentar novamente
+        {% translate "Tentar novamente" %}
       </button>
     </div>
 

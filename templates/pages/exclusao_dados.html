@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Exclusão de Dados{% endblock %}
-{% block description %}Como solicitar a exclusão dos seus dados pessoais da plataforma {{ APP_NAME }}.{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Exclusão de Dados" %}{% endblock %}
+{% block description %}{% blocktranslate trimmed %}Como solicitar a exclusão dos seus dados pessoais da plataforma {{ APP_NAME }}.{% endblocktranslate %}{% endblock %}
+
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <!-- Navbar mínima -->
@@ -10,45 +13,50 @@
        class="font-extrabold text-lg bg-gradient-to-r from-violet-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
       {{ APP_NAME }}
     </a>
-    <a href="{% url 'pages:landing' %}"
-       class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← Início</a>
+    <div class="flex items-center gap-3">
+      <a href="{% url 'pages:landing' %}"
+         class="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100">← {% translate "Início" %}</a>
+      {% include "components/lang_switcher.html" %}
+    </div>
   </div>
 </header>
 
 <div class="max-w-3xl mx-auto px-4 py-16">
 
-  <h1 class="text-3xl font-extrabold mb-2">Exclusão de Dados</h1>
-  <p class="text-sm text-gray-500 mb-10">Última atualização: 14/09/2026</p>
+  <h1 class="text-3xl font-extrabold mb-2">{% translate "Exclusão de Dados" %}</h1>
+  <p class="text-sm text-gray-500 mb-10">{% translate "Última atualização: 14/09/2026" %}</p>
 
   <p class="text-gray-700 dark:text-gray-300 mb-8">
+    {% blocktranslate trimmed %}
     Você pode pedir a exclusão dos seus dados da plataforma <strong>{{ APP_NAME }}</strong> a qualquer
     momento, de três formas:
+    {% endblocktranslate %}
   </p>
 
   <!-- Opção 1 -->
   <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 mb-4">
     <div class="flex items-center gap-3 mb-4">
       <div class="w-8 h-8 rounded-xl bg-violet-600 flex items-center justify-center text-white font-extrabold text-sm flex-shrink-0">1</div>
-      <h2 class="text-lg font-bold">Pela plataforma</h2>
+      <h2 class="text-lg font-bold">{% translate "Pela plataforma" %}</h2>
     </div>
     <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-      <li>Entre em <strong>sorteio.repsys.com.br</strong> com sua conta do Instagram.</li>
-      <li>Acesse <strong>Minha conta</strong>.</li>
-      <li>Clique em <strong>Excluir minha conta e meus dados</strong> e confirme.</li>
+      <li>{% blocktranslate trimmed %}Entre em <strong>sorteio.repsys.com.br</strong> com sua conta do Instagram.{% endblocktranslate %}</li>
+      <li>{% blocktranslate trimmed %}Acesse <strong>Minha conta</strong>.{% endblocktranslate %}</li>
+      <li>{% blocktranslate trimmed %}Clique em <strong>Excluir minha conta e meus dados</strong> e confirme.{% endblocktranslate %}</li>
     </ol>
-    <p class="text-xs text-gray-500 mt-3">A exclusão é imediata para token de acesso, dados de perfil e comentários carregados.</p>
+    <p class="text-xs text-gray-500 mt-3">{% translate "A exclusão é imediata para token de acesso, dados de perfil e comentários carregados." %}</p>
   </div>
 
   <!-- Opção 2 -->
   <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 mb-4">
     <div class="flex items-center gap-3 mb-4">
       <div class="w-8 h-8 rounded-xl bg-pink-600 flex items-center justify-center text-white font-extrabold text-sm flex-shrink-0">2</div>
-      <h2 class="text-lg font-bold">Pelo Instagram</h2>
+      <h2 class="text-lg font-bold">{% translate "Pelo Instagram" %}</h2>
     </div>
     <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-      <li>No Instagram, vá em <strong>Configurações e privacidade → Permissões do site → Apps e sites</strong>.</li>
-      <li>Em <strong>Ativos</strong>, encontre <strong>{{ APP_NAME }}</strong> e clique em <strong>Remover</strong>.</li>
-      <li>A Meta nos avisa automaticamente. Excluímos seus dados e geramos um <strong>código de confirmação</strong>.</li>
+      <li>{% blocktranslate trimmed %}No Instagram, vá em <strong>Configurações e privacidade → Permissões do site → Apps e sites</strong>.{% endblocktranslate %}</li>
+      <li>{% blocktranslate trimmed %}Em <strong>Ativos</strong>, encontre <strong>{{ APP_NAME }}</strong> e clique em <strong>Remover</strong>.{% endblocktranslate %}</li>
+      <li>{% blocktranslate trimmed %}A Meta nos avisa automaticamente. Excluímos seus dados e geramos um <strong>código de confirmação</strong>.{% endblocktranslate %}</li>
     </ol>
   </div>
 
@@ -56,38 +64,42 @@
   <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6 mb-8">
     <div class="flex items-center gap-3 mb-4">
       <div class="w-8 h-8 rounded-xl bg-orange-500 flex items-center justify-center text-white font-extrabold text-sm flex-shrink-0">3</div>
-      <h2 class="text-lg font-bold">Por e-mail</h2>
+      <h2 class="text-lg font-bold">{% translate "Por e-mail" %}</h2>
     </div>
     <p class="text-sm text-gray-700 dark:text-gray-300">
+      {% blocktranslate trimmed %}
       Envie um e-mail para
       <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a>
       com o assunto <strong>"Exclusão de dados"</strong> informando o seu @ do Instagram. Respondemos em até 15 dias.
+      {% endblocktranslate %}
     </p>
   </div>
 
   <!-- O que é excluído -->
-  <h2 class="text-xl font-bold mb-4">O que é excluído</h2>
+  <h2 class="text-xl font-bold mb-4">{% translate "O que é excluído" %}</h2>
   <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300 mb-8">
-    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> Token de acesso ao Instagram</li>
-    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> Dados do perfil (@, nome, foto)</li>
-    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> Comentários carregados dos sorteios</li>
-    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> Histórico de sorteios e certificados públicos</li>
+    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> {% translate "Token de acesso ao Instagram" %}</li>
+    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> {% translate "Dados do perfil (@, nome, foto)" %}</li>
+    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> {% translate "Comentários carregados dos sorteios" %}</li>
+    <li class="flex gap-2"><span class="text-green-500 flex-shrink-0">✓</span> {% translate "Histórico de sorteios e certificados públicos" %}</li>
   </ul>
 
   <!-- O que pode ser mantido -->
-  <h2 class="text-xl font-bold mb-4">O que pode ser mantido (por obrigação legal)</h2>
+  <h2 class="text-xl font-bold mb-4">{% translate "O que pode ser mantido (por obrigação legal)" %}</h2>
   <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300 mb-8">
-    <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">!</span> Registros de pedidos e pagamentos, <strong>anonimizados</strong>, por até 5 anos (obrigação fiscal)</li>
-    <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">!</span> Registros de acesso (IP, data e hora) por 6 meses (Marco Civil da Internet)</li>
+    <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">!</span> {% blocktranslate trimmed %}Registros de pedidos e pagamentos, <strong>anonimizados</strong>, por até 5 anos (obrigação fiscal){% endblocktranslate %}</li>
+    <li class="flex gap-2"><span class="text-amber-500 flex-shrink-0">!</span> {% translate "Registros de acesso (IP, data e hora) por 6 meses (Marco Civil da Internet)" %}</li>
   </ul>
 
   <!-- Comentaristas -->
   <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 text-sm text-gray-600 dark:text-gray-400">
-    <strong class="text-gray-900 dark:text-gray-100">Pessoas que comentaram em um post sorteado</strong><br>
+    <strong class="text-gray-900 dark:text-gray-100">{% translate "Pessoas que comentaram em um post sorteado" %}</strong><br>
+    {% blocktranslate trimmed %}
     Se você comentou em uma publicação usada em sorteio e quer que seu comentário seja removido da nossa base,
     escreva para
     <a href="mailto:alinnequele@gmail.com" class="text-violet-600 hover:underline">alinnequele@gmail.com</a>
     informando o seu @ e o link da publicação.
+    {% endblocktranslate %}
   </div>
 
 </div>
@@ -97,9 +109,9 @@
   <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
     <span>© 2026 Soluções e Sistemas — {{ APP_NAME }}</span>
     <nav class="flex gap-6">
-      <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">Privacidade</a>
-      <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">Termos</a>
-      <a href="{% url 'pages:exclusao-dados' %}" class="hover:text-gray-900 dark:hover:text-white">Exclusão de dados</a>
+      <a href="{% url 'pages:privacidade' %}" class="hover:text-gray-900 dark:hover:text-white">{% translate "Privacidade" %}</a>
+      <a href="{% url 'pages:termos' %}" class="hover:text-gray-900 dark:hover:text-white">{% translate "Termos" %}</a>
+      <a href="{% url 'pages:exclusao-dados' %}" class="hover:text-gray-900 dark:hover:text-white">{% translate "Exclusão de dados" %}</a>
     </nav>
   </div>
 </footer>

@@ -1,15 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Novo sorteio{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Novo sorteio" %}{% endblock %}
+{% block floating_lang_switcher %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
   <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
     <div class="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
       <a href="{% url 'raffles:painel' %}" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-        ← Painel
+        ← {% translate "Painel" %}
       </a>
       <span class="text-gray-300 dark:text-gray-700">|</span>
-      <span class="font-semibold">Escolher post</span>
+      <span class="font-semibold">{% translate "Escolher post" %}</span>
+      <div class="ml-auto">{% include "components/lang_switcher.html" %}</div>
     </div>
   </nav>
 
@@ -17,7 +20,7 @@
   <div x-data x-show="$store.appLoading.on" x-cloak
        class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm">
     <div class="w-12 h-12 rounded-full border-4 border-violet-600 border-t-transparent animate-spin mb-4"></div>
-    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">Aguarde…</p>
+    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">{% translate "Aguarde…" %}</p>
   </div>
 
   <div class="max-w-5xl mx-auto px-4 py-8"
@@ -37,10 +40,10 @@
        }">
 
     <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold">Escolha o post para sortear</h1>
+      <h1 class="text-2xl font-bold">{% translate "Escolha o post para sortear" %}</h1>
       <button type="submit" form="form-novo" x-show="selectedId" x-cloak
               class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors whitespace-nowrap">
-        Usar este post →
+        {% translate "Usar este post" %} →
       </button>
     </div>
 
@@ -50,6 +53,7 @@
     </div>
     {% endif %}
 
+    {% translate "(sem legenda)" as t_no_caption %}
     <form method="post" id="form-novo" @submit="$store.appLoading.on = true">
       {% csrf_token %}
       <input type="hidden" name="ig_media_id"    x-model="selectedId">
@@ -61,7 +65,7 @@
       <!-- Skeleton enquanto o grid carrega (oculto assim que os posts chegam) -->
       {% if not posts and not error %}
       <div id="posts-skeleton" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6 animate-pulse"
-           hx-get="{% url 'raffles:posts-fragment' %}"
+           hx-get="{% url 'raffles:posts_fragment' %}"
            hx-trigger="load"
            hx-target="#posts-grid"
            hx-swap="outerHTML">
@@ -98,13 +102,13 @@
       <div x-show="selectedId" x-cloak class="mt-6 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-sm flex gap-4 items-start">
         <img x-show="selectedThumbnail" :src="selectedThumbnail" class="w-20 h-20 rounded-lg object-cover flex-shrink-0">
         <div class="flex-1 min-w-0">
-          <p class="text-sm text-gray-500 truncate" x-text="selectedCaption || '(sem legenda)'"></p>
+          <p class="text-sm text-gray-500 truncate" x-text="selectedCaption || '{{ t_no_caption|escapejs }}'"></p>
           <a :href="selectedPermalink" target="_blank" rel="noopener"
-             class="text-xs text-violet-600 hover:underline">Ver no Instagram ↗</a>
+             class="text-xs text-violet-600 hover:underline">{% translate "Ver no Instagram" %} ↗</a>
         </div>
         <button type="submit"
                 class="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors whitespace-nowrap">
-          Usar este post →
+          {% translate "Usar este post" %} →
         </button>
       </div>
     </form>

@@ -1,14 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Certificado — @{{ raffle.user.username }}{% endblock %}
-{% block description %}Certificado auditável do sorteio de @{{ raffle.user.username }}. Verifique os ganhadores e a integridade do resultado.{% endblock %}
+{% load i18n %}
+{% block title %}{% blocktranslate trimmed with username=raffle.user.username %}Certificado — @{{ username }}{% endblocktranslate %}{% endblock %}
+{% block description %}{% blocktranslate trimmed with username=raffle.user.username %}Certificado auditável do sorteio de @{{ username }}. Verifique os ganhadores e a integridade do resultado.{% endblocktranslate %}{% endblock %}
 
-{% block og_title %}Certificado de sorteio — @{{ raffle.user.username }} — {{ APP_NAME }}{% endblock %}
-{% block og_description %}Sorteio realizado em {{ raffle.drawn_at|date:"d/m/Y" }}. Confira os ganhadores e o hash SHA-256 de auditoria.{% endblock %}
+{% block og_title %}{% blocktranslate trimmed with username=raffle.user.username %}Certificado de sorteio — @{{ username }}{% endblocktranslate %} — {{ APP_NAME }}{% endblock %}
+{% block og_description %}{% blocktranslate trimmed with date=raffle.drawn_at|date:"SHORT_DATE_FORMAT" %}Sorteio realizado em {{ date }}. Confira os ganhadores e o hash SHA-256 de auditoria.{% endblocktranslate %}{% endblock %}
 {% if raffle.thumbnail_url %}
 {% block og_image %}<meta property="og:image" content="{{ raffle.thumbnail_url }}">{% endblock %}
 {% endif %}
-{% block twitter_title %}Certificado de sorteio — @{{ raffle.user.username }}{% endblock %}
-{% block twitter_description %}Sorteio realizado em {{ raffle.drawn_at|date:"d/m/Y" }}. Verifique a integridade do resultado pelo hash SHA-256.{% endblock %}
+{% block twitter_title %}{% blocktranslate trimmed with username=raffle.user.username %}Certificado de sorteio — @{{ username }}{% endblocktranslate %}{% endblock %}
+{% block twitter_description %}{% blocktranslate trimmed with date=raffle.drawn_at|date:"SHORT_DATE_FORMAT" %}Sorteio realizado em {{ date }}. Verifique a integridade do resultado pelo hash SHA-256.{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <div class="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -21,13 +22,13 @@
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
         </svg>
-        Certificado verificado
+        {% translate "Certificado verificado" %}
       </div>
 
-      <h1 class="text-2xl font-bold">Certificado de sorteio</h1>
+      <h1 class="text-2xl font-bold">{% translate "Certificado de sorteio" %}</h1>
 
       <p class="text-gray-500 text-sm">
-        @{{ raffle.user.username }} · {{ raffle.drawn_at|date:"d/m/Y" }}
+        @{{ raffle.user.username }} · {{ raffle.drawn_at|date:"SHORT_DATE_FORMAT" }}
       </p>
     </div>
 
@@ -44,7 +45,7 @@
         {% if raffle.permalink %}
         <a href="{{ raffle.permalink }}" target="_blank" rel="noopener"
            class="text-xs text-violet-600 hover:underline mt-1 inline-block">
-          Ver publicação no Instagram ↗
+          {% translate "Ver publicação no Instagram" %} ↗
         </a>
         {% endif %}
       </div>
@@ -56,10 +57,10 @@
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm overflow-hidden">
       <div class="px-5 py-3 bg-gray-50 dark:bg-gray-800 flex items-center justify-between">
         <span class="font-semibold text-sm">
-          Rodada {{ draw.round }}
+          {% blocktranslate trimmed with round=draw.round %}Rodada {{ round }}{% endblocktranslate %}
           {% if draw.reason %}<span class="text-gray-400 font-normal"> — {{ draw.reason }}</span>{% endif %}
         </span>
-        <span class="text-xs text-gray-400">{{ draw.created_at|date:"d/m/Y H:i" }}</span>
+        <span class="text-xs text-gray-400">{{ draw.created_at|date:"SHORT_DATETIME_FORMAT" }}</span>
       </div>
 
       <div class="divide-y divide-gray-100 dark:divide-gray-800">
@@ -72,7 +73,7 @@
           <div class="flex-1 min-w-0">
             <p class="font-semibold text-sm">@{{ winner.username }}
               {% if winner.is_alternate %}
-              <span class="text-xs font-normal text-gray-400">(suplente)</span>
+              <span class="text-xs font-normal text-gray-400">({% translate "suplente" %})</span>
               {% endif %}
             </p>
             <p class="text-xs text-gray-400 truncate">{{ winner.comment_text|truncatechars:80 }}</p>
@@ -84,10 +85,10 @@
       <!-- Auditoria -->
       <div class="px-5 py-3 border-t border-gray-100 dark:border-gray-800 space-y-1">
         <p class="text-xs text-gray-400">
-          <span class="font-medium">Participantes válidos:</span> {{ draw.valid_entries }}
+          <span class="font-medium">{% translate "Participantes válidos:" %}</span> {{ draw.valid_entries }}
         </p>
         <p class="text-xs text-gray-400">
-          <span class="font-medium">Método:</span> {{ draw.random_source }}
+          <span class="font-medium">{% translate "Método:" %}</span> {{ draw.random_source }}
         </p>
         <p class="text-xs text-gray-400 font-mono break-all">
           <span class="font-sans font-medium not-italic">SHA-256:</span> {{ draw.participants_hash }}
@@ -97,20 +98,20 @@
       <!-- Regras -->
       <details class="px-5 py-3 border-t border-gray-100 dark:border-gray-800">
         <summary class="text-xs text-gray-400 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300">
-          Ver regras aplicadas
+          {% translate "Ver regras aplicadas" %}
         </summary>
         <div class="mt-2 space-y-1 text-xs text-gray-500">
-          <p>1 entrada por usuário: <strong>{% if draw.rules_snapshot.unique_per_user %}Sim{% else %}Não{% endif %}</strong></p>
-          <p>Incluir respostas: <strong>{% if draw.rules_snapshot.include_replies %}Sim{% else %}Não{% endif %}</strong></p>
-          <p>Excluir dono: <strong>{% if draw.rules_snapshot.exclude_owner %}Sim{% else %}Não{% endif %}</strong></p>
+          <p>{% translate "1 entrada por usuário:" %} <strong>{% if draw.rules_snapshot.unique_per_user %}{% translate "Sim" %}{% else %}{% translate "Não" %}{% endif %}</strong></p>
+          <p>{% translate "Incluir respostas:" %} <strong>{% if draw.rules_snapshot.include_replies %}{% translate "Sim" %}{% else %}{% translate "Não" %}{% endif %}</strong></p>
+          <p>{% translate "Excluir dono:" %} <strong>{% if draw.rules_snapshot.exclude_owner %}{% translate "Sim" %}{% else %}{% translate "Não" %}{% endif %}</strong></p>
           {% if draw.rules_snapshot.required_keyword %}
-          <p>Palavra obrigatória: <strong>{{ draw.rules_snapshot.required_keyword }}</strong></p>
+          <p>{% translate "Palavra obrigatória:" %} <strong>{{ draw.rules_snapshot.required_keyword }}</strong></p>
           {% endif %}
           {% if draw.rules_snapshot.min_mentions %}
-          <p>Mínimo de menções: <strong>{{ draw.rules_snapshot.min_mentions }}</strong></p>
+          <p>{% translate "Mínimo de menções:" %} <strong>{{ draw.rules_snapshot.min_mentions }}</strong></p>
           {% endif %}
           {% if draw.rules_snapshot.excluded_usernames %}
-          <p>Excluídos: <strong>{{ draw.rules_snapshot.excluded_usernames|join:", " }}</strong></p>
+          <p>{% translate "Excluídos:" %} <strong>{{ draw.rules_snapshot.excluded_usernames|join:", " }}</strong></p>
           {% endif %}
         </div>
       </details>
@@ -119,7 +120,7 @@
 
     <!-- Rodapé -->
     <p class="text-center text-xs text-gray-400">
-      Sorteio realizado por {{ APP_NAME }}. Este certificado não pode ser alterado.
+      {% blocktranslate trimmed %}Sorteio realizado por {{ APP_NAME }}. Este certificado não pode ser alterado.{% endblocktranslate %}
     </p>
 
   </div>

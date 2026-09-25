@@ -1,4 +1,4 @@
-{% comment %}Fragmento HTMX — grade de posts (carregar mais).{% endcomment %}
+{% load i18n %}{% comment %}Fragmento HTMX — grade de posts (carregar mais).{% endcomment %}
 {% if error %}
   <p class="col-span-full text-center text-red-500 text-sm">{{ error }}</p>
 {% elif posts %}
@@ -16,7 +16,7 @@
                 group-hover:brightness-90">
       {% if post.thumbnail %}
         <img src="{{ post.thumbnail }}"
-             alt="{{ post.caption|default:'Post'|truncatechars:60 }}"
+             alt="{% if post.caption %}{{ post.caption|truncatechars:60 }}{% else %}{% translate 'Post' %}{% endif %}"
              class="w-full h-full object-cover">
       {% else %}
         <div class="w-full h-full flex items-center justify-center text-gray-400">
@@ -35,7 +35,7 @@
     </div>
     {% if post.comments_count is not None %}
     <div class="absolute bottom-2 left-2 text-xs bg-black/60 text-white px-1.5 py-0.5 rounded">
-      {{ post.comments_count }} comentários
+      {% blocktranslate trimmed count counter=post.comments_count %}{{ counter }} comentário{% plural %}{{ counter }} comentários{% endblocktranslate %}
     </div>
     {% endif %}
   </label>
@@ -50,12 +50,12 @@
             hx-indicator="#load-more-skeleton"
             hx-disabled-elt="this"
             class="px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-      Carregar mais posts
+      {% translate "Carregar mais posts" %}
     </button>
   </div>
   {% endif %}
 {% else %}
   <p class="col-span-full text-center text-gray-400 text-sm py-8">
-    Nenhum post encontrado nesta conta.
+    {% translate "Nenhum post encontrado nesta conta." %}
   </p>
 {% endif %}
