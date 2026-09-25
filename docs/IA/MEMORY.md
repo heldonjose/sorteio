@@ -124,7 +124,7 @@ Painel do app: https://developers.facebook.com/apps/1829415881559086/dashboard/?
 - ✅ Uso permitido — `instagram_business_basic` + `instagram_business_manage_comments`
 - ✅ Tratamento de dados
 - ✅ Instruções da análise
-- Permissões em análise: `instagram_business_basic` + `instagram_business_manage_comments`
+- Permissões pedidas (rejeitadas no 1º envio, só pelo vídeo): `instagram_business_basic` + `instagram_business_manage_comments`
 
 ---
 

@@ -63,29 +63,58 @@ Pode levar de alguns dias a 2 semanas. Dá para iniciar em paralelo ao desenvolv
 
 **Análise do app → Permissões e recursos** → "Solicitar acesso avançado" nas duas permissões. Para cada uma, a Meta pede uma descrição de uso, um vídeo e instruções de teste.
 
-### 4.1 Texto — `instagram_business_basic`
+### 4.1 Texto — `instagram_business_basic` (enviar em inglês)
 
-> [NOME_DO_PRODUTO] é uma plataforma para criadores e empresas realizarem sorteios transparentes com base nos comentários de suas próprias publicações no Instagram. Usamos instagram_business_basic para identificar a conta profissional que fez login (ID, nome de usuário, nome e foto de perfil) e listar as publicações da própria conta (miniatura, legenda, data, link e quantidade de comentários), permitindo que o usuário escolha qual publicação será usada no sorteio. Os dados são exibidos apenas para o próprio usuário autenticado e não são compartilhados com terceiros.
+> Sorteio Pro lets Instagram professional accounts run transparent giveaways using comments on their own posts. We use instagram_business_basic to identify the logged-in account (ID, username, name and profile picture) and to list the account's own posts (thumbnail, caption, date, permalink and comment count), so the user can choose which post to use in the giveaway. This data is shown only to the authenticated user and is never shared with third parties.
 
-### 4.2 Texto — `instagram_business_manage_comments`
+### 4.2 Texto — `instagram_business_manage_comments` (enviar em inglês)
 
-> Usamos instagram_business_manage_comments exclusivamente para LER os comentários (texto, nome de usuário, data e respostas) da publicação escolhida pelo próprio dono da conta. A partir desses comentários, o usuário aplica regras (uma participação por pessoa, palavra-chave obrigatória, número mínimo de marcações, exclusão de usuários) e realiza um sorteio aleatório dos ganhadores. Não publicamos, respondemos, ocultamos nem excluímos comentários. Os comentários ficam armazenados por no máximo 90 dias para que o usuário possa auditar o resultado, e são excluídos antes disso se o usuário apagar a conta ou revogar o acesso.
+> We use instagram_business_manage_comments only to READ the comments (text, username, timestamp and replies) of the post selected by the account owner. The user then applies rules (one entry per person, required keyword, minimum number of mentions, excluded users) and a random winner is drawn from the eligible comments. We never publish, reply to, hide or delete comments. Comments are stored for up to 90 days so the user can audit the result, and are deleted earlier if the user deletes their account or revokes access.
 
-### 4.3 Roteiro do vídeo (screencast, 2–4 min, em inglês ou com legendas em inglês)
+**Observação para o revisor** (campo de notas do envio):
 
-A Meta recomenda mostrar **o fluxo completo de login da Meta** e **onde cada dado aparece**.
+> This is not a server-to-server app: users authenticate through the front-end Instagram Login flow shown in the screencast. The app UI is in English by default (EN/PT switch in the top bar).
 
-1. Abrir `https://sorteio.repsys.com.br` (mostrar a URL na barra).
-2. Clicar em **"Entrar com Instagram"**.
-3. Mostrar a **tela de login/consentimento do Instagram** com as permissões listadas, e autorizar.
-4. Voltar ao painel: destacar **@username e foto** → *instagram_business_basic*.
-5. Clicar em **Novo sorteio**: mostrar a **grade de posts** → *instagram_business_basic*.
-6. Escolher um post e mostrar o **carregamento dos comentários** e a **lista de comentários** → *instagram_business_manage_comments*.
-7. Configurar regras e clicar em **Sortear**: mostrar ganhador(es).
-8. Mostrar **Histórico** e **Minha conta → Excluir conta/desconectar**.
-9. (Opcional) Mostrar as páginas de Privacidade e Exclusão de dados.
+### 4.3 Roteiro do vídeo (screencast)
 
-Dicas: resolução legível (1080p), sem cortes nas etapas de login, cursor visível, legendas curtas explicando cada passo.
+**1º envio rejeitado (23/09/2026)** por "screencast não alinhado com detalhes do caso de uso". A Meta exige: login completo da Meta, tela de consentimento com o usuário concedendo acesso, caso de uso completo, **interface em inglês** e legendas explicando telas e botões.
+
+Um único vídeo, de 2 a 4 minutos, enviado nas duas permissões. As legendas prontas estão em `docs/projeto/meta/screencast_legendas.srt`; importe no editor e ajuste os tempos.
+
+#### Antes de gravar
+
+- [ ] Deploy da versão bilíngue, com `DEFAULT_LANGUAGE=en` no `.env` do servidor e o site abrindo em inglês
+- [ ] **Remover a autorização antiga**, senão a tela de consentimento não aparece. No Instagram da conta de teste: Configurações → Permissões do site → Apps e sites → Ativos → Sorteio Pro → Remover
+- [ ] No admin do Sorteio Pro, apagar o usuário da conta de teste para gravar um primeiro acesso limpo
+- [ ] Navegador em inglês e anônimo, para as telas do Instagram também saírem em inglês: `google-chrome --lang=en-US --incognito`
+- [ ] Post da conta de teste com 15 a 30 comentários de contas **Testador do Instagram**, com @menções. Em modo desenvolvimento, comentários de outras contas não aparecem
+- [ ] Gravador (OBS ou `Ctrl+Shift+Alt+R` no GNOME) em 1080p, janela maximizada, **barra de endereço visível**, sem favoritos nem extensões. Áudio não é necessário
+
+#### Cenas
+
+| # | Na tela | Legenda (inglês) |
+|---|---|---|
+| 1 | Abrir `https://sorteio.repsys.com.br` e rolar a landing devagar | Sorteio Pro is a web app for Instagram professional accounts to run transparent giveaways based on comments on their own posts. |
+| 2 | Mostrar o seletor **EN \| PT** na barra | The interface is in English (EN/PT switch in the top bar). |
+| 3 | Clicar em **Log in with Instagram** | The user clicks "Log in with Instagram" to start the Meta login flow. |
+| 4 | Login do Instagram: usuário e senha, **sem cortes** | Instagram Login: the user signs in with their Instagram professional account. |
+| 5 | **Tela de consentimento**: parar 3 a 4 s na lista de permissões e clicar em **Allow** | The user grants Sorteio Pro access to instagram_business_basic and instagram_business_manage_comments. |
+| 6 | **Dashboard**: destacar @usuário e saldo | instagram_business_basic: we display the logged-in account's username and profile to identify the user. |
+| 7 | **New giveaway**: grade de posts | instagram_business_basic: we list the user's own posts (thumbnail, caption, comment count) so they can choose one for the giveaway. |
+| 8 | Selecionar o post e clicar em **Use this post** | The user selects the post whose comments will be used. |
+| 9 | Carregamento: contagem de comentários subindo | instagram_business_manage_comments: we read the comments (text, username, timestamp, replies) of the selected post. Read-only: we never post, reply to, hide or delete comments. |
+| 10 | **Rules**: alterar uma regra (ex.: 1 menção) e ver a contagem mudar | The user applies rules to the loaded comments: one entry per person, required keyword, minimum mentions, excluded users. |
+| 11 | **Draw now** e ganhador na tela | A random winner is drawn from the eligible comments. |
+| 12 | Abrir o **Public certificate** | A public certificate with a SHA-256 hash lets participants verify the result. |
+| 13 | No Dashboard, **See full history**; depois **My account** (clicar no @usuário): mostrar **Delete my account**, **sem clicar** | Users can view past giveaways and disconnect or delete their account and data at any time. |
+| 14 | Rodapé → **Privacy** e **Data deletion** | Privacy Policy and Data Deletion instructions are publicly available. |
+
+#### Dicas
+
+- Mover o cursor devagar e parar 2 a 3 s em cada tela importante, para dar tempo de ler a legenda
+- Só cortar esperas longas; **nunca cortar entre as cenas 3 e 6** (login + consentimento inteiros)
+- Destacar com retângulo ou seta onde cada permissão aparece (cenas 6, 7 e 9). Kdenlive ou Clipchamp resolvem isso e as legendas
+- Borrar senha ou código 2FA se aparecerem
 
 ### 4.4 Instruções de teste para o revisor
 

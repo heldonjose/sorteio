@@ -1,0 +1,65 @@
+1
+00:00:00,000 --> 00:00:08,000
+Sorteio Pro is a web app for Instagram professional accounts
+to run transparent giveaways based on comments on their own posts.
+
+2
+00:00:08,000 --> 00:00:12,000
+The interface is in English (EN/PT switch in the top bar).
+
+3
+00:00:12,000 --> 00:00:17,000
+The user clicks "Log in with Instagram" to start the Meta login flow.
+
+4
+00:00:17,000 --> 00:00:30,000
+Instagram Login: the user signs in
+with their Instagram professional account.
+
+5
+00:00:30,000 --> 00:00:40,000
+The user grants Sorteio Pro access to
+instagram_business_basic and instagram_business_manage_comments.
+
+6
+00:00:40,000 --> 00:00:50,000
+instagram_business_basic: we display the logged-in account's
+username and profile to identify the user.
+
+7
+00:00:50,000 --> 00:01:02,000
+instagram_business_basic: we list the user's own posts
+(thumbnail, caption, comment count) so they can choose one for the giveaway.
+
+8
+00:01:02,000 --> 00:01:08,000
+The user selects the post whose comments will be used.
+
+9
+00:01:08,000 --> 00:01:24,000
+instagram_business_manage_comments: we read the comments
+(text, username, timestamp, replies) of the selected post.
+Read-only: we never post, reply to, hide or delete comments.
+
+10
+00:01:24,000 --> 00:01:40,000
+The user applies rules to the loaded comments: one entry per person,
+required keyword, minimum mentions, excluded users.
+
+11
+00:01:40,000 --> 00:01:50,000
+A random winner is drawn from the eligible comments.
+
+12
+00:01:50,000 --> 00:02:00,000
+A public certificate with a SHA-256 hash
+lets participants verify the result.
+
+13
+00:02:00,000 --> 00:02:12,000
+Users can view past giveaways and disconnect
+or delete their account and data at any time.
+
+14
+00:02:12,000 --> 00:02:20,000
+Privacy Policy and Data Deletion instructions are publicly available.
