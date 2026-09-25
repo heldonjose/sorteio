@@ -85,9 +85,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+# Idioma em que os textos-fonte estão escritos. Fixo: se fosse "en", o Django usaria
+# o catálogo inglês como reserva para o pt-br e o PT continuaria mostrando inglês.
+LANGUAGE_CODE = "pt-br"
 # Idioma padrão da interface (sem cookie de escolha). O navegador (Accept-Language)
 # é ignorado de propósito: o padrão é sempre este, e o usuário troca no seletor EN/PT.
-LANGUAGE_CODE = os.getenv("LANGUAGE_CODE", "en")
+DEFAULT_LANGUAGE = os.getenv("DEFAULT_LANGUAGE", "en")
 LANGUAGES = [
     ("en", "English"),
     ("pt-br", "Português"),

@@ -11,4 +11,4 @@ if not FIELD_ENCRYPTION_KEY:  # noqa: F405
 DJANGO_ALLOW_ASYNC_UNSAFE = True
 
 # Os testes existentes verificam textos em português
-LANGUAGE_CODE = "pt-br"
+DEFAULT_LANGUAGE = "pt-br"

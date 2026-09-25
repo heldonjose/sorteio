@@ -131,7 +131,7 @@ Painel do app: https://developers.facebook.com/apps/1829415881559086/dashboard/?
 ## Internacionalização (EN/PT) — 25/09/2026
 
 - Textos-fonte em **português** nos templates (`{% translate %}` / `{% blocktranslate trimmed %}`) e no Python (`gettext`); tradução inglesa em `locale/en/LC_MESSAGES/django.po` (+ `.mo` versionado no git, o servidor não precisa de gettext)
-- Idioma padrão = `LANGUAGE_CODE` do `.env` (**`en` durante a análise da Meta**; voltar para `pt-br` depois de aprovado). `Accept-Language` do navegador é ignorado (`apps/pages/middleware.py`)
+- Idioma padrão = `DEFAULT_LANGUAGE` do `.env` (**`en` durante a análise da Meta**; voltar para `pt-br` depois de aprovado). `Accept-Language` do navegador é ignorado (`apps/pages/middleware.py`)
 - Seletor EN/PT: `templates/components/lang_switcher.html` (POST em `/i18n/setlang/`, cookie de 1 ano). Páginas com barra própria incluem o seletor nela e sobrescrevem `{% block floating_lang_switcher %}` com vazio; as demais usam o seletor flutuante do `base.html`
 - Texto novo: `make messages` → traduzir no `.po` → `make compilemessages` → commitar `.po` e `.mo`
 - Testes rodam em `pt-br` (`config/settings_test.py`); testes do idioma em `tests/pages/test_i18n.py`
@@ -140,7 +140,7 @@ Painel do app: https://developers.facebook.com/apps/1829415881559086/dashboard/?
 ## Pendências
 
 - [ ] Regravar screencast com UI em inglês e reenviar a análise (roteiro em `docs/projeto/meta/APP_REVIEW.md` §4.3)
-- [ ] Após aprovação: `LANGUAGE_CODE=pt-br` no `.env` do servidor
+- [ ] Após aprovação: `DEFAULT_LANGUAGE=pt-br` no `.env` do servidor
 - [ ] Meta aprovar → clicar "Publicar" na página go_live do painel
 - [ ] Após aprovação: remover tester "sandalias helokids" (manter até lá)
 - [ ] Reverter `has_delete_permission` em `apps/raffles/admin.py` (RaffleAdmin) para `False` — liberado só para testes

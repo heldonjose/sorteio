@@ -92,7 +92,7 @@ sorteio/
 
 - Fases 0 a 6 **concluídas** (código completo, 130+ testes passando) — detalhes em `docs/IA/MEMORY.md` e `docs/DESENVOLVIMENTO.md`.
 - **Análise do App na Meta rejeitada em 23/09/2026** (só o screencast; caso de uso aprovado) — app ficou bilíngue EN/PT em 25/09/2026, falta regravar o vídeo em inglês e reenviar.
-- i18n: textos-fonte em português + `locale/en/`; idioma padrão pelo `LANGUAGE_CODE` do `.env` (ver `docs/IA/MEMORY.md` → Internacionalização).
+- i18n: textos-fonte em português + `locale/en/`; idioma padrão pelo `DEFAULT_LANGUAGE` do `.env` (`LANGUAGE_CODE` fica fixo em `pt-br`, idioma-fonte) (ver `docs/IA/MEMORY.md` → Internacionalização).
 - Pendências conhecidas: ver seção "Pendências" em `docs/IA/MEMORY.md`.
 
 ### Decisões abertas (consultar usuário se necessário)
